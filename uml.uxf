@@ -180,13 +180,18 @@ FAULTY</panel_attributes>
       <x>1000</x>
       <y>56</y>
       <w>256</w>
-      <h>248</h>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>*System*
+    <panel_attributes>*LibraryManager*
 -
 _- _systemDate : int_
+- _library: Library
 -
-_+ advanceDays(days: int) : void_</panel_attributes>
+_+ advanceDays(days: int) : void_
++ save(): void
++ saveAs(fileName: String): void
++ load(fileName: String): void
++ importFile(dataFile: String): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
