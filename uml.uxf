@@ -205,13 +205,13 @@ _+ advanceDays(days: int) : void_
     <coordinates>
       <x>88</x>
       <y>24</y>
-      <w>184</w>
+      <w>312</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>*Grupo 57*
 
-*Bernardo Mota, n.o. 93693*
-*David Duque, n.o. 93698*</panel_attributes>
+*Bernardo Mota 93693 segunda-feira 10:30*
+*David Duque 93698 terça-feira 13:00*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
