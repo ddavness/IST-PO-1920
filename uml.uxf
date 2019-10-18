@@ -30,9 +30,9 @@ fontfamily="Fira Code"
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>152</y>
+      <y>136</y>
       <w>352</w>
-      <h>240</h>
+      <h>264</h>
     </coordinates>
     <panel_attributes>*&lt;&lt;abstract&gt;&gt; Work*
 -
@@ -50,6 +50,8 @@ _- _nextId : int_
 + getAvailableCopies() : int
 + toString() : String
 /+ matchKeyword(keyword : String) : boolean/
+~ getRequests() : WorkRequest[]
+~ getInterestedUsers() : InterestedUsers[]
 
 + requestWork(user : User) : boolean
 + addUserToReturnNotificationQueue(user : User) : void</panel_attributes>
@@ -59,7 +61,7 @@ _- _nextId : int_
     <id>UMLClass</id>
     <coordinates>
       <x>1016</x>
-      <y>288</y>
+      <y>296</y>
       <w>560</w>
       <h>96</h>
     </coordinates>
@@ -77,7 +79,7 @@ _- _nextId : int_
     <id>UMLClass</id>
     <coordinates>
       <x>1016</x>
-      <y>152</y>
+      <y>160</y>
       <w>512</w>
       <h>96</h>
     </coordinates>
@@ -95,7 +97,7 @@ _- _nextId : int_
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>832</y>
+      <y>840</y>
       <w>168</w>
       <h>64</h>
     </coordinates>
@@ -110,9 +112,9 @@ TECHNICAL</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>592</y>
+      <y>600</y>
       <w>352</w>
-      <h>288</h>
+      <h>296</h>
     </coordinates>
     <panel_attributes>*User*
 -
@@ -120,6 +122,7 @@ _- _nextId : int_
 - _userId : int
 - _name : String
 - _email : String
+- _active : boolean
 - _finesDue : int
 - _classification : UserClassification
 - _unreadNotifications : Notification[]
@@ -143,7 +146,7 @@ _- _nextId : int_
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>760</y>
+      <y>768</y>
       <w>232</w>
       <h>64</h>
     </coordinates>
@@ -158,7 +161,7 @@ FAULTY</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>272</y>
+      <y>280</y>
       <w>256</w>
       <h>136</h>
     </coordinates>
@@ -179,9 +182,9 @@ _+ advanceDays(days: int) : void_
     <id>UMLClass</id>
     <coordinates>
       <x>1016</x>
-      <y>432</y>
+      <y>440</y>
       <w>448</w>
-      <h>112</h>
+      <h>136</h>
     </coordinates>
     <panel_attributes>*Notification*
 -
@@ -190,15 +193,17 @@ _+ advanceDays(days: int) : void_
 - _targetWork : Work
 - _type : NotificationType
 -
-*+ Notification(recipient: User, work : Work, type : NotificationType)*
-+ deployNotification() : void</panel_attributes>
+*~ Notification(recipient: User, work : Work, type : NotificationType)*
+~ deployNotification() : void
+
++ toString() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>16</y>
+      <y>24</y>
       <w>184</w>
       <h>64</h>
     </coordinates>
@@ -212,7 +217,7 @@ _+ advanceDays(days: int) : void_
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>424</y>
+      <y>432</y>
       <w>352</w>
       <h>136</h>
     </coordinates>
@@ -225,7 +230,7 @@ _- _lateRetrunDailyFine : int_
 - _returnDeadline : Date
 -
 *+ WorkRequest(work : Work, user : User, period : int)*
-+ computeStatus() : void
++ updateStatus(daysElapsed : int) : void
 + returnWork() : void</panel_attributes>
     <additional_attributes/>
   </element>
@@ -233,7 +238,7 @@ _- _lateRetrunDailyFine : int_
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>120</y>
+      <y>128</y>
       <w>232</w>
       <h>136</h>
     </coordinates>
@@ -253,7 +258,7 @@ _- _lateRetrunDailyFine : int_
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>704</y>
+      <y>712</y>
       <w>232</w>
       <h>48</h>
     </coordinates>
@@ -267,7 +272,7 @@ RETURNED</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>88</x>
-      <y>424</y>
+      <y>432</y>
       <w>320</w>
       <h>272</h>
     </coordinates>
@@ -299,7 +304,7 @@ RETURNED</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>8</x>
-      <y>352</y>
+      <y>360</y>
       <w>96</w>
       <h>200</h>
     </coordinates>
@@ -311,7 +316,7 @@ m2=theLibrary</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>32</x>
-      <y>184</y>
+      <y>192</y>
       <w>72</w>
       <h>160</h>
     </coordinates>
@@ -323,7 +328,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>224</y>
+      <y>232</y>
       <w>168</w>
       <h>24</h>
     </coordinates>
@@ -334,7 +339,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>288</y>
+      <y>296</y>
       <w>168</w>
       <h>24</h>
     </coordinates>
@@ -345,7 +350,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>360</x>
-      <y>296</y>
+      <y>304</y>
       <w>176</w>
       <h>144</h>
     </coordinates>
@@ -357,7 +362,7 @@ m2=0..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>360</x>
-      <y>688</y>
+      <y>696</y>
       <w>176</w>
       <h>152</h>
     </coordinates>
@@ -369,7 +374,7 @@ m2=0..*</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>880</x>
-      <y>568</y>
+      <y>576</y>
       <w>104</w>
       <h>24</h>
     </coordinates>
@@ -380,7 +385,7 @@ m2=0..*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>368</y>
+      <y>376</y>
       <w>64</w>
       <h>184</h>
     </coordinates>
@@ -392,7 +397,7 @@ m2=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>472</x>
-      <y>472</y>
+      <y>480</y>
       <w>64</w>
       <h>184</h>
     </coordinates>
@@ -404,7 +409,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>336</y>
+      <y>344</y>
       <w>168</w>
       <h>168</h>
     </coordinates>
@@ -416,13 +421,25 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>536</y>
+      <y>568</y>
       <w>248</w>
-      <h>176</h>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;190.0;280.0;190.0;280.0;10.0</additional_attributes>
+    <additional_attributes>10.0;160.0;280.0;160.0;280.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>544</y>
+      <w>104</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=2</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0;100.0;40.0</additional_attributes>
   </element>
 </diagram>
