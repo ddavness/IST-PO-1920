@@ -29,10 +29,10 @@ fontfamily="Fira Code"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>8</x>
-      <y>88</y>
+      <x>512</x>
+      <y>168</y>
       <w>352</w>
-      <h>224</h>
+      <h>232</h>
     </coordinates>
     <panel_attributes>*&lt;&lt;abstract&gt;&gt; Work*
 -
@@ -43,24 +43,25 @@ _- _nextId : int_
 - _price : int
 - _title ; String
 - _category : Category
+- _interestedUsers : Users[]
 -
 *+ Work(price: int, title: String, category: Category)*
-_+ getNextId() : int_
 + getId() : int
-+ getNumberOfCopies() : int
 + getAvailableCopies() : int
-+ getPrice() : int
-+ getTitle() : String
-+ getCategory() : Category</panel_attributes>
++ toString() : String
++ matchKeyword(keyword : String) : boolean
+
++ requestWork(user : User) : boolean
++ addUserToReturnNotificationQueue(user : User) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>416</x>
-      <y>40</y>
+      <x>928</x>
+      <y>296</y>
       <w>560</w>
-      <h>96</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>*DVD*
 -
@@ -69,16 +70,17 @@ _+ getNextId() : int_
 -
 *+ DVD(price: int, title: String, category: Category, igacNum: String, producer: String)*
 + getIGACNumber() : String
-+ getProducer() : String</panel_attributes>
++ getProducer() : String
++ toString() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>464</x>
-      <y>192</y>
+      <x>928</x>
+      <y>168</y>
       <w>512</w>
-      <h>96</h>
+      <h>112</h>
     </coordinates>
     <panel_attributes>*Book*
 -
@@ -87,36 +89,15 @@ _+ getNextId() : int_
 -
 *+ Book(price: int, title: String, category: Category, isbn: String, author: String)*
 + getISBN() : String
-+ getAuthor() : String</panel_attributes>
++ getAuthor() : String
++ toString() : String</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>352</x>
-      <y>216</y>
-      <w>128</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>352</x>
-      <y>96</y>
-      <w>80</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>8</x>
-      <y>16</y>
+      <x>80</x>
+      <y>848</y>
       <w>168</w>
       <h>64</h>
     </coordinates>
@@ -130,8 +111,8 @@ TECHNICAL</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>464</x>
-      <y>312</y>
+      <x>512</x>
+      <y>560</y>
       <w>336</w>
       <h>288</h>
     </coordinates>
@@ -144,28 +125,27 @@ _- _nextId : int_
 - _finesDue : int
 - _classification : UserClassification
 - _unreadNotifications : Notification[]
-- _currentRequests : WorkRequest[]
+- _currentRequests : List&lt;WorkRequest&gt;
 -
 *+ User(name : String, email : String)*
 + getUserId() : int
-+ getUserName() : String
-+ getEmail() : String
 + isActive() : boolean
 + getFinesDue() : int
 + getClassification() : UserClassification
 + readNotifications() : Notification[]
-
-+ addFine(amount : int) : void
++ toString() : String
 + payFines() : void
-+ setClassification(classification: UserClassification): void
-</panel_attributes>
+
+~ addFine(amount : int) : void
+~ setClassification(classification : UserClassification): void
+~ insertNotification(notification : Notification) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>8</x>
-      <y>328</y>
+      <x>80</x>
+      <y>776</y>
       <w>232</w>
       <h>64</h>
     </coordinates>
@@ -179,17 +159,18 @@ FAULTY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1008</x>
-      <y>40</y>
+      <x>80</x>
+      <y>288</y>
       <w>256</w>
-      <h>120</h>
+      <h>136</h>
     </coordinates>
     <panel_attributes>*LibraryManager*
 -
-_- _systemDate : int_
+_- _systemDate : Date_
 - _library: Library
 -
 _+ advanceDays(days: int) : void_
+
 + save(): void
 + saveAs(fileName: String): void
 + load(fileName: String): void
@@ -199,94 +180,61 @@ _+ advanceDays(days: int) : void_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>888</x>
-      <y>312</y>
+      <x>928</x>
+      <y>696</y>
       <w>328</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>*Notification*
 -
 - _message: String
-- _recipient: User
+- _mainRecipient: User
 -
-*+ Notification(recipient: User, message: String)*</panel_attributes>
+*+ Notification(recipient: User, message: String)*
++ deployNotification() : void</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>792</x>
-      <y>376</y>
-      <w>112</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>m1=1
-m2=0..*</panel_attributes>
-    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>8</x>
-      <y>680</y>
-      <w>160</w>
-      <h>48</h>
+      <x>80</x>
+      <y>32</y>
+      <w>184</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>*Grupo 57*
--
-Bernardo Mota, n.o. 93693
-David Duque, n.o. 93698</panel_attributes>
+
+*Bernardo Mota, n.o. 93693*
+*David Duque, n.o. 93698*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>8</x>
-      <y>408</y>
+      <x>928</x>
+      <y>504</y>
       <w>328</w>
       <h>168</h>
     </coordinates>
     <panel_attributes>*WorkRequest*
 -
+_- _lateRetrunDailyFine : int_
 - _workRequested : Work
 - _requester : User
 - _requestDate : Date
 - _returnDeadline : Date
 -
-*+ WorkRequest(work : Work, user : User)*</panel_attributes>
+*+ WorkRequest(work : Work, user : User)*
++ computeStatus() : void
++ returnWork() : void</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>328</x>
-      <y>448</y>
-      <w>152</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>m2=1
-m1=0..*
-</panel_attributes>
-    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>296</x>
-      <y>304</y>
-      <w>32</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>888</x>
-      <y>440</y>
-      <w>208</w>
+      <x>80</x>
+      <y>136</y>
+      <w>232</w>
       <h>136</h>
     </coordinates>
     <panel_attributes>*Date*
@@ -294,11 +242,154 @@ m1=1</panel_attributes>
 - _dayNumber: int
 --
 *+ Date(dayNumber: int)*
-+ getDate(): int
-+ toString() :String
-+ advanceDays(numDays: int)
-+ isEqual(Date) : boolean
-+ numOfDaysBetween(Date) : int</panel_attributes>
++ getDate() : int
++ toString() : String
++ advanceDays(numDays : int)
++ isEqual(date : Date) : boolean
++ getNumOfDaysBetween(date : Date) : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>928</x>
+      <y>832</y>
+      <w>456</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>*WorkAvailableNotificationPromise*
+-
+- _work : Work
+-
+*+ WorkAvailableNotificationPromise(recipient : User, work : Work)*
++ </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>720</y>
+      <w>232</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>*&lt;&lt;enumeration&gt;&gt; NotificationType*
+-
+BORROWED
+RETURNED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>440</y>
+      <w>320</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>**Library**
+-
+- _users : User[]
+- _userOrderedList : SortedMap&lt;User&gt;
+- _works : Work[]
+-
+*+ Library()*
+
++ showUser(userId : int) : User
++ showAllUsers() : User[]
++ showUSerNotifications(userId : int) : Notification[]
++ payFine(userId : int) : void
++ showWork(workId : int) : Work
++ showAllWorks() : Work[]
++ searchWork(keyword : String) : Work[]
+
++ requestWork(userId : int, workId : int) : void
++ returnWork(userId : int, workId : int) : void
+
++ registerUser(name : String, email : String) : void
+
+~ importFile (filename String)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>368</y>
+      <w>96</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;
+m2=theLibrary</panel_attributes>
+    <additional_attributes>100.0;10.0;40.0;10.0;40.0;220.0;100.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>24</x>
+      <y>200</y>
+      <w>72</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0;10.0;180.0;70.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>856</x>
+      <y>216</y>
+      <w>88</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>856</x>
+      <y>352</y>
+      <w>88</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>312</y>
+      <w>176</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>704</y>
+      <w>176</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0;200.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>512</x>
+      <y>472</y>
+      <w>104</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>*Date*</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
