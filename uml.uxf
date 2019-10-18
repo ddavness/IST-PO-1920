@@ -194,7 +194,7 @@ _+ advanceDays(days: int) : void_
 - _type : NotificationType
 -
 *~ Notification(recipient: User, work : Work, type : NotificationType)*
-~ deployNotification() : void
+~ sendNotification() : void
 
 + toString() : String</panel_attributes>
     <additional_attributes/>
