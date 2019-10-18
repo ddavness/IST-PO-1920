@@ -114,7 +114,7 @@ TECHNICAL</panel_attributes>
       <x>520</x>
       <y>600</y>
       <w>352</w>
-      <h>296</h>
+      <h>320</h>
     </coordinates>
     <panel_attributes>*User*
 -
@@ -133,6 +133,7 @@ _- _nextId : int_
 + isActive() : boolean
 + getFinesDue() : int
 + getClassification() : UserClassification
++ getRequests() : List&lt;WorkRequest&gt;
 + readNotifications() : Notification[]
 + toString() : String
 + payFines() : void
@@ -217,9 +218,9 @@ _+ advanceDays(days: int) : void_
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>432</y>
+      <y>424</y>
       <w>352</w>
-      <h>136</h>
+      <h>144</h>
     </coordinates>
     <panel_attributes>*WorkRequest*
 -
@@ -230,6 +231,7 @@ _- _lateRetrunDailyFine : int_
 - _returnDeadline : Date
 -
 *+ WorkRequest(work : Work, user : User, period : int)*
+- checkUserElegibility() : boolean
 + updateStatus(daysElapsed : int) : void
 + returnWork() : void</panel_attributes>
     <additional_attributes/>
@@ -387,11 +389,11 @@ m2=0..*</panel_attributes>
       <x>864</x>
       <y>376</y>
       <w>64</w>
-      <h>184</h>
+      <h>176</h>
     </coordinates>
     <panel_attributes>m1=0..n
 m2=1</panel_attributes>
-    <additional_attributes>10.0;200.0;60.0;200.0;60.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;60.0;190.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -434,12 +436,12 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>544</y>
+      <y>536</y>
       <w>104</w>
-      <h>48</h>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m2=2</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0;100.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0;100.0;50.0</additional_attributes>
   </element>
 </diagram>
