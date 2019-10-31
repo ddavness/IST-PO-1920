@@ -25,7 +25,6 @@ public class User {
     ArrayList<Request> _requests = new ArrayList<>();
 
 
-    //FIXME Add collection of Requests
 
 
     
