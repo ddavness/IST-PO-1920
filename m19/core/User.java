@@ -14,17 +14,17 @@ import java.util.ArrayList;
 public class User implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    public static int _nextID; /* inicialized at 0 */
+    // FIXME: I cannot be public
+    public static int _nextID; // initialized at 0
     private final int _id;
+
     private boolean _isActive;
     private String _name;
     private String _email;
-    ArrayList<Notification> _notifications = new ArrayList<>();
-
     private UserBehaviour _userBehaviour;
 
-
     ArrayList<Request> _requests = new ArrayList<>();
+    ArrayList<Notification> _notifications = new ArrayList<>();
 
     public User(String name, String email) {
         _name = name;
@@ -40,11 +40,19 @@ public class User implements Serializable{
         return _isActive;
     }
 
+    void setActive(boolean active) {
+        _isActive = active;
+    }
+
     public String getDescription() {
         if (_isActive) {
             return "" + _id + " - " + _name + " - " + _email + " - " + _userBehaviour + " - ACTIVO";
         } else {
-            return "" + _id + " - " + _name + " - " + _email + " - " + _userBehaviour + " - SUSPENSO";
+            int totalFines = 0;
+            for (Request req : _requests) {
+                totalFines += req.getFine();
+            }
+            return "" + _id + " - " + _name + " - " + _email + " - " + _userBehaviour + " - SUSPENSO - EUR " + totalFines;
         }
     }
 
