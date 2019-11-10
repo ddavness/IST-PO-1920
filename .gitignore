@@ -1,2 +1,6 @@
 # Don't track vscode junk
 .vscode
+
+*.pdf
+*.jar
+*.class
