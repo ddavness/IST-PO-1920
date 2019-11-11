@@ -23,8 +23,8 @@ public class User implements Serializable{
     private String _email;
     private UserBehaviour _userBehaviour;
 
-    ArrayList<Request> _requests = new ArrayList<>();
-    ArrayList<Notification> _notifications = new ArrayList<>();
+    List<Request> _requests = new ArrayList<>();
+    List<Notification> _notifications = new ArrayList<>();
 
     public User(String name, String email) {
         _name = name;
@@ -56,7 +56,7 @@ public class User implements Serializable{
         }
     }
 
-    protected ArrayList<Notification> getNotifications() {
+    protected List<Notification> getNotifications() {
         return _notifications;
     }
 }
