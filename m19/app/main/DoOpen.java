@@ -1,6 +1,8 @@
 package m19.app.main;
 
 import m19.core.LibraryManager;
+import m19.app.exception.*;
+import java.io.*;
 
 import pt.tecnico.po.ui.Command;
 
@@ -24,14 +26,14 @@ public class DoOpen extends Command<LibraryManager> {
 
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
-  public final void execute() throws DialogException {
-    try {
-      // FIXME implement command
-    } catch (FileNotFoundException fnfe) {
-      throw new FileOpenFailedException(/* fill with the missing file name*/);
-    } catch (ClassNotFoundException | IOException e) {
-      e.printStackTrace();
-    }
+  public final void execute() /*throws DialogException*/ {
+    // try {
+    //   // FIXME implement command
+    // } catch (FileNotFoundException fnfe) {
+    //   throw new FileOpenFailedException("/* fill with the missing file name*/");
+    // } catch (ClassNotFoundException | IOException e) {
+    //   e.printStackTrace();
+    // }
   }
 
 }
