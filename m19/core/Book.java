@@ -1,11 +1,15 @@
 package m19.core;
 
+import java.io.Serializable;
+
 /**
  * Book
  * @@implNote ISBN is not validated.
  */
-public class Book extends Work {
+public class Book extends Work implements Serializable {
 
+
+    final long serialVersionUID = 6546513219879847L;
     private String _author;
     private String _isbn;
 

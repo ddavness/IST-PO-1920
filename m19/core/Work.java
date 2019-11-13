@@ -1,12 +1,16 @@
 package m19.core;
 
+import java.io.Serializable;
+
 /**
  * Work - Abstract class which can be a Book or DVD.
  * @version 0.0
  * @@implSpec Auto generates workID using a static attribute
  * 
  */
-public abstract class Work {
+public abstract class Work implements Serializable{
+
+    final long serialVersionUID = 7310074210009L;
 
     private static int _nextWorkID;
 

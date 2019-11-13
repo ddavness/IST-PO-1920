@@ -51,6 +51,9 @@ public class Parser {
     Dvd dvd = new Dvd(components[1], components[2], Integer.parseInt(components[3]),
                       Category.valueOf(components[4]), components[5],
                       Integer.parseInt(components[6]));
+
+
+    _library.addWork(dvd);
     
     // add dvd to _library
     //FIXME Make Parser actually do something
@@ -65,6 +68,7 @@ public class Parser {
                          Integer.parseInt(components[6]));
     
     // add book to _library
+    _library.addWork(book);
   }
 
   private void parseUser(String[] components, String line) throws BadEntrySpecificationException {
@@ -73,6 +77,9 @@ public class Parser {
     User user = new User(components[1], components[2]);
     
     // add user to _library
+    _library.addUser(user);
+
+    //FIXME
     // Pode ser necessário ter um try-catch adicional neste método
   }
 

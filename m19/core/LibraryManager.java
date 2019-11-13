@@ -1,11 +1,13 @@
 package m19.core;
 
-import java.io.IOException;
-import java.io.FileNotFoundException;
+import java.util.zip.DeflaterOutputStream;
 
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
+
+
+import java.io.*;
 
 // FIXME import other system types
 // FIXME import other project (core) types
@@ -45,7 +47,26 @@ public class LibraryManager {
    * @throws IOException if some error happen during the serialization of the persistent state
    */
   public void saveAs(String filename) throws MissingFileAssociationException, IOException {
-    // FIXME implement method
+    // FIXME test method
+
+
+    // We throw the exception to someone who deals with it.
+    // Instead we could have used try with resources;
+    //try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+    //  System.out.println("FOO");
+    // }
+    //BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+
+    //writer.writeOb
+    ObjectOutputStream obOutStream = new ObjectOutputStream(new FileOutputStream(filename));
+
+      // FIXME Actually serialize it
+
+    // Serialize Library
+    // Write it to file
+
+    obOutStream.close();
+
   }
 
   /**
@@ -58,7 +79,16 @@ public class LibraryManager {
    * @throws ClassNotFoundException 
    */
   public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
-    // FIXME implement method
+    //ObjectInputStream objOutStream = new ObjectOutputStream(new FileOutputStream(filename));
+    ObjectInputStream objInStream = new ObjectInputStream(new FileInputStream(filename));
+
+
+    // FIXME This doesn't feel right
+    //FIXME test this
+    _library = (Library) objInStream.readObject();
+
+
+    objInStream.close();
   }
 
   /**
@@ -68,6 +98,7 @@ public class LibraryManager {
    * @throws ImportFileException if it happens some error during the parsing of the textual representation.
    */
   public void importFile(String datafile) throws ImportFileException {
+    //FIXME test this
     try {
       _library.importFile(datafile);
     } catch (IOException | BadEntrySpecificationException e) {
