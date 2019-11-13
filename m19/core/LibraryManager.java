@@ -74,4 +74,8 @@ public class LibraryManager {
       throw new ImportFileException(e);
     }
   }
+
+  public int getCurrentDate() {
+      return 42; //FIXME Implement and remove placeholder
+  }
 }

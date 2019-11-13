@@ -2,6 +2,7 @@ package m19.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User - User of the Library.
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 public class User implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    // FIXME: I cannot be public
-    public static int _nextID; // initialized at 0
+
+    private static int _nextID; // initialized at 0
     private final int _id;
 
     private boolean _isActive;
@@ -23,8 +24,8 @@ public class User implements Serializable{
     private String _email;
     private UserBehaviour _userBehaviour;
 
-    List<Request> _requests = new ArrayList<>();
-    List<Notification> _notifications = new ArrayList<>();
+    private List<Request> _requests = new ArrayList<>();
+    private List<Notification> _notifications = new ArrayList<>();
 
     public User(String name, String email) {
         _name = name;
