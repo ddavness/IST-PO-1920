@@ -6,6 +6,9 @@ import java.io.IOException;
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 
+import java.util.List;
+import java.util.ArrayList;
+
 // FIXME import other system types
 // FIXME import project (core) types if needed
 
@@ -18,8 +21,28 @@ public class Library implements Serializable {
   private static final long serialVersionUID = 201901101348L;
 
   // FIXME define attributes
+  private List<User> _users;
+  private List<Work> _works;
+  private List<Rule> _rules;
 
-  // FIXME define contructor(s)
+
+  public Library() {
+    _users = new ArrayList<>();
+    _works = new ArrayList<>();
+    _rules = new ArrayList<>();
+  }
+
+  public void addUser(User user) {
+    _users.add(user);
+  }
+
+  public void addWork(Work work) {
+    _works.add(work);
+  }
+
+  public void addRule(Rule rule) {
+    _rules.add(rule);
+  }
 
   // FIXME define methods
 
