@@ -1,7 +1,10 @@
 package m19.core;
 
 /**
- * Work
+ * Work - Abstract class which can be a Book or DVD.
+ * @version 0.0
+ * @@implSpec Auto generates workID using a static attribute
+ * 
  */
 public abstract class Work {
 
@@ -22,6 +25,10 @@ public abstract class Work {
     }
 
 
+    /**
+     * 
+     * @return a standardized String representation to be sent to user.
+     */
     public abstract String getDescription();
 
     
