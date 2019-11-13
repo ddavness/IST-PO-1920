@@ -4,3 +4,5 @@
 *.pdf
 *.jar
 *.class
+
+!po.jar
