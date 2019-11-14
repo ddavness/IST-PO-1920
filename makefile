@@ -1,6 +1,6 @@
 JDK = javac
 JRE = java
-CPATH = -cp po.jar:.
+CPATH = -cp po-uilib.jar:.
 
 all: m19/app/App.java
 	$(JDK) $(CPATH) `find m19 -name *.java`
