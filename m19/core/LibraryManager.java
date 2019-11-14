@@ -21,6 +21,9 @@ public class LibraryManager {
   // FIXME define other attributes
 
   // FIXME define contructor(s)
+  public LibraryManager() {
+      _library = new Library();
+  }
   
   // FIXME define methods
 

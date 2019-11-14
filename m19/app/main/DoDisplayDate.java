@@ -24,7 +24,6 @@ public class DoDisplayDate extends Command<LibraryManager> {
     public final void execute() {
         System.out.println("Executing");
         _display.addLine(_receiver.getCurrentDate() + "");
-        _display.addLine("We FUBAR'd");
         _display.display();
         // FIXME define method
     }
