@@ -8,4 +8,5 @@
 
 # Don't track test material
 tests
+runtests.sh
 *.txt

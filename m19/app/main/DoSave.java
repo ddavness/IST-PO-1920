@@ -21,7 +21,7 @@ public class DoSave extends Command<LibraryManager> {
      */
     public DoSave(LibraryManager receiver) {
         super(Label.SAVE, receiver);
-        _userInput = _form.addStringInput(Message.openFile());
+        _userInput = _form.addStringInput(Message.saveAs());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
