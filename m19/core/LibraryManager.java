@@ -77,20 +77,15 @@ public class LibraryManager {
    *
    * @throws IOException if there is a reading error while processing the file
    * @throws FileNotFoundException if the file does not exist
-   * @throws ClassNotFoundException 
+   * @throws BadEntrySpecificationException if the parser is unable to convert the content to an object
    */
-  public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
-    //ObjectInputStream objOutStream = new ObjectOutputStream(new FileOutputStream(filename));
-    ObjectInputStream objInStream = new ObjectInputStream(new FileInputStream(filename));
+    public void load(String filename) throws FileNotFoundException, IOException, BadEntrySpecificationException {
+        Library newLibrary = new Library();
+        Parser parser = new Parser(newLibrary);
 
-
-    // FIXME This doesn't feel right
-    // FIXME test this
-    _library = (Library) objInStream.readObject();
-
-
-    objInStream.close();
-  }
+        parser.parseFile(filename);
+        _library = newLibrary;
+    }
 
   /**
    * Set the state of this application from a textual representation stored into a file.
@@ -99,7 +94,7 @@ public class LibraryManager {
    * @throws ImportFileException if it happens some error during the parsing of the textual representation.
    */
   public void importFile(String datafile) throws ImportFileException {
-    //FIXME test this
+    // FIXME test this
     try {
         _library.importFile(datafile);
     } catch (IOException | BadEntrySpecificationException e) {

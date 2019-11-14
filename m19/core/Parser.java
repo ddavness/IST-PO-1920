@@ -1,6 +1,7 @@
 package m19.core;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.Reader;
@@ -15,14 +16,15 @@ public class Parser {
     _library = lib;
   }
 
-  void parseFile(String filename) throws IOException, BadEntrySpecificationException {
-    try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-      String line;
+    void parseFile(String filename) throws IOException, FileNotFoundException, BadEntrySpecificationException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
 
-      while ((line = reader.readLine()) != null)
-        parseLine(line);
+            while ((line = reader.readLine()) != null) {
+                parseLine(line);
+            }
+        }
     }
-  }
 
   private void parseLine(String line) throws BadEntrySpecificationException {
     String[] components = line.split(":");

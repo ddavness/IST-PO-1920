@@ -1,6 +1,7 @@
 package m19.app.main;
 
 import m19.core.LibraryManager;
+import m19.core.exception.BadEntrySpecificationException;
 import m19.app.exception.*;
 import java.io.*;
 
@@ -37,9 +38,9 @@ public class DoOpen extends Command<LibraryManager> {
             // Apply the filename and import it
             _receiver.load(fname);
 
-        } catch (FileNotFoundException fnfe) {
+        } catch (FileNotFoundException | BadEntrySpecificationException fnfe) {
             throw new FileOpenFailedException(fname);
-        } catch (ClassNotFoundException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
