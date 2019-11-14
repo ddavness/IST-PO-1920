@@ -22,7 +22,6 @@ public class DoAdvanceDate extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() {
-        System.out.println("Exe");
         Input<Integer> input = _form.addIntegerInput(Message.requestDaysToAdvance());
         _form.parse();
 
