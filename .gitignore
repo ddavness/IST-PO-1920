@@ -4,5 +4,8 @@
 *.pdf
 *.jar
 *.class
+!po-uilib.jar
 
-!po.jar
+# Don't track test material
+tests
+*.txt

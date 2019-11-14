@@ -19,9 +19,10 @@ public class User implements Serializable{
     private static int _nextID; // initialized at 0
     private final int _id;
 
-    private boolean _isActive;
     private String _name;
     private String _email;
+
+    private boolean _isActive;
     private UserBehaviour _userBehaviour;
 
     private List<Request> _requests = new ArrayList<>();

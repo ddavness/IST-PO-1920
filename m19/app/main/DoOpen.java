@@ -5,6 +5,7 @@ import m19.app.exception.*;
 import java.io.*;
 
 import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Input;
 import pt.tecnico.po.ui.DialogException;
 
 // FIXME import other core concepts
@@ -14,24 +15,32 @@ import pt.tecnico.po.ui.DialogException;
  * 4.1.1. Open existing document.
  */
 public class DoOpen extends Command<LibraryManager> {
+
+    private Input<String> _userInput;
+
     /**
      * @param receiver
      */
     public DoOpen(LibraryManager receiver) {
         super(Label.OPEN, receiver);
-        // FIXME initialize input fields if needed
+        _userInput = _form.addStringInput(Message.openFile());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-        /* try {
+        _form.parse();
+        String fname = _userInput.value();
 
-        } catch (FileNotFoundException fnfe) {
-            throw new FileOpenFailedException();
-        } catch (ClassNotFoundException | IOException e) {
-        e.printStackTrace();
-        }*/
+        try {
+            // Apply the filename and import it
+            _receiver.load(fname);
+
+        } catch (FileNotFoundException | ClassNotFoundException fnfe) {
+            throw new FileOpenFailedException(fname);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
