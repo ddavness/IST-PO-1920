@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.FileReader;
 
 import m19.core.exception.BadEntrySpecificationException;
+import m19.app.exception.UserRegistrationFailedException;
 
 public class Parser {
 
@@ -76,9 +77,16 @@ public class Parser {
             throw new BadEntrySpecificationException("Wrong number of fields (2) in " + line);
         }
 
-        User user = new User(components[1], components[2]);
+        try {
+            User user = new User(components[1], components[2]);
+            _library.addUser(user);
+        }
+        catch (UserRegistrationFailedException urfe) {
+            urfe.printStackTrace();
+            System.out.println("Failed to register user"); // FIXME improve this
+        };
 
-        _library.addUser(user);
+
         //FIXME Pode ser necessário ter um try-catch adicional neste método
     }
 

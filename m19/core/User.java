@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import m19.app.exception.UserRegistrationFailedException;
+
 /**
  * User - User of the Library.
  * By default users have UserBehaviour NORMAL.
@@ -28,7 +30,11 @@ public class User implements Serializable{
     private List<Request> _requests = new ArrayList<>();
     private List<Notification> _notifications = new ArrayList<>();
 
-    public User(String name, String email) {
+    public User(String name, String email) throws UserRegistrationFailedException {
+
+        if (_name.isBlank() || _email.isBlank())
+            throw new UserRegistrationFailedException(_name, _email);
+
         _name = name;
         _email = email;
         _isActive = true;
