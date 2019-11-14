@@ -29,6 +29,23 @@ public abstract class Work implements Serializable{
     }
 
 
+    public int getID() {
+        return _id;
+    }
+
+    public int getPrice() {
+        return _price;
+    }
+
+    public int getNumberOfCopies() {
+        return _numberOfCopies;
+    }
+
+    public String getTitle() {
+        return _title;
+    }
+
+
     /**
      * 
      * @return a standardized String representation to be sent to user.
