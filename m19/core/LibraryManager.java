@@ -15,8 +15,8 @@ import m19.core.exception.InvalidArgumentException;
  * The façade class.
  */
 public class LibraryManager {
-
-    private Library _library;  // FIXME initialize this attribute
+    // FIXME initalize me
+    private Library _library;
     private static int _systemDate;
 
     // FIXME define other attributes
@@ -35,11 +35,9 @@ public class LibraryManager {
     }
 
     public void advanceDays(int daysToAdvance) throws InvalidArgumentException {
-        if (daysToAdvance < 0) {
-            throw new InvalidArgumentException(daysToAdvance, "Expected a non-negative integer");
+        if (daysToAdvance >= 0) {
+            _systemDate += daysToAdvance;
         }
-
-        _systemDate += daysToAdvance;
     }
 
     /**
