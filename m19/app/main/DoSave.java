@@ -1,30 +1,46 @@
 package m19.app.main;
 
+import java.io.IOException;
+
 import m19.core.LibraryManager;
+import m19.core.exception.MissingFileAssociationException;
 
 import pt.tecnico.po.ui.Command;
-
-// FIXME import other core concepts
-// FIXME import other ui concepts
+import pt.tecnico.po.ui.Input;
+import pt.tecnico.po.ui.DialogException;
 
 /**
  * 4.1.1. Save to file under current name (if unnamed, query for name).
  */
 public class DoSave extends Command<LibraryManager> {
-  
-  // FIXME define input fields
 
-  /**
-   * @param receiver
-   */
-  public DoSave(LibraryManager receiver) {
-    super(Label.SAVE, receiver);
-    // FIXME initialize input fields
-  }
+    private Input<String> _userInput;
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() {
-    // FIXME implement command
-  }
+    /**
+     * @param receiver
+     */
+    public DoSave(LibraryManager receiver) {
+        super(Label.SAVE, receiver);
+        _userInput = _form.addStringInput(Message.openFile());
+    }
+
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() throws DialogException {
+        try {
+            _receiver.save();
+        } catch (MissingFileAssociationException e) {
+
+            _form.parse();
+            String fname = _userInput.value();
+            try {
+                _receiver.saveAs(fname);
+            } catch (IOException ee) {
+                ee.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

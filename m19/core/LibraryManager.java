@@ -30,11 +30,16 @@ public class LibraryManager {
    * @throws MissingFileAssociationException if the name of the file to store the persistent
    *         state has not been set yet.
    * @throws IOException if some error happen during the serialization of the persistent state
-
    */
-  public void save() throws MissingFileAssociationException, IOException {
-    // FIXME implement method
-  }
+    public void save() throws MissingFileAssociationException, IOException {
+        // Assumes that the _filename property is already defined (e.g. non-null)
+
+        if (_file == null) {
+            throw new MissingFileAssociationException();
+        }
+
+        saveAs(_file);
+    }
 
   /**
    * Serialize the persistent state of this application into the specified file.
@@ -45,28 +50,15 @@ public class LibraryManager {
    *         is not a valid one.
    * @throws IOException if some error happen during the serialization of the persistent state
    */
-  public void saveAs(String filename) throws MissingFileAssociationException, IOException {
-    // FIXME test method
+    public void saveAs(String filename) throws IOException {
+        // We'll throw this error so that someone else deals with it.
 
+        ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(filename));
+        objOut.writeObject(_library);
+        objOut.close();
 
-    // We throw the exception to someone who deals with it.
-    // Instead we could have used try with resources;
-    //try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-    //  System.out.println("FOO");
-    // }
-    //BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-
-    //writer.writeOb
-    ObjectOutputStream obOutStream = new ObjectOutputStream(new FileOutputStream(filename));
-
-      // FIXME Actually serialize it
-
-    // Serialize Library
-    // Write it to file
-
-    obOutStream.close();
-
-  }
+        _file = filename;
+    }
 
   /**
    * Recover the previously serialized persitent state of this application.
@@ -75,14 +67,14 @@ public class LibraryManager {
    *
    * @throws IOException if there is a reading error while processing the file
    * @throws FileNotFoundException if the file does not exist
-   * @throws BadEntrySpecificationException if the parser is unable to convert the content to an object
+   * @throws ClassNotFoundException if the parser is unable to convert the content to an object
    */
-    public void load(String filename) throws FileNotFoundException, IOException, BadEntrySpecificationException {
-        Library newLibrary = new Library();
-        newLibrary.importFile(filename);
+    public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream objInStream = new ObjectInputStream(new FileInputStream(filename));
 
-        _library = newLibrary;
-        _file = filename;
+        _library = (Library) objInStream.readObject();
+
+        objInStream.close();
     }
 
   /**
@@ -91,14 +83,14 @@ public class LibraryManager {
    * @param datafile the filename of the file with the textual represntation of the state of this application.
    * @throws ImportFileException if it happens some error during the parsing of the textual representation.
    */
-  public void importFile(String datafile) throws ImportFileException {
-    // FIXME test this
-    try {
-        _library.importFile(datafile);
-    } catch (IOException | BadEntrySpecificationException e) {
-        throw new ImportFileException(e);
+    public void importFile(String datafile) throws ImportFileException {
+        _library = new Library();
+        try {
+            _library.importFile(datafile);
+        } catch (IOException | BadEntrySpecificationException e) {
+            throw new ImportFileException();
+        }
     }
-  }
 
   public int getCurrentDate() {
       return 42; //FIXME Implement and remove placeholder
