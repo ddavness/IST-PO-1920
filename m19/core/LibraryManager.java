@@ -1,7 +1,5 @@
 package m19.core;
 
-import java.util.zip.DeflaterOutputStream;
-
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
@@ -81,10 +79,10 @@ public class LibraryManager {
    */
     public void load(String filename) throws FileNotFoundException, IOException, BadEntrySpecificationException {
         Library newLibrary = new Library();
-        Parser parser = new Parser(newLibrary);
+        newLibrary.importFile(filename);
 
-        parser.parseFile(filename);
         _library = newLibrary;
+        _file = filename;
     }
 
   /**
