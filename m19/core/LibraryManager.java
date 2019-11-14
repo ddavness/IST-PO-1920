@@ -22,6 +22,10 @@ public class LibraryManager {
 
     // FIXME define contructor(s)
 
+    public LibraryManager() {
+        _library = new Library();
+    }
+
     // FIXME define methods
 
     /**
@@ -105,5 +109,10 @@ public class LibraryManager {
         } catch (IOException | BadEntrySpecificationException e) {
             throw new ImportFileException(e);
         }
+    }
+
+
+    public void addUser(User user) {
+        _library.addUser(user);
     }
 }
