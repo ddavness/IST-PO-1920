@@ -18,6 +18,7 @@ import java.io.*;
 public class LibraryManager {
 
   private Library _library;  // FIXME initialize this attribute
+  private String _file;
 
   // FIXME define other attributes
 
@@ -84,7 +85,7 @@ public class LibraryManager {
 
 
     // FIXME This doesn't feel right
-    //FIXME test this
+    // FIXME test this
     _library = (Library) objInStream.readObject();
 
 
@@ -100,9 +101,9 @@ public class LibraryManager {
   public void importFile(String datafile) throws ImportFileException {
     //FIXME test this
     try {
-      _library.importFile(datafile);
+        _library.importFile(datafile);
     } catch (IOException | BadEntrySpecificationException e) {
-      throw new ImportFileException(e);
+        throw new ImportFileException(e);
     }
   }
 

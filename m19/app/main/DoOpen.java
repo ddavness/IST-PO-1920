@@ -5,6 +5,7 @@ import m19.app.exception.*;
 import java.io.*;
 
 import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Input;
 import pt.tecnico.po.ui.DialogException;
 
 // FIXME import other core concepts
@@ -25,13 +26,22 @@ public class DoOpen extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-        /* try {
+        // Grab the data
+        Input<String> userInput = _form.addStringInput(Message.openFile());
+        _form.parse();
+
+        String fname = userInput.value();
+
+
+        try {
+            // Apply the filename and import it
+            _receiver.load(fname);
 
         } catch (FileNotFoundException fnfe) {
-            throw new FileOpenFailedException();
+            throw new FileOpenFailedException(fname);
         } catch (ClassNotFoundException | IOException e) {
-        e.printStackTrace();
-        }*/
+            e.printStackTrace();
+        }
     }
 
 }
