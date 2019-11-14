@@ -3,16 +3,16 @@ package m19.core;
 import java.io.Serializable;
 
 /**
- * Dvd
+ * DVD
  */
-public class Dvd extends Work implements Serializable {
+public class DVD extends Work implements Serializable {
 
     final long serialVersionUID = 2718290452398765651L;
     private String _director;
     private String _igac;
 
 
-    public Dvd(
+    public DVD(
         String title,
         String director,
         int price,

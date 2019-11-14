@@ -48,7 +48,7 @@ public class Parser {
   private void parseDVD(String[] components, String line) throws BadEntrySpecificationException {
     if (components.length != 7)
       throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
-    Dvd dvd = new Dvd(components[1], components[2], Integer.parseInt(components[3]),
+    DVD dvd = new DVD(components[1], components[2], Integer.parseInt(components[3]),
                       Category.valueOf(components[4]), components[5],
                       Integer.parseInt(components[6]));
 
