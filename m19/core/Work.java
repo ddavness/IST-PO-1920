@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public abstract class Work implements Serializable{
 
-    final long serialVersionUID = 7310074210009L;
+    static final long serialVersionUID = 7310074210009L;
 
     private static int _nextWorkID;
 
