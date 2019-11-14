@@ -115,4 +115,13 @@ public class LibraryManager {
     public void addUser(User user) {
         _library.addUser(user);
     }
+
+    /**
+     * 
+     * @param id of the user to find
+     * @return a reference to User or a null reference if not found.
+     */
+    public User getUser(int id) {
+        return _library.getUser(id);
+    }
 }

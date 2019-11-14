@@ -61,4 +61,21 @@ public class Library implements Serializable {
     parser.parseFile(filename);
   }
 
+
+  /**
+   * 
+   * @param id the id of the user to fint
+   * @return the User in the library or a null reference if not found.
+   */
+  User getUser(int id) {
+    for (User u: _users)
+      if (u.getID() == id)
+        return u;
+
+
+    return (User) null;
+
+    
+  }
+
 }

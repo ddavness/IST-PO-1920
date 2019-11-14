@@ -61,4 +61,8 @@ public class User implements Serializable{
     protected List<Notification> getNotifications() {
         return _notifications;
     }
+
+    public int getID() {
+        return _id;
+    }
 }
