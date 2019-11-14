@@ -17,9 +17,7 @@ import java.io.*;
 public class LibraryManager {
     // FIXME initalize me
     private Library _library;
-    private static int _systemDate;
-
-    private Library _library;  // FIXME initialize this attribute
+    private int _systemDate;
     private String _file;
 
     // FIXME define contructor(s)
