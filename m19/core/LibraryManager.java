@@ -107,6 +107,10 @@ public class LibraryManager {
     }
 
   public int getCurrentDate() {
-      return 42; //FIXME Implement and remove placeholder
+      return _library.getDate().getCurrentDate();
+  }
+
+  public void advanceDays(int nDays) {
+      _library.advanceDays(nDays);
   }
 }

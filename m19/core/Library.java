@@ -24,12 +24,14 @@ public class Library implements Serializable {
   private List<User> _users;
   private List<Work> _works;
   private List<Rule> _rules;
+  private Date _date;
 
 
   public Library() {
     _users = new ArrayList<>();
     _works = new ArrayList<>();
     _rules = new ArrayList<>();
+    _date = new Date();
   }
 
   public void addUser(User user) {
@@ -42,6 +44,14 @@ public class Library implements Serializable {
 
   public void addRule(Rule rule) {
     _rules.add(rule);
+  }
+
+  public Date getDate() {
+    return _date;
+  }
+
+  public void advanceDays(int nDays) {
+    _date.advanceDay(nDays);
   }
 
   // FIXME define methods
