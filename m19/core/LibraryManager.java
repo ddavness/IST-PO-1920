@@ -3,6 +3,7 @@ package m19.core;
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
+import m19.core.exception.InvalidArgumentException;
 
 
 import java.io.*;
@@ -14,15 +15,31 @@ import java.io.*;
  * The façade class.
  */
 public class LibraryManager {
+    // FIXME initalize me
+    private Library _library;
+    private static int _systemDate;
 
-  private Library _library;  // FIXME initialize this attribute
-  private String _file;
+    private Library _library;  // FIXME initialize this attribute
+    private String _file;
 
-  // FIXME define other attributes
+    // FIXME define contructor(s)
 
-  // FIXME define contructor(s)
-  
-  // FIXME define methods
+    // FIXME define methods
+
+    /**
+     * Get the current system date of the library.
+     *
+     * @return the current system date of the manager.
+     */
+    public int getCurrentDate() {
+        return _systemDate;
+    }
+
+    public void advanceDays(int daysToAdvance) throws InvalidArgumentException {
+        if (daysToAdvance >= 0) {
+            _systemDate += daysToAdvance;
+        }
+    }
 
   /**
    * Serialize the persistent state of this application.
@@ -88,11 +105,6 @@ public class LibraryManager {
         try {
             _library.importFile(datafile);
         } catch (IOException | BadEntrySpecificationException e) {
-            throw new ImportFileException();
+            throw new ImportFileException(e);
         }
     }
-
-  public int getCurrentDate() {
-      return 42; //FIXME Implement and remove placeholder
-  }
-}
