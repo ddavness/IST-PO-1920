@@ -7,20 +7,16 @@ import m19.core.exception.InvalidArgumentException;
 
 
 import java.io.*;
-
-// FIXME import other system types
-// FIXME import other project (core) types
+import java.util.List;
 
 /**
  * The façade class.
  */
 public class LibraryManager {
-    // FIXME initalize me
     private Library _library;
     private int _systemDate;
     private String _file;
 
-    // FIXME define contructor(s)
 
     public LibraryManager() {
         _library = new Library();
@@ -123,5 +119,14 @@ public class LibraryManager {
      */
     public User getUser(int id) {
         return _library.getUser(id);
+    }
+
+
+    /**
+     * 
+     * @return sorted list of users.
+     */
+    public List<User> getAllUsers() {
+        return _library.getAllUsers();
     }
 }

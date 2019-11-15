@@ -8,6 +8,7 @@ import m19.core.exception.BadEntrySpecificationException;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // FIXME import other system types
 // FIXME import project (core) types if needed
@@ -76,6 +77,17 @@ public class Library implements Serializable {
     return (User) null;
 
     
+  }
+
+  /**
+   * 
+   * @return copy of list
+   */
+  List<User> getAllUsers() {
+    // return java.util.Collections.unmodifiableList(_users);
+    ArrayList<User> allUsers = new ArrayList<>(_users);
+    Collections.sort(allUsers);
+    return allUsers;
   }
 
 }

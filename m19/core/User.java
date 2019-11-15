@@ -3,6 +3,7 @@ package m19.core;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
 
 import m19.app.exception.UserRegistrationFailedException;
 
@@ -14,7 +15,7 @@ import m19.app.exception.UserRegistrationFailedException;
  * @implNote I haven't really tested it ....
  * @implNote //FIXEME Implement getDescriptions
  */
-public class User implements Serializable{
+public class User implements Serializable, Comparable<User> {
     private static final long serialVersionUID = 1L;
 
 
@@ -70,5 +71,19 @@ public class User implements Serializable{
 
     public int getID() {
         return _id;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    /**
+     * 
+     * @param user
+     * @return Ordem lexicografica, e depois ordem dos IDs se os nomes forem
+     * iguais
+     */
+    public int compareTo(User user) {
+        return getName().compareTo(user.getName()) == 0? 0 : getID() - user.getID();
     }
 }
