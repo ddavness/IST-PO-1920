@@ -32,8 +32,8 @@ public class User implements Serializable{
 
     public User(String name, String email) throws UserRegistrationFailedException {
 
-        if (_name.isBlank() || _email.isBlank())
-            throw new UserRegistrationFailedException(_name, _email);
+        if (name.isBlank() || email.isBlank())
+            throw new UserRegistrationFailedException(name, email);
 
         _name = name;
         _email = email;
