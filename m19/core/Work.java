@@ -35,5 +35,50 @@ public abstract class Work implements Serializable{
      */
     public abstract String getDescription();
 
+    /**
+     * 
+     * @param KindOfWork If it is a Book or DVD for example.
+     * @param extraInfo Author or director of work (when appliable)
+     * @return Formated string for 4.3.1 of problem statement.
+     */
+
+    public String getDescription(String KindOfWork, String extraInfo) {
+        String WORK_REPR_FORMAT = "%d - %d de %d - %s - %s - %d - %s - %s";
+        return String.format(WORK_REPR_FORMAT,
+        getID(),
+        getNumberAvailableCopies(),
+        getNumberOfCopies(),
+        KindOfWork,
+        getTitle(),
+        getPrice(),
+        getCategory(),
+        extraInfo);
+    }
+
+    public int getID() {
+        return _id;
+    }
+
+    public String getTitle() {
+        return _title;
+    }
+
+    public int getPrice() {
+        return _price;
+    }
+
+    public int getNumberOfCopies() {
+        return _numberOfCopies;
+    }
+
+    public Category getCategory() {
+        return _category;
+    }
+
+
+    public int getNumberAvailableCopies() { // FIXME Implement with requests
+        return getNumberAvailableCopies() - 0;
+    }
+
     
 }

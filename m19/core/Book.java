@@ -27,9 +27,12 @@ public class Book extends Work implements Serializable {
 
     }
 
+    public String getAuthor() {
+        return _author;
+    }
+
     public String getDescription() {
-        //FIXME Implement
-        return "PLACEHOLDER";
+        return getDescription("Livro", getAuthor());
     }
     
 }

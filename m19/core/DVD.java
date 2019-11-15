@@ -26,9 +26,13 @@ public class DVD extends Work implements Serializable {
 
     }
 
+    public String getDirector() {
+        return _director;
+    }
+
 
     public String getDescription() {
-        return "PLACEHOLDER";
+        return getDescription("DVD", getDirector());
         //FIXME Implement
     }
     
