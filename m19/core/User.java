@@ -44,7 +44,7 @@ public class User implements Serializable, Comparable<User> {
         _id = _nextID++;
     }
 
-    protected boolean isActive() {
+    public boolean isActive() {
         return _isActive;
     }
 
@@ -86,7 +86,7 @@ public class User implements Serializable, Comparable<User> {
         return getName().compareTo(user.getName()) == 0? 0 : getID() - user.getID();
     }
 
-    public boolean isEqual(User user) {
+    public boolean equals(User user) {
         return getID() == user.getID();
     }
 

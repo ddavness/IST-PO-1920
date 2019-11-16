@@ -57,4 +57,8 @@ public class Request {
     public boolean equals(Request request) {
         return _user.equals(request._user) && _work.equals(request._work);
     }
+
+    public User getUser() {
+        return _user;
+    }
 }
