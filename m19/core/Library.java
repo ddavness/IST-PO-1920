@@ -6,9 +6,12 @@ import java.io.IOException;
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 
+import m19.core.Work;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 // FIXME import other system types
 // FIXME import project (core) types if needed
@@ -88,6 +91,20 @@ public class Library implements Serializable {
     ArrayList<User> allUsers = new ArrayList<>(_users);
     Collections.sort(allUsers);
     return allUsers;
+  }
+
+  List<Work> getAllWorks() {
+
+
+  ArrayList<Work> allWorks = new ArrayList<>(_works);
+  class WorkComparator implements Comparator<Work> {
+      @Override
+      public int compare(Work w1, Work w2) {
+        return w1.getID() - w2.getID();
+      }
+    }
+    Collections.sort(allWorks, WorkComparator);
+    return allWorks;
   }
 
 }

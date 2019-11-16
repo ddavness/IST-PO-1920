@@ -129,4 +129,8 @@ public class LibraryManager {
     public List<User> getAllUsers() {
         return _library.getAllUsers();
     }
+
+    public List<Work> getAllWorks() {
+        return _library.getAllWorks();
+    }
 }
