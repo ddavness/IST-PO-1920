@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-// FIXME import other system types
-// FIXME import project (core) types if needed
-
 /**
  * Class that represents the library as a whole.
  */
@@ -23,7 +20,6 @@ public class Library implements Serializable {
     /** Serial number for serialization. */
     private static final long serialVersionUID = 201901101348L;
 
-    // FIXME define attributes
     private List<User> _users;
     private List<Work> _works;
     private List<Rule> _rules;
@@ -69,8 +65,6 @@ public class Library implements Serializable {
         _rules.add(rule);
     }
 
-    // FIXME define methods
-
     /**
      * Read the text input file at the beginning of the program and populates the
      * instances of the various possible types (books, DVDs, users).
@@ -86,7 +80,6 @@ public class Library implements Serializable {
         parser.parseFile(filename);
     }
 
-
     /**
      *
      * @param id the id of the user to fint
@@ -98,7 +91,6 @@ public class Library implements Serializable {
                 return u;
 
         return (User) null;
-
     }
 
     /**
