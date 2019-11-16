@@ -37,8 +37,7 @@ public class DVD extends Work implements Serializable {
 
     public String getDescription() {
         String extraInfo = getDirector() + " - " + getIGAC();
-        return getDescription("DVD", getIGAC());
-        //FIXME Implement
+        return getDescription("DVD", extraInfo);
     }
 
 }
