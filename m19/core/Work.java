@@ -24,6 +24,7 @@ public abstract class Work implements Serializable{
     public Work(String title, int price, Category category, int numberOfCopies) {
         _id = _nextWorkID++;
         _price = price;
+        _category = category;
         _numberOfCopies = numberOfCopies;
         _title = title;
     }
