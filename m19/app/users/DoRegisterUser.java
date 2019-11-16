@@ -34,14 +34,14 @@ public class DoRegisterUser extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-
         _form.parse(); // FIXME Handle exceptions
 
         User user = new User(_userName.toString(), _userEmail.toString());
 
         _receiver.addUser(user);
 
-        // FIXME implement command
+        _display.add(Message.userRegistrationSuccessful(user.getID()));
+        _display.display();
     }
 
 }
