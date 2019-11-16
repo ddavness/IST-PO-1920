@@ -54,7 +54,7 @@ public class Request {
      * @param request the other request to check if they are equal
      * @return requests are equal iff they have the same user and work
      */
-    public boolean isEqual(Request request) {
-        return _user.isEqual(request._user) && _work.isEqual(request._work);
+    public boolean equals(Request request) {
+        return _user.equals(request._user) && _work.equals(request._work);
     }
 }

@@ -84,7 +84,7 @@ public abstract class Work implements Serializable{
         return getNumberOfCopies() - _requests.size();
     }
 
-    public boolean isEqual(Work work) {
+    public boolean equals(Work work) {
         return getID() == work.getID();
     }
 
