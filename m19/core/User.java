@@ -33,7 +33,7 @@ public class User implements Serializable, Comparable<User> {
 
     public User(String name, String email) throws UserRegistrationFailedException {
 
-        if (name.isBlank() || email.isBlank())
+        if (name.trim().isEmpty() || email.trim().isEmpty())
             throw new UserRegistrationFailedException(name, email);
 
         _name = name;
