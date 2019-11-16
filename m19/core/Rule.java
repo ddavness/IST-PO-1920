@@ -2,10 +2,13 @@ package m19.core;
 import m19.core.Library;
 import m19.core.Request;
 
+import java.io.Serializable;
+
 /**
  * Rule
  */
-public abstract class Rule {
+public abstract class Rule implements Serializable {
+    static final long serialVersionUID = 7310074210009L;
     private final int _id;
     protected final Library _library;
     public Rule(int id, Library library) {

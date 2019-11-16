@@ -97,4 +97,12 @@ public class User implements Serializable, Comparable<User> {
     public UserBehaviour getBehaviour() {
         return _userBehaviour;
     }
+
+    /**
+     * 
+     * @param request is not validated
+     */
+    public void addRequest(Request request) {
+        _requests.add(request);
+    }
 }

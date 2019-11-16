@@ -88,4 +88,12 @@ public abstract class Work implements Serializable{
         return getID() == work.getID();
     }
 
+    /**
+     * 
+     * @param request is not validated
+     */
+    public void addRequest(Request request) {
+        _requests.add(request);
+    }
+
 }

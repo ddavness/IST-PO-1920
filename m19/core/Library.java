@@ -6,12 +6,15 @@ import java.io.IOException;
 import m19.core.exception.BadEntrySpecificationException;
 
 import m19.core.Work;
+import m19.app.exception.RuleFailedException;
 import m19.core.*;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import m19.core.rules.*;
 
 /**
  * Class that represents the library as a whole.
@@ -30,6 +33,12 @@ public class Library implements Serializable {
         _users = new ArrayList<>();
         _works = new ArrayList<>();
         _rules = new ArrayList<>();
+
+        _rules.add(new CheckRequestTwice(0, this));
+        _rules.add(new CheckUserHasNotExceededWorkRequestLimit(1, this));
+        _rules.add(new CheckUserIsSuspended(2, this)); // FIXME Change name
+        _rules.add(new CheckWorkIsAvailable(3, this));
+        _rules.add(new CheckWorkIsLowValue(4, this));
     }
 
     /**
@@ -104,6 +113,14 @@ public class Library implements Serializable {
         return allUsers;
     }
 
+    public Work getWork(int id) {
+        for (Work w: _works) {
+            if (w.getID() == id)
+                return w;
+        }
+        return (Work) null;
+    }
+
     List<Work> getAllWorks() {
         ArrayList<Work> allWorks = new ArrayList<>(_works);
         class WorkComparator implements Comparator<Work> {
@@ -123,6 +140,18 @@ public class Library implements Serializable {
             _requests.addAll(user.getAllRequests());
         }
         return _requests;   
+    }
+
+    public void requestWork(User user, Work work, int nDays) throws RuleFailedException {
+        int FIXME_LENGTH = 3;
+        Request request = new Request(user, work, nDays);
+        for (Rule rule : _rules) {
+            if (!rule.isValid(request)) // If a rule is not valid
+                throw new RuleFailedException(user.getID(), work.getID(), _rules.indexOf(rule));
+        }
+
+        user.addRequest(request);
+        work.addRequest(request);
     }
 
 }

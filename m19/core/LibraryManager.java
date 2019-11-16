@@ -1,6 +1,7 @@
 package m19.core;
 
 import m19.core.exception.MissingFileAssociationException;
+import m19.app.exception.RuleFailedException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
 
@@ -127,5 +128,13 @@ public class LibraryManager {
 
     public List<Work> getAllWorks() {
         return _library.getAllWorks();
+    }
+
+    public Work getWork(int id) {
+        return _library.getWork(id);
+    }
+
+    public void requestWork(User user, Work work, int nDays) throws RuleFailedException {
+        _library.requestWork(user, work, nDays);
     }
 }
