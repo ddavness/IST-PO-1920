@@ -31,8 +31,13 @@ public class Book extends Work implements Serializable {
         return _author;
     }
 
+    private String getISBN() {
+        return _isbn;
+    }
+
     public String getDescription() {
-        return getDescription("Livro", getAuthor());
+        String extraInfo = getAuthor() + " - " + getISBN();
+        return getDescription("Livro", extraInfo);
     }
     
 }
