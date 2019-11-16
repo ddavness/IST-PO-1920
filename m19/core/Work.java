@@ -1,7 +1,8 @@
 package m19.core;
 
 import java.io.Serializable;
-
+import m19.core.Request;
+import java.util.*;
 /**
  * Work - Abstract class which can be a Book or DVD.
  * @version 0.0
@@ -18,6 +19,7 @@ public abstract class Work implements Serializable{
     private int _price;
     private int _numberOfCopies;
     private String _title;
+    private List<Request> _requests;
 
     private Category _category; //FIXME May have more than one category
 
@@ -27,6 +29,7 @@ public abstract class Work implements Serializable{
         _category = category;
         _numberOfCopies = numberOfCopies;
         _title = title;
+        _requests = new ArrayList<>();
     }
 
 
@@ -78,7 +81,7 @@ public abstract class Work implements Serializable{
 
 
     public int getNumberAvailableCopies() { // FIXME Implement with requests
-        return getNumberOfCopies() - 0;
+        return getNumberOfCopies() - _requests.size();
     }
 
 }
