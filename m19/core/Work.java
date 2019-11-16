@@ -77,7 +77,7 @@ public abstract class Work implements Serializable{
 
 
     public int getNumberAvailableCopies() { // FIXME Implement with requests
-        return getNumberAvailableCopies() - 0;
+        return getNumberOfCopies() - 0;
     }
 
     
