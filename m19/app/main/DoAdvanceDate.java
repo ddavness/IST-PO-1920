@@ -25,13 +25,7 @@ public class DoAdvanceDate extends Command<LibraryManager> {
     @Override
     public final void execute() {
         _form.parse();
-
-        try {
-            _receiver.advanceDays(input.value());
-        } catch (InvalidArgumentException e) {
-            // FIXME
-        }
-
+        _receiver.advanceDays(input.value());
     }
 
 }

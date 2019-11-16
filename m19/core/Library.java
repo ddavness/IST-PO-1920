@@ -66,11 +66,11 @@ public class Library implements Serializable {
     }
 
 
-  /**
-   * 
-   * @param id the id of the user to fint
-   * @return the User in the library or a null reference if not found.
-   */
+    /**
+     *
+     * @param id the id of the user to fint
+     * @return the User in the library or a null reference if not found.
+     */
     User getUser(int id) {
         for (User u: _users)
             if (u.getID() == id)

@@ -3,7 +3,6 @@ package m19.core;
 import m19.core.exception.MissingFileAssociationException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
-import m19.core.exception.InvalidArgumentException;
 
 
 import java.io.*;
@@ -33,10 +32,12 @@ public class LibraryManager {
         return _systemDate;
     }
 
-    public void advanceDays(int daysToAdvance) throws InvalidArgumentException {
+    public void advanceDays(int daysToAdvance) {
         if (daysToAdvance >= 0) {
             _systemDate += daysToAdvance;
         }
+
+        // FIXME Apply updates
     }
 
     /**
