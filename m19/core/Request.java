@@ -11,12 +11,14 @@ public class Request {
     private int _deadline;
     private int _accruedFine;
     private boolean _returned;
+    private Work _work;
 
-    public Request(User user, int length) {
+    public Request(User user, Work work, int length) {
         _user = user;
         _deadline = length;
         _accruedFine = 0;
         _returned = false;
+        _work = work;
     }
 
     public int getDeadine() {
