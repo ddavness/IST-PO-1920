@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.FileReader;
 
 import m19.core.exception.BadEntrySpecificationException;
-import m19.app.exception.UserRegistrationFailedException;
+import m19.core.exception.InvalidArgumentException;
 
 public class Parser {
 
@@ -81,9 +81,10 @@ public class Parser {
             User user = new User(components[1], components[2]);
             _library.addUser(user);
         }
-        catch (UserRegistrationFailedException urfe) {
-            urfe.printStackTrace();
-            System.out.println("Failed to register user"); // FIXME improve this
+        catch (InvalidArgumentException iae) {
+            System.err.println(line);
+            iae.printStackTrace();
+            System.out.println("Failed to register user");
         };
 
         //FIXME Pode ser necessário ter um try-catch adicional neste método

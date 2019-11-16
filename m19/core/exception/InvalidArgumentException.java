@@ -6,36 +6,24 @@ package m19.core.exception;
 public class InvalidArgumentException extends Exception {
     /** Serial number for serialization. */
     private static final long serialVersionUID = 201901101348L;
-    private Object _argument;
+    private Object _arguments[];
 
     /**
      * Default constructor
      */
-    public InvalidArgumentException(int argument) {
-        _argument = argument;
+    public InvalidArgumentException(Object... args) {
+        _arguments = args;
     }
 
     /**
      * @param description
      */
-    public InvalidArgumentException(int argument, String description) {
+    public InvalidArgumentException(String description, Object... args) {
         super(description);
-        _argument = argument;
+        _arguments = args;
     }
 
-    /**
-     * @param cause
-     */
-    public InvalidArgumentException(Exception cause) {
-        super(cause);
-    }
-
-    public Object getInfractorArgument() {
-        return _argument;
-    }
-
-    @Override
-    public String getMessage() {
-        return super.getMessage() + ", got " + _argument;
+    public Object[] getInfractorArguments() {
+        return _arguments;
     }
 }

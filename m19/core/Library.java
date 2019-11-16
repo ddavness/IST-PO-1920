@@ -75,7 +75,6 @@ public class Library implements Serializable {
      * @throws IOException
      */
     void importFile(String filename) throws BadEntrySpecificationException, IOException {
-        // FIXME test this method
         Parser parser = new Parser(this);
         parser.parseFile(filename);
     }

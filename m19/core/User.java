@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import m19.app.exception.UserRegistrationFailedException;
+import m19.core.exception.InvalidArgumentException;
 
 /**
  * User - User of the Library.
@@ -29,10 +29,10 @@ public class User implements Serializable, Comparable<User> {
     private List<Request> _requests = new ArrayList<>();
     private List<Notification> _notifications = new ArrayList<>();
 
-    public User(String name, String email) throws UserRegistrationFailedException {
+    public User(String name, String email) throws InvalidArgumentException {
 
         if (name.trim().isEmpty() || email.trim().isEmpty())
-            throw new UserRegistrationFailedException(name, email);
+            throw new InvalidArgumentException(name, email);
 
         _name = name;
         _email = email;

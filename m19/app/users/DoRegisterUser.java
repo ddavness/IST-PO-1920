@@ -1,11 +1,14 @@
 package m19.app.users;
 
 import m19.core.LibraryManager;
+import m19.core.exception.InvalidArgumentException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.*;
 
 import m19.core.*;
+
+import m19.app.exception.UserRegistrationFailedException;
 import m19.app.users.Message;
 
 /**
@@ -27,14 +30,18 @@ public class DoRegisterUser extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-        _form.parse(); // FIXME Handle exceptions
+        _form.parse();
 
-        User user = new User(_userName.toString(), _userEmail.toString());
+        try {
+            User user = new User(_userName.value(), _userEmail.value());
 
-        _receiver.addUser(user);
+            _receiver.addUser(user);
 
-        _display.add(Message.userRegistrationSuccessful(user.getID()));
-        _display.display();
+            _display.add(Message.userRegistrationSuccessful(user.getID()));
+            _display.display();
+        } catch (InvalidArgumentException e) {
+            throw new UserRegistrationFailedException(_userName.value(), _userEmail.value());
+        }
     }
 
 }
