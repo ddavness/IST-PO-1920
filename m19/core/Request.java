@@ -61,4 +61,8 @@ public class Request {
     public User getUser() {
         return _user;
     }
+
+    public Work getWork() {
+        return _work;
+    }
 }
