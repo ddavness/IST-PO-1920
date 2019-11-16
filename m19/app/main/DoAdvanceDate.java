@@ -1,7 +1,6 @@
 package m19.app.main;
 
 import m19.core.LibraryManager;
-import m19.core.exception.InvalidArgumentException;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Input;
 
