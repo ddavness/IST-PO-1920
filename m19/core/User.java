@@ -93,4 +93,8 @@ public class User implements Serializable, Comparable<User> {
     public List<Request> getAllRequests() {
         return Collections.unmodifiableList(_requests);
     }
+
+    public UserBehaviour getBehaviour() {
+        return _userBehaviour;
+    }
 }

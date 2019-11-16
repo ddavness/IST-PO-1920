@@ -1,9 +1,9 @@
 package m19.core.rules;
 import m19.core.Rule;
 import m19.core.User;
-import m19.core.Work;
 import m19.core.Library;
 import m19.core.Request;
+import m19.core.UserBehaviour;
 /**
  * CheckUserHasNotExceededWorkRequestLimit
  */
@@ -19,14 +19,23 @@ public class CheckUserHasNotExceededWorkRequestLimit extends Rule {
 
     public boolean isValid(Request request) {
         User user = request.getUser();
-        switch (user.get) {
-            case value:
-                
+        int maxReqWorks; // Maximum number of works which can be requested
+        switch (user.getBehaviour()) {
+            case NORMAL:
+                maxReqWorks = 3;
                 break;
-        
+            case CUMPRIDOR:
+                maxReqWorks = 5;
+                break;
+            case FALTOSO:
+                maxReqWorks = 1;
+                break;
             default:
+                maxReqWorks = 0;
+                System.err.println("User behaviour not found");
                 break;
         }
+        return user.getAllRequests().size() + 1 <= maxReqWorks;
         
     }
     
