@@ -20,7 +20,7 @@ public class DoDisplayWorks extends Command<LibraryManager> {
   @Override
   public final void execute() {
     for (Work w: _receiver.getAllWorks()) {
-      _display.addLine(work.getDescription());
+      _display.addLine(w.getDescription());
     }
     _display.display();
   }

@@ -93,18 +93,17 @@ public class Library implements Serializable {
     return allUsers;
   }
 
-  List<Work> getAllWorks() {
+    List<Work> getAllWorks() {
+        ArrayList<Work> allWorks = new ArrayList<>(_works);
+        class WorkComparator implements Comparator<Work> {
+            @Override
+            public int compare(Work w1, Work w2) {
+                return w1.getID() - w2.getID();
+            }
+        }
 
-
-  ArrayList<Work> allWorks = new ArrayList<>(_works);
-  class WorkComparator implements Comparator<Work> {
-      @Override
-      public int compare(Work w1, Work w2) {
-        return w1.getID() - w2.getID();
-      }
+        Collections.sort(allWorks, new WorkComparator());
+        return allWorks;
     }
-    Collections.sort(allWorks, WorkComparator);
-    return allWorks;
-  }
 
 }
