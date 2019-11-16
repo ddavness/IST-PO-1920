@@ -11,20 +11,20 @@ import pt.tecnico.po.ui.DialogException;
  */
 public class DoPayFine extends Command<LibraryManager> {
 
-  // FIXME define input fields
+    // FIXME define input fields
 
-  /**
-   * @param receiver
-   */
-  public DoPayFine(LibraryManager receiver) {
-    super(Label.PAY_FINE, receiver);
-    // FIXME initialize input fields
-  }
+    /**
+     * @param receiver
+     */
+    public DoPayFine(LibraryManager receiver) {
+        super(Label.PAY_FINE, receiver);
+        // FIXME initialize input fields
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() throws DialogException {
-    // FIXME implement command
-  }
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() throws DialogException {
+        // FIXME implement command
+    }
 
 }

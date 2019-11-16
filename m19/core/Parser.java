@@ -86,7 +86,6 @@ public class Parser {
             System.out.println("Failed to register user"); // FIXME improve this
         };
 
-
         //FIXME Pode ser necessário ter um try-catch adicional neste método
     }
 

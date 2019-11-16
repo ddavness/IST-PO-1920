@@ -9,20 +9,20 @@ import pt.tecnico.po.ui.Command;
  */
 public class DoPerformSearch extends Command<LibraryManager> {
 
-  // FIXME define input fields
+    // FIXME define input fields
 
-  /**
-   * @param m
-   */
-  public DoPerformSearch(LibraryManager m) {
-    super(Label.PERFORM_SEARCH, m);
-    // FIXME initialize input fields
-  }
+    /**
+     * @param m
+     */
+    public DoPerformSearch(LibraryManager m) {
+        super(Label.PERFORM_SEARCH, m);
+        // FIXME initialize input fields
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() {
-    // FIXME implement command
-  }
-  
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() {
+        // FIXME implement command
+    }
+
 }

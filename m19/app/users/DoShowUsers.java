@@ -2,7 +2,7 @@ package m19.app.users;
 
 import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
-import pt.tecnico.po.ui.DialogException;
+//import pt.tecnico.po.ui.DialogException;
 
 import java.util.*;
 import m19.core.*;
@@ -12,22 +12,22 @@ import m19.core.*;
  */
 public class DoShowUsers extends Command<LibraryManager> {
 
-  /**
-   * @param receiver
-   */
-  public DoShowUsers(LibraryManager receiver) {
-    super(Label.SHOW_USERS, receiver);
-  }
-
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() {
-    
-    List<User> users = _receiver.getAllUsers();
-    for (User u: users) {
-      _display.addLine(u.getDescription());
+    /**
+     * @param receiver
+     */
+    public DoShowUsers(LibraryManager receiver) {
+        super(Label.SHOW_USERS, receiver);
     }
-    _display.display();
-  }
-  
+
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() {
+        
+        List<User> users = _receiver.getAllUsers();
+        for (User u: users) {
+        _display.addLine(u.getDescription());
+        }
+        _display.display();
+    }
+
 }

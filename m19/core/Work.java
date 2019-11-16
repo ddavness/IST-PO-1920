@@ -80,5 +80,4 @@ public abstract class Work implements Serializable{
         return getNumberOfCopies() - 0;
     }
 
-    
 }

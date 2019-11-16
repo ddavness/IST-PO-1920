@@ -8,17 +8,17 @@ import pt.tecnico.po.ui.Command;
  */
 public class DoOpenRequestsMenu extends Command<LibraryManager> {
 
-  /**
-   * @param receiver
-   */
-  public DoOpenRequestsMenu(LibraryManager receiver) {
-    super(Label.OPEN_REQUESTS_MENU, receiver);
-  }
+    /**
+     * @param receiver
+     */
+    public DoOpenRequestsMenu(LibraryManager receiver) {
+        super(Label.OPEN_REQUESTS_MENU, receiver);
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() {
-    m19.app.requests.Menu menu = new m19.app.requests.Menu(_receiver);
-    menu.open();
-  }
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() {
+        m19.app.requests.Menu menu = new m19.app.requests.Menu(_receiver);
+        menu.open();
+    }
 }

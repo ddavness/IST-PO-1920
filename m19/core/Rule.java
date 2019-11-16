@@ -7,5 +7,4 @@ public abstract class Rule {
 
     //FIXME Implement
 
-    
 }

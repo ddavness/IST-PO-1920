@@ -18,7 +18,6 @@ import m19.app.exception.UserRegistrationFailedException;
 public class User implements Serializable, Comparable<User> {
     private static final long serialVersionUID = 1L;
 
-
     private static int _nextID; // initialized at 0
     private final int _id;
 

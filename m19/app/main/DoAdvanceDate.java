@@ -31,7 +31,7 @@ public class DoAdvanceDate extends Command<LibraryManager> {
         } catch (InvalidArgumentException e) {
             // FIXME
         }
-        
+
     }
 
 }

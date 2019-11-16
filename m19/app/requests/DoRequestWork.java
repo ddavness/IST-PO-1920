@@ -11,20 +11,20 @@ import pt.tecnico.po.ui.DialogException;
  */
 public class DoRequestWork extends Command<LibraryManager> {
 
-  // FIXME define input fields
+    // FIXME define input fields
 
-  /**
-   * @param receiver
-   */
-  public DoRequestWork(LibraryManager receiver) {
-    super(Label.REQUEST_WORK, receiver);
-    // FIXME initialize input fields
-  }
+    /**
+     * @param receiver
+     */
+    public DoRequestWork(LibraryManager receiver) {
+        super(Label.REQUEST_WORK, receiver);
+        // FIXME initialize input fields
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() throws DialogException {
-    // FIXME implement command
-  }
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() throws DialogException {
+        // FIXME implement command
+    }
 
 }

@@ -5,7 +5,7 @@ package m19.core.exception;
  */
 public class MissingFileAssociationException extends Exception {
 
-  /** Serial number for serialization. */
-  private static final long serialVersionUID = 201901101348L;
+    /** Serial number for serialization. */
+    private static final long serialVersionUID = 201901101348L;
 
 }

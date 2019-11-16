@@ -7,25 +7,25 @@ import pt.tecnico.po.ui.DialogException;
  */
 public class NoSuchUserException extends DialogException {
 
-  /** Serial number for serialization. */
-  static final long serialVersionUID = 201901091828L;
+    /** Serial number for serialization. */
+    static final long serialVersionUID = 201901091828L;
 
-  /**
-   * Bad user id.
-   */
-  private int _id;
+    /**
+     * Bad user id.
+     */
+    private int _id;
 
-  /**
-   * @param id
-   */
-  public NoSuchUserException(int id) {
-    _id = id;
-  }
+    /**
+     * @param id
+     */
+    public NoSuchUserException(int id) {
+        _id = id;
+    }
 
-  /** @see pt.tecnico.po.ui.DialogException#getMessage() */
-  @Override
-  public String getMessage() {
-    return Message.noSuchUser(_id);
-  }
+    /** @see pt.tecnico.po.ui.DialogException#getMessage() */
+    @Override
+    public String getMessage() {
+        return Message.noSuchUser(_id);
+    }
 
 }

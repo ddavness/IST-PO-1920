@@ -13,32 +13,30 @@ import m19.app.exception.Message;
  */
 public class DoShowUser extends Command<LibraryManager> {
 
-  Input<Integer> _userID;
+    Input<Integer> _userID;
 
-  /**
-   * @param receiver
-   */
-  public DoShowUser(LibraryManager receiver) {
-    super(Label.SHOW_USER, receiver);
-    _userID = _form.addIntegerInput("");// FIXME Add message
+    /**
+     * @param receiver
+     */
+    public DoShowUser(LibraryManager receiver) {
+        super(Label.SHOW_USER, receiver);
+        _userID = _form.addIntegerInput("");// FIXME Add message
 
-  }
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() throws DialogException {
-    _form.parse();
-    User user = _receiver.getUser(_userID.value());
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() throws DialogException {
+        _form.parse();
+        User user = _receiver.getUser(_userID.value());
 
-    if (user != null)
-      _display.addLine(user.getDescription());
+        if (user != null)
+        _display.addLine(user.getDescription());
 
-    else      
-      _display.addLine(Message.noSuchUser(_userID.value()));
+        else
+        _display.addLine(Message.noSuchUser(_userID.value()));
 
-    _display.display();
-
-
-  }
+        _display.display();
+    }
 
 }

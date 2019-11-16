@@ -21,49 +21,49 @@ import java.util.Comparator;
  */
 public class Library implements Serializable {
 
-  /** Serial number for serialization. */
-  private static final long serialVersionUID = 201901101348L;
+    /** Serial number for serialization. */
+    private static final long serialVersionUID = 201901101348L;
 
-  // FIXME define attributes
-  private List<User> _users;
-  private List<Work> _works;
-  private List<Rule> _rules;
+    // FIXME define attributes
+    private List<User> _users;
+    private List<Work> _works;
+    private List<Rule> _rules;
 
 
-  public Library() {
-    _users = new ArrayList<>();
-    _works = new ArrayList<>();
-    _rules = new ArrayList<>();
-  }
+    public Library() {
+        _users = new ArrayList<>();
+        _works = new ArrayList<>();
+        _rules = new ArrayList<>();
+    }
 
-  public void addUser(User user) {
-    _users.add(user);
-  }
+    public void addUser(User user) {
+        _users.add(user);
+    }
 
-  public void addWork(Work work) {
-    _works.add(work);
-  }
+    public void addWork(Work work) {
+        _works.add(work);
+    }
 
-  public void addRule(Rule rule) {
-    _rules.add(rule);
-  }
+    public void addRule(Rule rule) {
+        _rules.add(rule);
+    }
 
-  // FIXME define methods
+    // FIXME define methods
 
-  /**
-   * Read the text input file at the beginning of the program and populates the
-   * instances of the various possible types (books, DVDs, users).
-   *
-   * @param filename
-   *          name of the file to load
-   * @throws BadEntrySpecificationException
-   * @throws IOException
-   */
-  void importFile(String filename) throws BadEntrySpecificationException, IOException {
-    // FIXME test this method
-    Parser parser = new Parser(this);
-    parser.parseFile(filename);
-  }
+    /**
+     * Read the text input file at the beginning of the program and populates the
+     * instances of the various possible types (books, DVDs, users).
+     *
+     * @param filename
+     *          name of the file to load
+     * @throws BadEntrySpecificationException
+     * @throws IOException
+     */
+    void importFile(String filename) throws BadEntrySpecificationException, IOException {
+        // FIXME test this method
+        Parser parser = new Parser(this);
+        parser.parseFile(filename);
+    }
 
 
   /**
@@ -71,27 +71,25 @@ public class Library implements Serializable {
    * @param id the id of the user to fint
    * @return the User in the library or a null reference if not found.
    */
-  User getUser(int id) {
-    for (User u: _users)
-      if (u.getID() == id)
-        return u;
+    User getUser(int id) {
+        for (User u: _users)
+            if (u.getID() == id)
+                return u;
 
+        return (User) null;
 
-    return (User) null;
+    }
 
-    
-  }
-
-  /**
-   * 
-   * @return copy of list
-   */
-  List<User> getAllUsers() {
-    // return java.util.Collections.unmodifiableList(_users);
-    ArrayList<User> allUsers = new ArrayList<>(_users);
-    Collections.sort(allUsers);
-    return allUsers;
-  }
+    /**
+     *
+     * @return copy of list
+     */
+    List<User> getAllUsers() {
+        // return java.util.Collections.unmodifiableList(_users);
+        ArrayList<User> allUsers = new ArrayList<>(_users);
+        Collections.sort(allUsers);
+        return allUsers;
+    }
 
     List<Work> getAllWorks() {
         ArrayList<Work> allWorks = new ArrayList<>(_works);

@@ -8,18 +8,18 @@ import pt.tecnico.po.ui.Command;
  */
 public class DoOpenUsersMenu extends Command<LibraryManager> {
 
-  /**
-   * @param receiver
-   */
-  public DoOpenUsersMenu(LibraryManager receiver) {
-    super(Label.OPEN_USERS_MENU, receiver);
-  }
+    /**
+     * @param receiver
+     */
+    public DoOpenUsersMenu(LibraryManager receiver) {
+        super(Label.OPEN_USERS_MENU, receiver);
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() {
-    m19.app.users.Menu menu = new m19.app.users.Menu(_receiver);
-    menu.open();
-  }
-  
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() {
+        m19.app.users.Menu menu = new m19.app.users.Menu(_receiver);
+        menu.open();
+    }
+
 }

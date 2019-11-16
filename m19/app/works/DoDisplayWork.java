@@ -9,20 +9,20 @@ import pt.tecnico.po.ui.Command;
  */
 public class DoDisplayWork extends Command<LibraryManager> {
 
-  // FIXME define input fields
+    // FIXME define input fields
 
-  /**
-   * @param receiver
-   */
-  public DoDisplayWork(LibraryManager receiver) {
-    super(Label.SHOW_WORK, receiver);
-    // FIXME initialize input fields
-  }
+    /**
+     * @param receiver
+     */
+    public DoDisplayWork(LibraryManager receiver) {
+        super(Label.SHOW_WORK, receiver);
+        // FIXME initialize input fields
+    }
 
-  /** @see pt.tecnico.po.ui.Command#execute() */
-  @Override
-  public final void execute() throws DialogException {
-    // FIXME implement command
-  }
-  
+    /** @see pt.tecnico.po.ui.Command#execute() */
+    @Override
+    public final void execute() throws DialogException {
+        // FIXME implement command
+    }
+
 }
