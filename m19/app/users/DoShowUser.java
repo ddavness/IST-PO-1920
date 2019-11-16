@@ -20,7 +20,7 @@ public class DoShowUser extends Command<LibraryManager> {
      */
     public DoShowUser(LibraryManager receiver) {
         super(Label.SHOW_USER, receiver);
-        _userID = _form.addIntegerInput("");// FIXME Add message
+        _userID = _form.addIntegerInput(m19.app.users.Message.requestUserId());
 
     }
 
