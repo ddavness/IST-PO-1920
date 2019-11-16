@@ -1,7 +1,7 @@
 package m19.app.works;
 
 import m19.core.LibraryManager;
-// FIXME import other core concepts
+import m19.core.Work;
 import pt.tecnico.po.ui.Command;
 
 /**
@@ -19,6 +19,9 @@ public class DoDisplayWorks extends Command<LibraryManager> {
   /** @see pt.tecnico.po.ui.Command#execute() */
   @Override
   public final void execute() {
-    // FIXME implement command
+    for (Work w: _receiver.getAllWorks()) {
+      _display.addLine(w.getDescription());
+    }
+    _display.display();
   }
 }
