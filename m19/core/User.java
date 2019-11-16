@@ -2,6 +2,7 @@ package m19.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import m19.core.exception.InvalidArgumentException;
@@ -87,5 +88,9 @@ public class User implements Serializable, Comparable<User> {
 
     public boolean isEqual(User user) {
         return getID() == user.getID();
+    }
+
+    public List<Request> getAllRequests() {
+        return Collections.unmodifiableList(_requests);
     }
 }

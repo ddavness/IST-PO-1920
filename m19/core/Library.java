@@ -6,6 +6,7 @@ import java.io.IOException;
 import m19.core.exception.BadEntrySpecificationException;
 
 import m19.core.Work;
+import m19.core.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -114,6 +115,14 @@ public class Library implements Serializable {
 
         Collections.sort(allWorks, new WorkComparator());
         return allWorks;
+    }
+
+    public List<Request> getAllRequests() {
+        ArrayList<Request> _requests = new ArrayList<>();
+        for (User user: getAllUsers()) {
+            _requests.addAll(user.getAllRequests());
+        }
+        return _requests;   
     }
 
 }
