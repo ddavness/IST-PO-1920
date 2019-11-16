@@ -28,12 +28,34 @@ public class Library implements Serializable {
     private List<User> _users;
     private List<Work> _works;
     private List<Rule> _rules;
-
+    private int _systemDate;
 
     public Library() {
         _users = new ArrayList<>();
         _works = new ArrayList<>();
         _rules = new ArrayList<>();
+    }
+
+    /**
+     * Get the current system date of the library.
+     *
+     * @return the current system date of the manager.
+     */
+    int getCurrentDate() {
+        return _systemDate;
+    }
+
+    /**
+     * Advances the current date of the library, and updates all related statuses.
+     *
+     * @param daysToAdvance The number of days to advance. If this number is lower than 1, this method has no effect.
+     */
+    void advanceDays(int daysToAdvance) {
+        if (daysToAdvance >= 0) {
+            _systemDate += daysToAdvance;
+        }
+
+        // FIXME Apply updates
     }
 
     public void addUser(User user) {

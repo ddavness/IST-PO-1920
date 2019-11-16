@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class LibraryManager {
     private Library _library;
-    private int _systemDate;
     private String _file;
 
 
@@ -21,23 +20,18 @@ public class LibraryManager {
         _library = new Library();
     }
 
-    // FIXME define methods
-
     /**
-     * Get the current system date of the library.
-     *
-     * @return the current system date of the manager.
+     * @see Library#getCurrentDate()
      */
     public int getCurrentDate() {
-        return _systemDate;
+        return _library.getCurrentDate();
     }
 
+    /**
+     * @see Library#advanceDays()
+     */
     public void advanceDays(int daysToAdvance) {
-        if (daysToAdvance >= 0) {
-            _systemDate += daysToAdvance;
-        }
-
-        // FIXME Apply updates
+        _library.advanceDays(daysToAdvance);
     }
 
     /**
