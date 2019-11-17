@@ -23,5 +23,8 @@ public abstract class Rule implements Serializable {
      */
     public abstract boolean isValid(Request request);
 
+    public int getID() {
+        return _id;
+    }
 
 }

@@ -64,11 +64,12 @@ public class LibraryManager {
     public void saveAs(String filename) throws IOException {
         // We'll throw this error so that someone else deals with it.
 
-        ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(filename));
-        objOut.writeObject(_library);
-        objOut.close();
-
-        _file = filename;
+        try (
+            ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(filename));
+        ) {
+            objOut.writeObject(_library);
+            _file = filename;
+        }
     }
 
     /**
@@ -81,11 +82,12 @@ public class LibraryManager {
      * @throws ClassNotFoundException if the parser is unable to convert the content to an object
      */
     public void load(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectInputStream objInStream = new ObjectInputStream(new FileInputStream(filename));
-
-        _library = (Library) objInStream.readObject();
-
-        objInStream.close();
+        try (
+            ObjectInputStream objInStream = new ObjectInputStream(new FileInputStream(filename))
+        ) {
+            _library = (Library) objInStream.readObject();
+            _file = filename;
+        }
     }
 
     /**

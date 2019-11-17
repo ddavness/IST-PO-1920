@@ -7,6 +7,8 @@ import m19.core.Request;
  */
 public class CheckWorkIsLowValue extends Rule {
 
+    static final long serialVersionUID = 20190110170101L;
+
     public CheckWorkIsLowValue(int id, Library library) {
         super(id, library);
     }

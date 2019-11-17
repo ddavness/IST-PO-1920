@@ -24,6 +24,13 @@ public class InvalidArgumentException extends Exception {
     }
 
     public Object[] getInfractorArguments() {
-        return _arguments;
+        // Shallow copy
+
+        Object args[] = new Object[_arguments.length];
+        int i = 0;
+        for (Object arg : _arguments) {
+            args[i++] = arg;
+        }
+        return args;
     }
 }

@@ -1,13 +1,15 @@
 package m19.core.rules;
+
 import m19.core.Rule;
 import m19.core.User;
 import m19.core.Library;
 import m19.core.Request;
-import m19.core.UserBehaviour;
 /**
  * CheckUserHasNotExceededWorkRequestLimit
  */
 public class CheckUserHasNotExceededWorkRequestLimit extends Rule {
+
+    static final long serialVersionUID = 20190110170104L;
 
     public CheckUserHasNotExceededWorkRequestLimit(int id, Library library) {
         super(id, library);

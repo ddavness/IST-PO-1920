@@ -5,9 +5,7 @@ import java.io.IOException;
 
 import m19.core.exception.BadEntrySpecificationException;
 
-import m19.core.Work;
 import m19.core.exception.RuleNotSatisfiedException;
-import m19.core.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -143,7 +141,6 @@ public class Library implements Serializable {
     }
 
     public Request requestWork(User user, Work work, int nDays) throws RuleNotSatisfiedException {
-        int FIXME_LENGTH = 3;
         Request request = new Request(user, work, nDays);
         for (Rule rule : _rules) {
             if (!rule.isValid(request)) // If a rule is not satisfied

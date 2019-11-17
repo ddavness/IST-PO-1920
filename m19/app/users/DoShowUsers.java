@@ -1,11 +1,9 @@
 package m19.app.users;
 
-import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
-//import pt.tecnico.po.ui.DialogException;
+import m19.core.*;
 
 import java.util.*;
-import m19.core.*;
 
 /**
  * 4.2.4. Show all users.

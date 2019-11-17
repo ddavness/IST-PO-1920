@@ -1,12 +1,9 @@
 package m19.app.users;
 
-import m19.core.LibraryManager;
-import m19.core.exception.InvalidArgumentException;
-import pt.tecnico.po.ui.Command;
-import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.*;
 
 import m19.core.*;
+import m19.core.exception.InvalidArgumentException;
 
 import m19.app.exception.UserRegistrationFailedException;
 import m19.app.users.Message;

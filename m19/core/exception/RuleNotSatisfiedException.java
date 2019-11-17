@@ -1,6 +1,5 @@
 package m19.core.exception;
 
-import m19.core.Rule;
 import m19.core.User;
 import m19.core.Work;
 
