@@ -1,3 +1,4 @@
+JAR = jar
 JDK = javac
 JRE = java
 CPATH = -cp po-uilib.jar:.
@@ -17,3 +18,7 @@ clean:
 remake:
 	make clean
 	make
+
+pkg:
+	make clean
+	$(JAR) cvf m19.jar -C . m19
