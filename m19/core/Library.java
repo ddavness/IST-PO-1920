@@ -6,7 +6,7 @@ import java.io.IOException;
 import m19.core.exception.BadEntrySpecificationException;
 
 import m19.core.Work;
-import m19.app.exception.RuleFailedException;
+import m19.core.exception.RuleNotSatisfiedException;
 import m19.core.*;
 
 import java.util.List;
@@ -139,19 +139,21 @@ public class Library implements Serializable {
         for (User user: getAllUsers()) {
             _requests.addAll(user.getAllRequests());
         }
-        return _requests;   
+        return _requests;
     }
 
-    public void requestWork(User user, Work work, int nDays) throws RuleFailedException {
+    public Request requestWork(User user, Work work, int nDays) throws RuleNotSatisfiedException {
         int FIXME_LENGTH = 3;
         Request request = new Request(user, work, nDays);
         for (Rule rule : _rules) {
-            if (!rule.isValid(request)) // If a rule is not valid
-                throw new RuleFailedException(user.getID(), work.getID(), _rules.indexOf(rule));
+            if (!rule.isValid(request)) // If a rule is not satisfied
+                throw new RuleNotSatisfiedException(user, work, _rules.indexOf(rule));
         }
 
         user.addRequest(request);
         work.addRequest(request);
+
+        return request;
     }
 
 }

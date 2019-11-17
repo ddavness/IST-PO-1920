@@ -16,10 +16,10 @@ public abstract class Rule implements Serializable {
         _library = library;
     }
     /**
-     * 
+     *
      * @param user
      * @param work
-     * @return true iff the work can be requested by the user
+     * @return true if the work can be requested by the user
      */
     public abstract boolean isValid(Request request);
 

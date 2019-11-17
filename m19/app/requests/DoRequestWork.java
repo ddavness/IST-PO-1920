@@ -1,14 +1,16 @@
 package m19.app.requests;
 
 import m19.core.LibraryManager;
+import m19.core.Request;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.Input;
 
 import m19.core.User;
 import m19.core.Work;
+import m19.core.exception.RuleNotSatisfiedException;
 import m19.app.exception.RuleFailedException;
-import m19.app.users.Message;
+import m19.app.requests.Message;
 
 /**
  * 4.4.1. Request work.
@@ -37,11 +39,12 @@ public class DoRequestWork extends Command<LibraryManager> {
         //FIXME Ask for how many days
         int nDays = 5; //FIXME Change
         try {
-            _receiver.requestWork(user, work, nDays);
+            Request req = _receiver.requestWork(user, work, nDays);
+            _display.add(Message.workReturnDay(work.getID(), req.getDeadine()));
         }
-        catch (RuleFailedException rfe) {
+        catch (RuleNotSatisfiedException rnse) {
             // FIXME Say it didn't work
-            System.out.println("FIXME - Cannot request work, rule not validated");
+            throw new RuleFailedException(user.getID(), work.getID(), rnse.getViolatedRule());
         }
 
     }
