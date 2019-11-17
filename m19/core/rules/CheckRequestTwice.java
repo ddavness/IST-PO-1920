@@ -13,6 +13,7 @@ public class CheckRequestTwice extends Rule {
         super(id, library);
     }
 
+    @Override
     public boolean isValid(Request request) {
         for (Request _request: _library.getAllRequests()) {
             if (_request.equals(request))

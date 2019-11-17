@@ -18,7 +18,7 @@ public class CheckUserIsSuspended extends Rule {
      */
 
     public boolean isValid(Request request) {
-        return !request.getUser().isActive();
+        return request.getUser().isActive();
     }
-    
+
 }
