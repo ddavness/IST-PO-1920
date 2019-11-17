@@ -1,5 +1,4 @@
 # Don't track extensionless files
-*
 !*.*
 
 # Don't track vscode junk
