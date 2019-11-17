@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.*;
 
 import m19.core.rules.*;
 
@@ -22,14 +23,14 @@ public class Library implements Serializable {
     /** Serial number for serialization. */
     private static final long serialVersionUID = 201901101348L;
 
-    private List<User> _users;
-    private List<Work> _works;
+    private HashMap<Integer, User> _users;
+    private HashMap<Integer, Work> _works;
     private List<Rule> _rules;
     private int _systemDate;
 
     public Library() {
-        _users = new ArrayList<>();
-        _works = new ArrayList<>();
+        _users = new HashMap<>();
+        _works = new HashMap<>();
         _rules = new ArrayList<>();
 
         _rules.add(new CheckRequestTwice(0, this));
@@ -62,11 +63,11 @@ public class Library implements Serializable {
     }
 
     public void addUser(User user) {
-        _users.add(user);
+        _users.put(user.getID(), user);
     }
 
     public void addWork(Work work) {
-        _works.add(work);
+        _works.put(work.getID(), work);
     }
 
     public void addRule(Rule rule) {
@@ -93,11 +94,7 @@ public class Library implements Serializable {
      * @return the User in the library or a null reference if not found.
      */
     User getUser(int id) {
-        for (User u: _users)
-            if (u.getID() == id)
-                return u;
-
-        return (User) null;
+        return _users.get(id);
     }
 
     /**
@@ -106,21 +103,17 @@ public class Library implements Serializable {
      */
     List<User> getAllUsers() {
         // return java.util.Collections.unmodifiableList(_users);
-        ArrayList<User> allUsers = new ArrayList<>(_users);
+        ArrayList<User> allUsers = new ArrayList<>(_users.values());
         Collections.sort(allUsers);
         return allUsers;
     }
 
     public Work getWork(int id) {
-        for (Work w: _works) {
-            if (w.getID() == id)
-                return w;
-        }
-        return (Work) null;
+        return _works.get(id);
     }
 
     List<Work> getAllWorks() {
-        ArrayList<Work> allWorks = new ArrayList<>(_works);
+        ArrayList<Work> allWorks = new ArrayList<>(_works.values());
         class WorkComparator implements Comparator<Work> {
             @Override
             public int compare(Work w1, Work w2) {
