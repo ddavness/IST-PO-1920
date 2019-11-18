@@ -2,15 +2,10 @@ package m19.core;
 
 import java.io.Serializable;
 import java.io.IOException;
+import java.util.*;
 
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.RuleNotSatisfiedException;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.*;
 
 import m19.core.rules.*;
 
