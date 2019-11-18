@@ -20,7 +20,7 @@ public class DoShowUser extends Command<LibraryManager> {
      */
     public DoShowUser(LibraryManager receiver) {
         super(Label.SHOW_USER, receiver);
-        _userID = _form.addIntegerInput(m19.app.users.Message.requestUserId());
+        _userID = _form.addIntegerInput(Message.requestUserId());
 
     }
 
@@ -33,6 +33,7 @@ public class DoShowUser extends Command<LibraryManager> {
 
         if (user != null) {
             _display.addLine(user.getDescription());
+            _display.display();
         } else {
             throw new NoSuchUserException(uid);
         }
