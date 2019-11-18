@@ -58,6 +58,14 @@ public class Library implements Serializable {
         // FIXME Apply updates
     }
 
+    /**
+     * Attempts to register an user to the library.
+     *
+     * @param name The name of the user. String must be non-blank.
+     * @param email The email of the user. String must be non-blank.
+     * @return The id that the library assigned to the user
+     * @throws IllegalArgumentException whenever the arguments provided are invalid.
+     */
     int registerUser(String name, String email) throws IllegalArgumentException {
         int uid = getNextUserID();
 
@@ -72,10 +80,18 @@ public class Library implements Serializable {
         return uid;
     }
 
+    /**
+     * 
+     * @param work reference to work to add to library
+     */
     public void addWork(Work work) {
         _works.put(work.getID(), work);
     }
 
+    /**
+     * 
+     * @param rule reference to rule to add to library
+     */
     public void addRule(Rule rule) {
         _rules.add(rule);
     }
@@ -105,7 +121,8 @@ public class Library implements Serializable {
 
     /**
      *
-     * @return copy of list
+     * @return copy of list of all users.
+     * @@implNote It is a shallow copy.
      */
     List<User> getAllUsers() {
         // return java.util.Collections.unmodifiableList(_users);
@@ -114,18 +131,41 @@ public class Library implements Serializable {
         return allUsers;
     }
 
+    /**
+     * 
+     * @return the ID of the next user to be registered and and increments
+     *         the next userID.
+     */
     public int getNextUserID() {
         return _nextUserID++;
     }
+
+    /**
+     * 
+     * @return the ID of the next work to be added to library and increments
+     *         the next workID.
+     */
 
     public int getNextWorkID() {
         return _nextWorkID++;
     }
 
+    /**
+     * 
+     * @param id of the work to find
+     * @return reference to work in library or null reference if not found
+     */
+
     public Work getWork(int id) {
         return _works.get(id);
     }
 
+
+    /**
+     * 
+     * @return sorted list of all works in the library ordered by the
+     *         natural order of the work IDs.
+     */
     List<Work> getAllWorks() {
         ArrayList<Work> allWorks = new ArrayList<>(_works.values());
         class WorkComparator implements Comparator<Work> {
@@ -139,6 +179,10 @@ public class Library implements Serializable {
         return allWorks;
     }
 
+    /**
+     * 
+     * @return all the requests by all users in the library.
+     */
     public List<Request> getAllRequests() {
         ArrayList<Request> _requests = new ArrayList<>();
         for (User user: getAllUsers()) {
@@ -147,6 +191,15 @@ public class Library implements Serializable {
         return _requests;
     }
 
+    /**
+     * Adds request to user and work
+     * 
+     * @param user who want to request work
+     * @param work to be requested
+     * @param nDays length of the requested
+     * @return Request reference
+     * @throws RuleNotSatisfiedException
+     */
     public Request requestWork(User user, Work work, int nDays) throws RuleNotSatisfiedException {
         Request request = new Request(user, work, nDays);
         for (Rule rule : _rules) {
