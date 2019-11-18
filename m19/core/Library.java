@@ -22,9 +22,11 @@ public class Library implements Serializable {
 
     /** Serial number for serialization. */
     private static final long serialVersionUID = 201901101348L;
+    private int _nextUserID;
+    private int _nextWorkID;
 
-    private HashMap<Integer, User> _users;
-    private HashMap<Integer, Work> _works;
+    private Map<Integer, User> _users;
+    private Map<Integer, Work> _works;
     private List<Rule> _rules;
     private int _systemDate;
 
@@ -62,8 +64,18 @@ public class Library implements Serializable {
         // FIXME Apply updates
     }
 
-    public void addUser(User user) {
-        _users.put(user.getID(), user);
+    int registerUser(String name, String email) throws IllegalArgumentException {
+        int uid = getNextUserID();
+
+        try {
+            _users.put(uid, new User(uid, name, email));
+        } catch (IllegalArgumentException arge) {
+            // Undo changes and rethrow
+            _nextUserID--;
+            throw arge;
+        }
+
+        return uid;
     }
 
     public void addWork(Work work) {
@@ -106,6 +118,14 @@ public class Library implements Serializable {
         ArrayList<User> allUsers = new ArrayList<>(_users.values());
         Collections.sort(allUsers);
         return allUsers;
+    }
+
+    public int getNextUserID() {
+        return _nextUserID++;
+    }
+
+    public int getNextWorkID() {
+        return _nextWorkID++;
     }
 
     public Work getWork(int id) {

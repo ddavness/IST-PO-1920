@@ -19,8 +19,8 @@ public class DoDisplayWorks extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() {
-        for (Work w: _receiver.getAllWorks()) {
-            _display.addLine(w.getDescription());
+        for (Work work: _receiver.getAllWorks()) {
+            _display.addLine(work.getDescription());
         }
 
         _display.display();

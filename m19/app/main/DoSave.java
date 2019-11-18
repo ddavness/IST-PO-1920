@@ -14,14 +14,14 @@ import pt.tecnico.po.ui.DialogException;
  */
 public class DoSave extends Command<LibraryManager> {
 
-    private Input<String> _userInput;
+    private Input<String> _fileName;
 
     /**
      * @param receiver
      */
     public DoSave(LibraryManager receiver) {
         super(Label.SAVE, receiver);
-        _userInput = _form.addStringInput(Message.newSaveAs());
+        _fileName = _form.addStringInput(Message.newSaveAs());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
@@ -31,7 +31,7 @@ public class DoSave extends Command<LibraryManager> {
             _receiver.save();
         } catch (MissingFileAssociationException e) {
             _form.parse();
-            String fname = _userInput.value();
+            String fname = _fileName.value();
             try {
                 _receiver.saveAs(fname);
             } catch (IOException ee) {

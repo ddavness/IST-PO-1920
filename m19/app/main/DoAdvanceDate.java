@@ -11,17 +11,17 @@ public class DoAdvanceDate extends Command<LibraryManager> {
     /**
      * @param receiver
      */
-    Input<Integer> input;
+    Input<Integer> daysToAdvance;
     public DoAdvanceDate(LibraryManager receiver) {
         super(Label.ADVANCE_DATE, receiver);
-        input = _form.addIntegerInput(Message.requestDaysToAdvance());
+        daysToAdvance = _form.addIntegerInput(Message.requestDaysToAdvance());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() {
         _form.parse();
-        _receiver.advanceDays(input.value());
+        _receiver.advanceDays(daysToAdvance.value());
     }
 
 }

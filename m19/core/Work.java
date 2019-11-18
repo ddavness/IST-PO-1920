@@ -13,8 +13,6 @@ public abstract class Work implements Serializable{
 
     static final long serialVersionUID = 7310074210009L;
 
-    private static int _nextWorkID;
-
     private int _id;
     private int _price;
     private int _numberOfCopies;
@@ -23,8 +21,8 @@ public abstract class Work implements Serializable{
 
     private Category _category; //FIXME May have more than one category
 
-    public Work(String title, int price, Category category, int numberOfCopies) {
-        _id = _nextWorkID++;
+    public Work(int assignedID, String title, int price, Category category, int numberOfCopies) {
+        _id = assignedID;
         _price = price;
         _category = category;
         _numberOfCopies = numberOfCopies;

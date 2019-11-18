@@ -3,8 +3,6 @@ package m19.app.users;
 import pt.tecnico.po.ui.Command;
 import m19.core.*;
 
-import java.util.*;
-
 /**
  * 4.2.4. Show all users.
  */
@@ -20,10 +18,8 @@ public class DoShowUsers extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() {
-        
-        List<User> users = _receiver.getAllUsers();
-        for (User u: users) {
-        _display.addLine(u.getDescription());
+        for (User user: _receiver.getAllUsers()) {
+            _display.addLine(user.getDescription());
         }
         _display.display();
     }

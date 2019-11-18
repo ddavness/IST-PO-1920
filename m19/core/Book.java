@@ -14,6 +14,7 @@ public class Book extends Work implements Serializable {
     private String _isbn;
 
     public Book(
+        int assignedID,
         String title,
         String author,
         int price,
@@ -21,7 +22,7 @@ public class Book extends Work implements Serializable {
         String isbn,
         int numberOfCopies) {
 
-            super(title, price, category, numberOfCopies);
+            super(assignedID, title, price, category, numberOfCopies);
             _author = author;
             _isbn = isbn;
 

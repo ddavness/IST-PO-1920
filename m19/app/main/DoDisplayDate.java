@@ -19,7 +19,7 @@ public class DoDisplayDate extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() {
-        _display.addLine(Message.currentDate(_receiver.getCurrentDate()) + "");
+        _display.addLine(Message.currentDate(_receiver.getCurrentDate()));
         _display.display();
     }
 }

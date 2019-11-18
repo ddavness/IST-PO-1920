@@ -1,6 +1,5 @@
 package m19.app.works;
 
-import java.util.List;
 import m19.core.Work;
 import m19.app.exception.NoSuchWorkException;
 import m19.core.LibraryManager;
@@ -13,28 +12,28 @@ import pt.tecnico.po.ui.Input;
  */
 public class DoDisplayWork extends Command<LibraryManager> {
 
-    private Input<Integer> _input;
+    private Input<Integer> _workID;
 
     /**
      * @param receiver
      */
     public DoDisplayWork(LibraryManager receiver) {
         super(Label.SHOW_WORK, receiver);
-        _input = _form.addIntegerInput(Message.requestWorkId());
+        _workID = _form.addIntegerInput(Message.requestWorkId());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
         _form.parse();
-        int index = _input.value();
-        List<Work> works = _receiver.getAllWorks();
+        int index = _workID.value();
+        Work work = _receiver.getWork(index);
 
-        if (works.size() <= index) {
+        if (work == null) {
             throw new NoSuchWorkException(index);
         }
 
-        _display.add(works.get(index).getDescription());
+        _display.add(work.getDescription());
         _display.display();
     }
 

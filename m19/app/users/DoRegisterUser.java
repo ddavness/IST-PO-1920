@@ -3,7 +3,6 @@ package m19.app.users;
 import pt.tecnico.po.ui.*;
 
 import m19.core.*;
-import m19.core.exception.InvalidArgumentException;
 
 import m19.app.exception.UserRegistrationFailedException;
 import m19.app.users.Message;
@@ -30,13 +29,11 @@ public class DoRegisterUser extends Command<LibraryManager> {
         _form.parse();
 
         try {
-            User user = new User(_userName.value(), _userEmail.value());
+            int uid = _receiver.registerUser(_userName.value(), _userEmail.value());
 
-            _receiver.addUser(user);
-
-            _display.add(Message.userRegistrationSuccessful(user.getID()));
+            _display.add(Message.userRegistrationSuccessful(uid));
             _display.display();
-        } catch (InvalidArgumentException e) {
+        } catch (IllegalArgumentException e) {
             throw new UserRegistrationFailedException(_userName.value(), _userEmail.value());
         }
     }

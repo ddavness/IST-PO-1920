@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.FileReader;
 
 import m19.core.exception.BadEntrySpecificationException;
-import m19.core.exception.InvalidArgumentException;
 
 public class Parser {
 
@@ -53,7 +52,7 @@ public class Parser {
             throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
         }
 
-        DVD dvd = new DVD(components[1], components[2], Integer.parseInt(components[3]),
+        DVD dvd = new DVD(_library.getNextWorkID(), components[1], components[2], Integer.parseInt(components[3]),
             Category.valueOf(components[4]), components[5],
             Integer.parseInt(components[6]));
 
@@ -65,7 +64,7 @@ public class Parser {
             throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
         }
 
-        Book book = new Book(components[1], components[2], Integer.parseInt(components[3]),
+        Book book = new Book(_library.getNextWorkID(), components[1], components[2], Integer.parseInt(components[3]),
             Category.valueOf(components[4]), components[5],
             Integer.parseInt(components[6]));
 
@@ -78,16 +77,13 @@ public class Parser {
         }
 
         try {
-            User user = new User(components[1], components[2]);
-            _library.addUser(user);
+            _library.registerUser(components[1], components[2]);
         }
-        catch (InvalidArgumentException iae) {
+        catch (IllegalArgumentException iae) {
             System.err.println(line);
             iae.printStackTrace();
-            System.out.println("Failed to register user");
+            throw new BadEntrySpecificationException("Failed to register the user.");
         };
-
-        //FIXME Pode ser necessário ter um try-catch adicional neste método
     }
 
- }
+}

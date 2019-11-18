@@ -7,7 +7,7 @@ import m19.core.exception.ImportFileException;
 
 
 import java.io.*;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * The façade class.
@@ -106,8 +106,20 @@ public class LibraryManager {
     }
 
 
-    public void addUser(User user) {
-        _library.addUser(user);
+    public int registerUser(String name, String email) throws IllegalArgumentException {
+        return _library.registerUser(name, email);
+    }
+
+    /**
+     * 
+     * @return sorted list of users.
+     */
+    public Collection<User> getAllUsers() {
+        return _library.getAllUsers();
+    }
+
+    public Collection<Work> getAllWorks() {
+        return _library.getAllWorks();
     }
 
     /**
@@ -117,19 +129,6 @@ public class LibraryManager {
      */
     public User getUser(int id) {
         return _library.getUser(id);
-    }
-
-
-    /**
-     * 
-     * @return sorted list of users.
-     */
-    public List<User> getAllUsers() {
-        return _library.getAllUsers();
-    }
-
-    public List<Work> getAllWorks() {
-        return _library.getAllWorks();
     }
 
     public Work getWork(int id) {
