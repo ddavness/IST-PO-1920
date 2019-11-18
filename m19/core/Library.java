@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.io.IOException;
 
 import m19.core.exception.BadEntrySpecificationException;
-
 import m19.core.exception.RuleNotSatisfiedException;
 
 import java.util.List;

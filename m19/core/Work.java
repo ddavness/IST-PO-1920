@@ -1,8 +1,9 @@
 package m19.core;
 
 import java.io.Serializable;
-import m19.core.Request;
 import java.util.*;
+import m19.core.Request;
+
 /**
  * Work - Abstract class which can be a Book or DVD.
  * @version 0.0
