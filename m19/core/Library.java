@@ -98,7 +98,7 @@ public class Library implements Serializable {
 
     /**
      * Read the text input file at the beginning of the program and populates the
-     * instances of the various possible types (books, DVDs, users).
+     * instances of the various possible types (books, Dvds, users).
      *
      * @param filename
      *          name of the file to load

@@ -65,12 +65,12 @@ _- _nextId : int_
       <w>560</w>
       <h>96</h>
     </coordinates>
-    <panel_attributes>*DVD*
+    <panel_attributes>*Dvd*
 -
 - _igac : String
 - _producer : String
 -
-*+ DVD(price: int, title: String, category: Category, igacNum: String, producer: String)*
+*+ Dvd(price: int, title: String, category: Category, igacNum: String, producer: String)*
 + matchKeyword(keyword : String) : boolean
 + toString() : String</panel_attributes>
     <additional_attributes/>
