@@ -9,12 +9,12 @@ import java.io.Serializable;
 public class Book extends Work implements Serializable {
 
 
-    static final long serialVersionUID = 6546513219879847L;
+    static final long serialVersionUId = 6546513219879847L;
     private String _author;
     private String _isbn;
 
     public Book(
-        int assignedID,
+        int assignedId,
         String title,
         String author,
         int price,
@@ -22,7 +22,7 @@ public class Book extends Work implements Serializable {
         String isbn,
         int numberOfCopies) {
 
-            super(assignedID, title, price, category, numberOfCopies);
+            super(assignedId, title, price, category, numberOfCopies);
             _author = author;
             _isbn = isbn;
 

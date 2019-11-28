@@ -8,7 +8,7 @@ import pt.tecnico.po.ui.DialogException;
 public class NoSuchWorkException extends DialogException {
 
     /** Serial number for serialization. */
-    static final long serialVersionUID = 201901091828L;
+    static final long serialVersionUId = 201901091828L;
 
     /**
      * Bad user id.

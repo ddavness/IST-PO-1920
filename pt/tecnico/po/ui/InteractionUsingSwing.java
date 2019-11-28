@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 public class InteractionUsingSwing extends JFrame implements Interaction {
 
   /** Serial number for serialization. */
-  private static final long serialVersionUID = 201608231515L;
+  private static final long serialVersionUId = 201608231515L;
 
   /**
    * Constructor (package).
@@ -105,7 +105,7 @@ public class InteractionUsingSwing extends JFrame implements Interaction {
   public class SwingPanel extends JPanel implements ActionListener {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUID = 201608231505L;
+    private static final long serialVersionUId = 201608231505L;
 
     /** The menu option selected */
     private int _opt;

@@ -6,7 +6,7 @@ package m19.core.exception;
 public class FailedToOpenFileException extends Exception {
 
     /** Serial number for serialization. */
-    static final long serialVersionUID = 201901091828L;
+    static final long serialVersionUId = 201901091828L;
 
     /** Bad file name. */
     private String _name;

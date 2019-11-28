@@ -15,9 +15,9 @@ import m19.core.rules.*;
 public class Library implements Serializable {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUID = 201901101348L;
-    private int _nextUserID;
-    private int _nextWorkID;
+    private static final long serialVersionUId = 201901101348L;
+    private int _nextUserId;
+    private int _nextWorkId;
 
     private Map<Integer, User> _users;
     private Map<Integer, Work> _works;
@@ -67,13 +67,13 @@ public class Library implements Serializable {
      * @throws IllegalArgumentException whenever the arguments provided are invalid.
      */
     int registerUser(String name, String email) throws IllegalArgumentException {
-        int uid = getNextUserID();
+        int uid = getNextUserId();
 
         try {
             _users.put(uid, new User(uid, name, email));
         } catch (IllegalArgumentException arge) {
             // Undo changes and rethrow
-            _nextUserID--;
+            _nextUserId--;
             throw arge;
         }
 
@@ -85,7 +85,7 @@ public class Library implements Serializable {
      * @param work reference to work to add to library
      */
     public void addWork(Work work) {
-        _works.put(work.getID(), work);
+        _works.put(work.getId(), work);
     }
 
     /**
@@ -133,11 +133,11 @@ public class Library implements Serializable {
 
     /**
      * 
-     * @return the ID of the next user to be registered and and increments
-     *         the next userID.
+     * @return the Id of the next user to be registered and and increments
+     *         the next userId.
      */
-    public int getNextUserID() {
-        return _nextUserID++;
+    public int getNextUserId() {
+        return _nextUserId++;
     }
 
     /**
@@ -146,8 +146,8 @@ public class Library implements Serializable {
      *         the next _workId.
      */
 
-    public int getNextWorkID() {
-        return _nextWorkID++;
+    public int getNextWorkId() {
+        return _nextWorkId++;
     }
 
     /**
@@ -164,14 +164,14 @@ public class Library implements Serializable {
     /**
      * 
      * @return sorted list of all works in the library ordered by the
-     *         natural order of the work IDs.
+     *         natural order of the work Ids.
      */
     List<Work> getAllWorks() {
         ArrayList<Work> allWorks = new ArrayList<>(_works.values());
         class WorkComparator implements Comparator<Work> {
             @Override
             public int compare(Work w1, Work w2) {
-                return w1.getID() - w2.getID();
+                return w1.getId() - w2.getId();
             }
         }
 

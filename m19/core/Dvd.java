@@ -7,13 +7,13 @@ import java.io.Serializable;
  */
 public class Dvd extends Work implements Serializable {
 
-    static final long serialVersionUID = 2718290452398765651L;
+    static final long serialVersionUId = 2718290452398765651L;
     private String _director;
     private String _igac;
 
 
     public Dvd(
-        int assignedID,
+        int assignedId,
         String title,
         String director,
         int price,
@@ -21,7 +21,7 @@ public class Dvd extends Work implements Serializable {
         String igac,
         int numberOfCopies) {
 
-            super(assignedID, title, price, category, numberOfCopies);
+            super(assignedId, title, price, category, numberOfCopies);
             _director = director;
             _igac = igac;
 

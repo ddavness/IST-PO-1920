@@ -10,28 +10,28 @@ import m19.core.Work;
 public class RuleNotSatisfiedException extends Exception {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUID = 201901101701L;
+    private static final long serialVersionUId = 201901101701L;
 
-    private int _violatedRuleID;
+    private int _violatedRuleId;
     private User _user;
     private Work _work;
 
-    public RuleNotSatisfiedException(User user, Work work, int ruleID) {
-        _violatedRuleID = ruleID;
+    public RuleNotSatisfiedException(User user, Work work, int ruleId) {
+        _violatedRuleId = ruleId;
         _user = user;
         _work = work;
     }
 
     public int getUserId() {
-        return _user.getID();
+        return _user.getId();
     }
 
     public int getWorkId() {
-        return _work.getID();
+        return _work.getId();
     }
 
     public int getViolatedRule() {
-        return _violatedRuleID;
+        return _violatedRuleId;
     }
 
 }

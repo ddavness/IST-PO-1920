@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 public class InteractionUsingApplet extends JApplet implements Interaction {
 
   /** Serial number for serialization. */
-  private static final long serialVersionUID = 201609171556L;
+  private static final long serialVersionUId = 201609171556L;
 
   /** The holds the instance created and initialized by the applet engine **/
   private static InteractionUsingApplet _appletInstance;
@@ -166,7 +166,7 @@ public class InteractionUsingApplet extends JApplet implements Interaction {
   public class AppletPanel extends JPanel implements ActionListener {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUID = 201608221459L;
+    private static final long serialVersionUId = 201608221459L;
 
     /** The menu option selected */
     private int _opt;

@@ -11,7 +11,7 @@ import m19.core.Request;
  */
  public class CheckRequestTwice extends Rule {
 
-    static final long serialVersionUID = 20190110170105L;
+    static final long serialVersionUId = 20190110170105L;
 
     public CheckRequestTwice(int id, Library library) {
         super(id, library);

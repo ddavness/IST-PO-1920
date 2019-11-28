@@ -12,7 +12,7 @@ import m19.core.Request;
  */
 public abstract class Work implements Serializable{
 
-    static final long serialVersionUID = 7310074210009L;
+    static final long serialVersionUId = 7310074210009L;
 
     private int _id;
     private int _price;
@@ -22,8 +22,8 @@ public abstract class Work implements Serializable{
 
     private Category _category; //FIXME May have more than one category
 
-    public Work(int assignedID, String title, int price, Category category, int numberOfCopies) {
-        _id = assignedID;
+    public Work(int assignedId, String title, int price, Category category, int numberOfCopies) {
+        _id = assignedId;
         _price = price;
         _category = category;
         _numberOfCopies = numberOfCopies;
@@ -43,7 +43,7 @@ public abstract class Work implements Serializable{
     public String getDescription() {
         String WORK_REPR_FORMAT = "%d - %d de %d - %s - %s - %d - %s - %s";
         return String.format(WORK_REPR_FORMAT,
-        getID(),
+        getId(),
         getNumberAvailableCopies(),
         getNumberOfCopies(),
         getKindOfWork(),
@@ -53,7 +53,7 @@ public abstract class Work implements Serializable{
         getExtraInfo());
     }
 
-    public int getID() {
+    public int getId() {
         return _id;
     }
 
@@ -79,7 +79,7 @@ public abstract class Work implements Serializable{
     }
 
     public boolean equals(Work work) {
-        return getID() == work.getID();
+        return getId() == work.getId();
     }
 
     /**

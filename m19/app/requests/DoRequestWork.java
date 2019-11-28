@@ -52,7 +52,7 @@ public class DoRequestWork extends Command<LibraryManager> {
         }
         catch (RuleNotSatisfiedException rnse) {
             // FIXME Say it didn't work
-            throw new RuleFailedException(user.getID(), work.getID(), rnse.getViolatedRule());
+            throw new RuleFailedException(user.getId(), work.getId(), rnse.getViolatedRule());
         }
 
     }

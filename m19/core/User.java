@@ -16,7 +16,7 @@ import m19.core.userbehaviour.*;
  * @implNote //FIXEME Implement getDescriptions
  */
 public class User implements Serializable, Comparable<User> {
-    private static final long serialVersionUID = 20190110170235409L;
+    private static final long serialVersionUId = 20190110170235409L;
 
     private final int _id;
 
@@ -29,7 +29,7 @@ public class User implements Serializable, Comparable<User> {
     private List<Request> _requests = new ArrayList<>();
     private List<Notification> _notifications = new ArrayList<>();
 
-    public User(int assignedID, String name, String email) throws IllegalArgumentException {
+    public User(int assignedId, String name, String email) throws IllegalArgumentException {
 
         if (
             name == null ||
@@ -46,7 +46,7 @@ public class User implements Serializable, Comparable<User> {
 
         _behaviour = new Normal();
 
-        _id = assignedID;
+        _id = assignedId;
     }
 
     public boolean isActive() {
@@ -73,7 +73,7 @@ public class User implements Serializable, Comparable<User> {
         return _notifications;
     }
 
-    public int getID() {
+    public int getId() {
         return _id;
     }
 
@@ -84,7 +84,7 @@ public class User implements Serializable, Comparable<User> {
     /**
      * 
      * @param user
-     * @return Ordem lexicografica, e depois ordem dos IDs se os nomes forem
+     * @return Ordem lexicografica, e depois ordem dos Ids se os nomes forem
      * iguais
      */
     public int compareTo(User user) {
@@ -92,7 +92,7 @@ public class User implements Serializable, Comparable<User> {
     }
 
     public boolean equals(User user) {
-        return getID() == user.getID();
+        return getId() == user.getId();
     }
 
     public List<Request> getAllRequests() {

@@ -8,7 +8,7 @@ import pt.tecnico.po.ui.DialogException;
 public class RuleFailedException extends DialogException {
 
     /** Serial number for serialization. */
-    static final long serialVersionUID = 200510291601L;
+    static final long serialVersionUId = 200510291601L;
 
     /** User id. */
     int _idUser;

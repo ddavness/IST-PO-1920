@@ -9,7 +9,7 @@ public abstract class DialogException extends Exception {
   /**
    * Serial number for serialization.
    */
-  static final long serialVersionUID = 200610291601L;
+  static final long serialVersionUId = 200610291601L;
 
   /**
    * This method is made abstract so that meaningful descriptive messages are
