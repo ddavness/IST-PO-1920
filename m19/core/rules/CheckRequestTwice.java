@@ -6,6 +6,7 @@ import m19.core.Request;
 
 /**
  * CheckRequestTwice
+ * A request must not be repeated
  */
  public class CheckRequestTwice extends Rule {
 

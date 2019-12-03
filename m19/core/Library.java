@@ -31,7 +31,7 @@ public class Library implements Serializable {
 
         _rules.add(new CheckRequestTwice(0, this));
         _rules.add(new CheckUserHasNotExceededWorkRequestLimit(1, this));
-        _rules.add(new CheckUserIsSuspended(2, this)); // FIXME Change name
+        _rules.add(new CheckUserIsNotSuspended(2, this)); // FIXME Change name
         _rules.add(new CheckWorkIsAvailable(3, this));
         _rules.add(new CheckWorkIsLowValue(4, this));
     }
