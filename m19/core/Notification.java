@@ -4,6 +4,7 @@ package m19.core;
  * Notification - Is just a simple String.
  * Implemented according to teachers' UML.
  * @version 0.0
+ * //FIXME Maybe implement kind of notification?
  */
 public class Notification {
 

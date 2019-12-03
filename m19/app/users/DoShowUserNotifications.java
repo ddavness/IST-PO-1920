@@ -1,30 +1,43 @@
 package m19.app.users;
 
+import m19.app.exception.NoSuchUserException;
 import m19.core.LibraryManager;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
-// FIXME import other core concepts
-// FIXME import other ui concepts
+import pt.tecnico.po.ui.Input;
+import m19.core.User;
+import m19.core.Notification;
 
 /**
  * 4.2.3. Show notifications of a specific user.
  */
 public class DoShowUserNotifications extends Command<LibraryManager> {
 
-    // FIXME define input fields
+    Input<Integer> _userId;
 
     /**
      * @param receiver
      */
     public DoShowUserNotifications(LibraryManager receiver) {
         super(Label.SHOW_USER_NOTIFICATIONS, receiver);
-        // FIXME initialize input fields
+        _userId = _form.addIntegerInput(Message.requestUserId());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-        // FIXME implement command
+        _form.parse();
+
+        User user = _receiver.getUser(_userId.value());
+        if (user == null) {
+            throw new NoSuchUserException(_userId.value());
+        }
+
+        for (Notification notification: user.getNotifications()) {
+            _display.addLine(notification.getMessage());
+            
+        }
+        _display.display();
     }
 
 }

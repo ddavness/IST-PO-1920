@@ -67,7 +67,7 @@ public class User implements Serializable, Comparable<User> {
         }
     }
 
-    protected List<Notification> getNotifications() {
+     public List<Notification> getNotifications() {
         return _notifications;
     }
 
