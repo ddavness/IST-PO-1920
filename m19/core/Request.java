@@ -6,7 +6,7 @@ package m19.core;
  * @implNote As per the teachers' UML.
  */
 public class Request {
-    private static int _dailyFine = 5;
+    private int _dailyFine = 5;
     private User _user;
     private int _deadline;
     private int _accruedFine;
