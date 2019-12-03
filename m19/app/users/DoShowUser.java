@@ -13,14 +13,14 @@ import m19.app.exception.NoSuchUserException;
  */
 public class DoShowUser extends Command<LibraryManager> {
 
-    Input<Integer> _userID;
+    Input<Integer> _userId;
 
     /**
      * @param receiver
      */
     public DoShowUser(LibraryManager receiver) {
         super(Label.SHOW_USER, receiver);
-        _userID = _form.addIntegerInput(Message.requestUserId());
+        _userId = _form.addIntegerInput(Message.requestUserId());
 
     }
 
@@ -28,7 +28,7 @@ public class DoShowUser extends Command<LibraryManager> {
     @Override
     public final void execute() throws DialogException {
         _form.parse();
-        int uid = _userID.value();
+        int uid = _userId.value();
         User user = _receiver.getUser(uid);
 
         if (user != null) {

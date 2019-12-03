@@ -7,7 +7,7 @@ import m19.core.Request;
 /**
  * Work - Abstract class which can be a Book or Dvd.
  * @version 0.0
- * @@implSpec Auto generates workID using a static attribute
+ * @@implSpec Auto generates _workId using a static attribute
  * 
  */
 public abstract class Work implements Serializable{

@@ -17,16 +17,16 @@ import m19.app.requests.Message;
  */
 public class DoRequestWork extends Command<LibraryManager> {
 
-    Input<Integer> _userID;
-    Input<Integer> _workID;
+    Input<Integer> _userId;
+    Input<Integer> _workId;
 
     /**
      * @param receiver
      */
     public DoRequestWork(LibraryManager receiver) {
         super(Label.REQUEST_WORK, receiver);
-        _userID = _form.addIntegerInput(Message.requestUserId());
-        _workID = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
+        _userId = _form.addIntegerInput(Message.requestUserId());
+        _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
 
     }
 
@@ -34,8 +34,8 @@ public class DoRequestWork extends Command<LibraryManager> {
     @Override
     public final void execute() throws DialogException {
         _form.parse();
-        User user = _receiver.getUser(_userID.value());
-        Work work = _receiver.getWork(_workID.value());
+        User user = _receiver.getUser(_userId.value());
+        Work work = _receiver.getWork(_workId.value());
         //FIXME Ask for how many days
         int nDays = 5; //FIXME Change
         try {

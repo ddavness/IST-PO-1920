@@ -143,7 +143,7 @@ public class Library implements Serializable {
     /**
      * 
      * @return the ID of the next work to be added to library and increments
-     *         the next workID.
+     *         the next _workId.
      */
 
     public int getNextWorkID() {

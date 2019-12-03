@@ -12,21 +12,21 @@ import pt.tecnico.po.ui.Input;
  */
 public class DoDisplayWork extends Command<LibraryManager> {
 
-    private Input<Integer> _workID;
+    private Input<Integer> _workId;
 
     /**
      * @param receiver
      */
     public DoDisplayWork(LibraryManager receiver) {
         super(Label.SHOW_WORK, receiver);
-        _workID = _form.addIntegerInput(Message.requestWorkId());
+        _workId = _form.addIntegerInput(Message.requestWorkId());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
         _form.parse();
-        int index = _workID.value();
+        int index = _workId.value();
         Work work = _receiver.getWork(index);
 
         if (work == null) {
