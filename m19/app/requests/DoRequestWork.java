@@ -9,6 +9,8 @@ import pt.tecnico.po.ui.Input;
 import m19.core.User;
 import m19.core.Work;
 import m19.core.exception.RuleNotSatisfiedException;
+import m19.app.exception.NoSuchUserException;
+import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.RuleFailedException;
 import m19.app.requests.Message;
 
@@ -36,6 +38,13 @@ public class DoRequestWork extends Command<LibraryManager> {
         _form.parse();
         User user = _receiver.getUser(_userId.value());
         Work work = _receiver.getWork(_workId.value());
+        if (user == null) { //FIXME this is ugly
+            throw new NoSuchUserException(_userId.value());
+        }
+        if (work == null) {
+            throw new NoSuchWorkException(_workId.value());
+        }
+
         //FIXME Ask for how many days
         int nDays = 5; //FIXME Change
         try {
