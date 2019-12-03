@@ -40,18 +40,18 @@ public abstract class Work implements Serializable{
 
     /**
      * 
-     * @param KindOfWork If it is a Book or DVD for example.
+     * @param kindOfWork If it is a Book or DVD for example.
      * @param extraInfo Author or director of work (when appliable)
      * @return Formated string for 4.3.1 of problem statement.
      */
 
-    public String getDescription(String KindOfWork, String extraInfo) {
+    public String getDescription(String kindOfWork, String extraInfo) {
         String WORK_REPR_FORMAT = "%d - %d de %d - %s - %s - %d - %s - %s";
         return String.format(WORK_REPR_FORMAT,
         getID(),
         getNumberAvailableCopies(),
         getNumberOfCopies(),
-        KindOfWork,
+        kindOfWork,
         getTitle(),
         getPrice(),
         getCategory(),
