@@ -1,11 +1,16 @@
 package m19.core;
 
+import java.io.Serializable;
+
 /**
  * Request
  * @version 0.0
  * @implNote As per the teachers' UML.
  */
-public class Request {
+public class Request implements Serializable {
+
+    static final long serialVersionUID = 201901093213216587L;
+
     private int _dailyFine = 5;
     private User _user;
     private int _deadline;
