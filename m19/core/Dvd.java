@@ -35,10 +35,13 @@ public class Dvd extends Work implements Serializable {
         return _igac;
     }
 
-
-    public String getDescription() {
-        String extraInfo = getDirector() + " - " + getIGAC();
-        return getDescription("DVD", extraInfo);
+    String getKindOfWork() {
+        return "DVD";
     }
+
+    String getExtraInfo() {
+        return getDirector() + " - " + getIGAC();
+    }
+
 
 }
