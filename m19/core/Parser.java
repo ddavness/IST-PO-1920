@@ -30,7 +30,7 @@ public class Parser {
 
         switch(components[0]) {
         case "DVD":
-            parseDVD(components, line);
+            parseDvd(components, line);
             break;
 
         case "BOOK":
@@ -47,16 +47,16 @@ public class Parser {
         }
     }
 
-    private void parseDVD(String[] components, String line) throws BadEntrySpecificationException {
+    private void parseDvd(String[] components, String line) throws BadEntrySpecificationException {
         if (components.length != 7) {
             throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
         }
 
-        DVD dvd = new DVD(_library.getNextWorkID(), components[1], components[2], Integer.parseInt(components[3]),
+        Dvd Dvd = new Dvd(_library.getNextWorkID(), components[1], components[2], Integer.parseInt(components[3]),
             Category.valueOf(components[4]), components[5],
             Integer.parseInt(components[6]));
 
-        _library.addWork(dvd);
+        _library.addWork(Dvd);
     }
 
     private void parseBook(String[] components, String line) throws BadEntrySpecificationException {

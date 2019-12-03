@@ -5,7 +5,7 @@ import java.util.*;
 import m19.core.Request;
 
 /**
- * Work - Abstract class which can be a Book or DVD.
+ * Work - Abstract class which can be a Book or Dvd.
  * @version 0.0
  * @@implSpec Auto generates workID using a static attribute
  * 
@@ -40,7 +40,7 @@ public abstract class Work implements Serializable{
 
     /**
      * 
-     * @param kindOfWork If it is a Book or DVD for example.
+     * @param kindOfWork If it is a Book or Dvd for example.
      * @param extraInfo Author or director of work (when appliable)
      * @return Formated string for 4.3.1 of problem statement.
      */
