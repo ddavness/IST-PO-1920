@@ -184,11 +184,11 @@ public class Library implements Serializable {
      * @return all the requests by all users in the library.
      */
     public List<Request> getAllRequests() {
-        ArrayList<Request> _requests = new ArrayList<>();
+        ArrayList<Request> requests = new ArrayList<>();
         for (User user: getAllUsers()) {
-            _requests.addAll(user.getAllRequests());
+            requests.addAll(user.getAllRequests());
         }
-        return _requests;
+        return requests;
     }
 
     /**
