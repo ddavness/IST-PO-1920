@@ -59,7 +59,7 @@ public class User implements Serializable, Comparable<User> {
 
     public String getDescription() {
         if (_isActive) {
-            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - ACTIVO";
+            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour.getDescription() + " - ACTIVO";
         } else {
             int totalFines = 0;
             for (Request req : _requests) {
