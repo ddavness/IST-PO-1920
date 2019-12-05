@@ -201,7 +201,13 @@ public class Library implements Serializable {
      * @throws RuleNotSatisfiedException
      */
     public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
-        Request request = new Request(user, work);
+        int returnDate = 5; //FIXME
+        // FIXME implement with sate design pattern!!!
+
+        /////////////   WARNING: REALLY BAD IMPLEMENTATION ///////////////////
+        
+
+        Request request = new Request(user, work, returnDate);
         for (Rule rule : _rules) {
             rule.check(request);
         }

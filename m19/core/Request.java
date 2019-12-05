@@ -17,13 +17,15 @@ public class Request implements Serializable {
     private int _accruedFine;
     private boolean _returned;
     private Work _work;
+    private int _returnDate;
 
-    public Request(User user, Work work) {
+    public Request(User user, Work work, int returnDate) {
         _user = user;
         // FIXME Implement dynamic deadline
         _accruedFine = 0;
         _returned = false;
         _work = work;
+        _returnDate = returnDate;
     }
 
     /*public int getDeadine() {
@@ -71,5 +73,13 @@ public class Request implements Serializable {
 
     public Work getWork() {
         return _work;
+    }
+
+    /**
+     * 
+     * @return the day User has to return Work
+     */
+    public int getReturnDate() {
+        return _returnDate;
     }
 }
