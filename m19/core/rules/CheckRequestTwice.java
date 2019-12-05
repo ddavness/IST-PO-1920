@@ -1,7 +1,7 @@
 package m19.core.rules;
 
 import m19.core.Rule;
-import m19.core.exception.WorkAlreadyRequestedException;
+import m19.core.exception.RuleNotSatisfiedException;
 import m19.core.Library;
 import m19.core.Request;
 
@@ -18,10 +18,10 @@ import m19.core.Request;
     }
 
     @Override
-    public void check(Request request) throws WorkAlreadyRequestedException {
+    public void check(Request request) throws RuleNotSatisfiedException {
         for (Request _request: request.getUser().getAllRequests()) {
             if (_request.equals(request))
-                throw new WorkAlreadyRequestedException(request.getUser(), request.getWork(), _ruleId);
+                throw new RuleNotSatisfiedException(request.getUser(), request.getWork(), _ruleId);
         }
     }
 
