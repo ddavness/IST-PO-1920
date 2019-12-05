@@ -88,7 +88,7 @@ public class User implements Serializable, Comparable<User> {
      * iguais
      */
     public int compareTo(User user) {
-        return getName().compareTo(user.getName()) == 0? getID() - user.getID(): getName().compareTo(user.getName());
+        return getName().compareTo(user.getName()) == 0? getId() - user.getId(): getName().compareTo(user.getName());
     }
 
     public boolean equals(User user) {

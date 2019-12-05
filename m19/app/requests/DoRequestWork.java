@@ -48,7 +48,7 @@ public class DoRequestWork extends Command<LibraryManager> {
         // int nDays = 5; //FIXME Change
         try {
             Request req = _receiver.requestWork(user, work);
-            _display.popup(Message.workReturnDay(work.getID(), req.getReturnDate()));
+            _display.popup(Message.workReturnDay(work.getId(), req.getReturnDate()));
         }
         catch (RuleNotSatisfiedException rnse) {
             // FIXME Say it didn't work

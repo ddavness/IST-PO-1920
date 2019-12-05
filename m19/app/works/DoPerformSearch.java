@@ -35,7 +35,7 @@ public class DoPerformSearch extends Command<LibraryManager> {
             }
         }
 
-        works.sort((Work w1, Work w2) -> w1.getID() - w2.getID()); // sort by Id
+        works.sort((Work w1, Work w2) -> w1.getId() - w2.getId()); // sort by Id
         for (Work work: works) {
             _display.addLine(work.getDescription());
         }
