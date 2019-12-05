@@ -11,30 +11,32 @@ public class Request implements Serializable {
 
     static final long serialVersionUID = 201901093213216587L;
 
-    private int _dailyFine = 5;
+    // private int _dailyFine = 5;
     private User _user;
-    private int _deadline;
+    // private int _deadline;
     private int _accruedFine;
     private boolean _returned;
     private Work _work;
 
-    public Request(User user, Work work, int length) {
+    public Request(User user, Work work) {
         _user = user;
-        _deadline = length;
+        // FIXME Implement dynamic deadline
         _accruedFine = 0;
         _returned = false;
         _work = work;
     }
 
-    public int getDeadine() {
+    /*public int getDeadine() {
         return _deadline;
-    }
+    }*/
+
+    // FIXME Implement setDeadline()
 
     public int getFine() {
         return _accruedFine;
     }
 
-    public void updateStatus() {
+    /*public void updateStatus() {
         // FIXME: Placeholder. Update.
         int date = 0;
 
@@ -42,7 +44,7 @@ public class Request implements Serializable {
             _accruedFine = (date - _deadline) * _dailyFine;
             _user.setActive(false);
         }
-    }
+    }*/
 
     /**
      * Returns the work.

@@ -48,8 +48,8 @@ public class DoRequestWork extends Command<LibraryManager> {
         //FIXME Ask for how many days
         int nDays = 5; //FIXME Change
         try {
-            Request req = _receiver.requestWork(user, work, nDays);
-            _display.add(Message.workReturnDay(work.getID(), req.getDeadine()));
+            Request req = _receiver.requestWork(user, work);
+            _display.add(Message.workReturnDay(work.getID(), 0));
         }
         catch (RuleNotSatisfiedException rnse) {
             // FIXME Say it didn't work

@@ -5,7 +5,16 @@ package m19.core;
  */
 
 public enum UserBehaviour {
-    NORMAL,
-    CUMPRIDOR,
-    FALTOSO;
+    NORMAL(2),
+    CUMPRIDOR(3),
+    FALTOSO(5);
+
+    private int _daysAllowed;
+    private UserBehaviour(int days) {
+        _daysAllowed = days;
+    }
+
+    public int getDaysAllowed() {
+        return _daysAllowed;
+    }
 }

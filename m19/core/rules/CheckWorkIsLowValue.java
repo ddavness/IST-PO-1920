@@ -1,5 +1,6 @@
 package m19.core.rules;
 import m19.core.Rule;
+import m19.core.exception.RuleNotSatisfiedException;
 import m19.core.Library;
 import m19.core.Request;
 /**
@@ -18,9 +19,10 @@ public class CheckWorkIsLowValue extends Rule {
      * @return a user is suspended iff it is not active
      */
     
-    public boolean isValid(Request request) {
+    public void check(Request request) throws RuleNotSatisfiedException {
         int MAX_PRICE = 25; // in euros
-        return request.getWork().getPrice() <= MAX_PRICE;
+        if (request.getWork().getPrice() > MAX_PRICE) {
+            throw new RuleNotSatisfiedException(request.getUser(), request.getWork(), _ruleId);
+        }
     }
-    
 }

@@ -200,11 +200,10 @@ public class Library implements Serializable {
      * @return Request reference
      * @throws RuleNotSatisfiedException
      */
-    public Request requestWork(User user, Work work, int nDays) throws RuleNotSatisfiedException {
-        Request request = new Request(user, work, nDays);
+    public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
+        Request request = new Request(user, work);
         for (Rule rule : _rules) {
-            if (!rule.isValid(request)) // If a rule is not satisfied
-                throw new RuleNotSatisfiedException(user, work, _rules.indexOf(rule));
+            rule.check(request);
         }
 
         user.addRequest(request);

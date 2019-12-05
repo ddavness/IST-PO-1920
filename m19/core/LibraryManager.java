@@ -135,7 +135,7 @@ public class LibraryManager {
         return _library.getWork(id);
     }
 
-    public Request requestWork(User user, Work work, int nDays) throws RuleNotSatisfiedException {
-        return _library.requestWork(user, work, nDays);
+    public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
+        return _library.requestWork(user, work);
     }
 }

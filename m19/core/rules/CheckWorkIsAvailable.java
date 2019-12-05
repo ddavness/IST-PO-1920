@@ -1,6 +1,7 @@
 package m19.core.rules;
 
 import m19.core.Rule;
+import m19.core.exception.RuleNotSatisfiedException;
 import m19.core.Library;
 import m19.core.Request;
 /**
@@ -18,8 +19,10 @@ public class CheckWorkIsAvailable extends Rule {
      * @return if the work the be requested is available
      */
 
-    public boolean isValid(Request request) {
-        return request.getWork().getNumberAvailableCopies() > 0;
+    public void check(Request request) throws RuleNotSatisfiedException {
+        if (request.getWork().getNumberAvailableCopies() <= 0) {
+            throw new RuleNotSatisfiedException(request.getUser(), request.getWork(), _ruleId);
+        }
     }
-    
+
 }

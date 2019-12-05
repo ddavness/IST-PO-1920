@@ -1,6 +1,7 @@
 package m19.core;
 import m19.core.Library;
 import m19.core.Request;
+import m19.core.exception.RuleNotSatisfiedException;
 
 import java.io.Serializable;
 
@@ -9,22 +10,19 @@ import java.io.Serializable;
  */
 public abstract class Rule implements Serializable {
     static final long serialVersionUID = 7310074210009L;
-    private final int _id;
     protected final Library _library;
+    protected final int _ruleId;
+
     public Rule(int id, Library library) {
-        _id = id;
+        _ruleId = id;
         _library = library;
     }
+
     /**
      *
      * @param user
      * @param work
-     * @return true if the work can be requested by the user
+     *
      */
-    public abstract boolean isValid(Request request);
-
-    public int getID() {
-        return _id;
-    }
-
+    public abstract void check(Request request) throws RuleNotSatisfiedException;
 }
