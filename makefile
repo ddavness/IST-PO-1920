@@ -14,6 +14,7 @@ m19/app/App.class:
 
 clean:
 	find . -name "*.class" -type f -delete
+	rm -f 1 requisicao user works
 
 remake:
 	make clean
