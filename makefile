@@ -9,17 +9,19 @@ all: m19/app/App.java
 run: m19/app/App.class
 	$(JRE) $(CPATH) m19/app/App
 
-m19/app/App.class:
-	make all
+m19/app/App.class: all
 
 clean:
 	find . -name "*.class" -type f -delete
-	rm -f 1 requisicao user works
+	rm -f 1 requisicao user works]
+	rm -rf tests/*.diff tests/*.outhyp
 
 remake:
 	make clean
 	make
 
-pkg:
-	make clean
+pkg: clean
 	$(JAR) cvf m19.jar -C . m19
+
+test: clean all
+	./runtests.sh
