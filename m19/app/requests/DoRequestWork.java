@@ -45,11 +45,10 @@ public class DoRequestWork extends Command<LibraryManager> {
             throw new NoSuchWorkException(_workId.value());
         }
 
-        //FIXME Ask for how many days
-        int nDays = 5; //FIXME Change
+        // int nDays = 5; //FIXME Change
         try {
             Request req = _receiver.requestWork(user, work);
-            _display.add(Message.workReturnDay(work.getID(), 0));
+            _display.popup(Message.workReturnDay(work.getID(), req.getReturnDate()));
         }
         catch (RuleNotSatisfiedException rnse) {
             // FIXME Say it didn't work
