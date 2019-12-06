@@ -16,7 +16,7 @@ import m19.core.userbehaviour.*;
  * @implNote //FIXEME Implement getDescriptions
  */
 public class User implements Serializable, Comparable<User> {
-    private static final long serialVersionUId = 20190110170235409L;
+    private static final long serialVersionUID = 20190110170235409L;
 
     private final int _id;
 

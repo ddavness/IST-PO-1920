@@ -10,7 +10,7 @@ import m19.core.Request;
  */
 public class CheckUserIsNotSuspended extends Rule {
 
-    static final long serialVersionUId = 20190110170103L;
+    static final long serialVersionUID = 20190110170103L;
 
     public CheckUserIsNotSuspended(int id, Library library) {
         super(id, library);

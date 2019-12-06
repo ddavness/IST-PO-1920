@@ -10,7 +10,7 @@ import m19.core.Work;
 public class RuleNotSatisfiedException extends Exception {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUId = 201901101701L;
+    private static final long serialVersionUID = 201901101701L;
 
     private int _violatedRuleId;
     private User _user;
