@@ -8,6 +8,7 @@ import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.RuleNotSatisfiedException;
 
 import m19.core.rules.*;
+import m19.core.User;
 
 /**
  * Class that represents the library as a whole.
@@ -15,7 +16,7 @@ import m19.core.rules.*;
 public class Library implements Serializable {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUId = 201901101348L;
+    private static final long serialVersionUID = 201901101348L;
     private int _nextUserId;
     private int _nextWorkId;
 
@@ -201,10 +202,7 @@ public class Library implements Serializable {
      * @throws RuleNotSatisfiedException
      */
     public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
-        int returnDate = 5; //FIXME
-        // FIXME implement with sate design pattern!!!
-
-        /////////////   WARNING: REALLY BAD IMPLEMENTATION ///////////////////
+        int returnDate = user.getBehaviour().getNumDays(work) + getCurrentDate();
         
 
         Request request = new Request(user, work, returnDate);

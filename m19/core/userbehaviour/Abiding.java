@@ -6,6 +6,7 @@ import m19.core.Work;
  * Normal
  */
 public class Abiding extends UserBehaviour {
+    static final long serialVersionUID = 201973109733703L;
 
     Abiding() {
         super("CUMPRIDOR", 5);
@@ -21,5 +22,4 @@ public class Abiding extends UserBehaviour {
         return 30;
     }
 
-    
 }

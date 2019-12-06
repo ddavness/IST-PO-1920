@@ -11,7 +11,7 @@ import m19.core.Work;
  */
 public class CheckUserHasNotExceededWorkRequestLimit extends Rule {
 
-    static final long serialVersionUId = 20190110170104L;
+    static final long serialVersionUID = 20190110170104L;
 
     public CheckUserHasNotExceededWorkRequestLimit(int id, Library library) {
         super(id, library);

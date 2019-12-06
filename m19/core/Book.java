@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Book extends Work implements Serializable {
 
 
-    static final long serialVersionUId = 6546513219879847L;
+    static final long serialVersionUID = 6546513219879847L;
     private String _author;
     private String _isbn;
 

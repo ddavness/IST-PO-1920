@@ -12,7 +12,7 @@ import m19.core.Request;
  */
 public abstract class Work implements Serializable{
 
-    static final long serialVersionUId = 7310074210009L;
+    static final long serialVersionUID = 7310074210009L;
 
     private int _id;
     private int _price;
