@@ -194,7 +194,7 @@ public class Library implements Serializable {
 
     /**
      * Adds request to user and work
-     * 
+     *
      * @param user who want to request work
      * @param work to be requested
      * @param nDays length of the requested
@@ -203,7 +203,6 @@ public class Library implements Serializable {
      */
     public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
         int returnDate = user.getBehaviour().getNumDays(work) + getCurrentDate();
-        
 
         Request request = new Request(user, work, returnDate);
         for (Rule rule : _rules) {
@@ -214,6 +213,10 @@ public class Library implements Serializable {
         work.addRequest(request);
 
         return request;
+    }
+
+    public NotificationBroadcaster spawnBroadcaster() {
+        return new NotificationBroadcaster();
     }
 
 }

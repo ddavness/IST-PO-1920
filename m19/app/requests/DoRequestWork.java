@@ -4,7 +4,6 @@ import m19.core.LibraryManager;
 import m19.core.Request;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
-import pt.tecnico.po.ui.Form;
 import pt.tecnico.po.ui.Input;
 
 import m19.core.User;
@@ -26,8 +25,7 @@ public class DoRequestWork extends Command<LibraryManager> {
 
     // Is displayd or not based on user input at run time
     // asking for notification preference
-    Form _form2 = new Form(); // Without title
-    Input<Boolean> _reqRetNotPref;
+    Input<Boolean> _reqRetNotifPref;
 
     /**
      * @param receiver
@@ -36,8 +34,6 @@ public class DoRequestWork extends Command<LibraryManager> {
         super(Label.REQUEST_WORK, receiver);
         _userId = _form.addIntegerInput(Message.requestUserId());
         _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
-
-        _reqRetNotPref = _form2.addBooleanInput(Message.requestReturnNotificationPreference());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
@@ -46,22 +42,32 @@ public class DoRequestWork extends Command<LibraryManager> {
         _form.parse();
         User user = _receiver.getUser(_userId.value());
         Work work = _receiver.getWork(_workId.value());
-        if (user == null) { //FIXME this is ugly
+        if (user == null) {
             throw new NoSuchUserException(_userId.value());
         }
         if (work == null) {
             throw new NoSuchWorkException(_workId.value());
         }
 
-        int nDays = user.getBehaviour().getNumDays(work);
         try {
             Request req = _receiver.requestWork(user, work);
             _display.popup(Message.workReturnDay(work.getId(), req.getReturnDate()));
         }
 
         catch (AllCopiesRequestedException acre) { // Tough luck for the User
-            _form2.parse();
+            _form.clear();
+            _reqRetNotifPref = _form.addBooleanInput(Message.requestReturnNotificationPreference());
+            _form.parse();
             // Do something with user's notification preference.
+
+            if (_reqRetNotifPref.value()) {
+                acre.getNotificationBroadcaster().subscribe(user);
+            }
+
+            // Restore form to original state
+            _form.clear();
+            _userId = _form.addIntegerInput(Message.requestUserId());
+            _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
         }
 
         catch (RuleNotSatisfiedException rnse) { // Not rule 3
