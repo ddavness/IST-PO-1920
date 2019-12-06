@@ -6,6 +6,7 @@ import m19.core.Work;
  * Normal
  */
 public class Normal extends UserBehaviour {
+    static final long serialVersionUID = 201973109733701L;
 
     public Normal() {
         super("NORMAL", 3);
@@ -21,5 +22,4 @@ public class Normal extends UserBehaviour {
         return 15;
     }
 
-    
 }

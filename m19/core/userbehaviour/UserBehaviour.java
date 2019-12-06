@@ -34,5 +34,4 @@ public abstract class UserBehaviour implements Serializable {
         return _maxReqWorks;
     }
 
-    
 }

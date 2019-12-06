@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Dvd extends Work implements Serializable {
 
-    static final long serialVersionUId = 2718290452398765651L;
+    static final long serialVersionUID = 2718290452398765651L;
     private String _director;
     private String _igac;
 

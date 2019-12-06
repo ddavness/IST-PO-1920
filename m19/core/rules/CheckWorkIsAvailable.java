@@ -9,7 +9,7 @@ import m19.core.Request;
  */
 public class CheckWorkIsAvailable extends Rule {
 
-    static final long serialVersionUId = 20190110170102L;
+    static final long serialVersionUID = 20190110170102L;
 
     public CheckWorkIsAvailable(int id, Library library) {
         super(id, library);

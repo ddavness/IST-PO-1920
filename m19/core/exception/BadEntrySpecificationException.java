@@ -6,7 +6,7 @@ package m19.core.exception;
 public class BadEntrySpecificationException extends Exception {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUId = 201901101348L;
+    private static final long serialVersionUID = 201901101348L;
 
     /** Bad bad entry specification. */
     private String _entrySpecification;

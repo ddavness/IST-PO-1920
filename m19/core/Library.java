@@ -16,7 +16,7 @@ import m19.core.User;
 public class Library implements Serializable {
 
     /** Serial number for serialization. */
-    private static final long serialVersionUId = 201901101348L;
+    private static final long serialVersionUID = 201901101348L;
     private int _nextUserId;
     private int _nextWorkId;
 
