@@ -61,6 +61,7 @@ public class DoRequestWork extends Command<LibraryManager> {
 
         catch (AllCopiesRequestedException acre) { // Tough luck for the User
             _form2.parse();
+            // FIXME Implement
             // Do something with user's notification preference.
         }
 

@@ -28,6 +28,7 @@ public class User implements Serializable, Comparable<User> {
 
     private List<Request> _requests = new ArrayList<>();
     private List<Notification> _notifications = new ArrayList<>();
+    private int _accruedFine; // Total fine to pay, initialized at 0.
 
     public User(int assignedId, String name, String email) throws IllegalArgumentException {
 
@@ -47,6 +48,8 @@ public class User implements Serializable, Comparable<User> {
         _behaviour = new Normal();
 
         _id = assignedId;
+
+        _accruedFine = 0;
     }
 
     public boolean isActive() {
@@ -109,5 +112,25 @@ public class User implements Serializable, Comparable<User> {
      */
     public void addRequest(Request request) {
         _requests.add(request);
+    }
+
+    /**
+     * 
+     * @param work
+     * @return true iff the user has requested the work received in argument
+     */
+    public boolean hasRequestedWork(Work work) {
+        for (Request req: getAllRequests())
+            if (req.getWork().equals(work))
+                return true;
+        return false;
+    }
+
+    /**
+     * 
+     * @return total fine user has accumulated
+     */
+    public int getAccruedFine() {
+        return _accruedFine;
     }
 }
