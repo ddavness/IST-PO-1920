@@ -8,7 +8,7 @@ import pt.tecnico.po.ui.DialogException;
 public class WorkNotBorrowedByUserException extends DialogException {
 
     /** Serial number for serialization. */
-    static final long serialVersionUId = 200510291601L;
+    static final long serialVersionUID = 200510291601L;
 
     /** Bad user id. */
     private int _idUser;
