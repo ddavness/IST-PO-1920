@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.HashMap;
 
 import m19.core.userbehaviour.*;
+import m19.core.notification.*;
 
 /**
  * User - User of the Library.
@@ -123,6 +124,12 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      */
     void addRequest(Request request) {
         _requests.put(request.getWork(), request);
+    }
+
+    public void returnWork(Work work) {
+        NotificationBroadcaster notif = work.getReturnNotificationBroadcaster();
+        notif.insertNotification(new WorkReturnedNotification(work));
+        notif.broadcast();
     }
 
     /**

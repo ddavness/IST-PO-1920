@@ -42,7 +42,9 @@ public class DoReturnWork extends Command<LibraryManager> {
 
             if (!user.hasRequestedWork(work))
                 throw new WorkNotBorrowedByUserException(_workId.value(), _userId.value());
-                
+
+            user.returnWork(work);
+
             if (user.getAccruedFine() > 0) {
                 _form2.parse(); // Ask if users wants to pay fine
                 if (_wishesToPayFine.value()) {
