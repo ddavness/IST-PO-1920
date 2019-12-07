@@ -5,7 +5,6 @@ import m19.core.exception.RuleNotSatisfiedException;
 import m19.core.exception.BadEntrySpecificationException;
 import m19.core.exception.ImportFileException;
 
-
 import java.io.*;
 import java.util.Collection;
 
@@ -15,7 +14,6 @@ import java.util.Collection;
 public class LibraryManager {
     private Library _library;
     private String _file;
-
 
     public LibraryManager() {
         _library = new Library();
@@ -37,7 +35,7 @@ public class LibraryManager {
 
     /**
      * Serialize the persistent state of this application.
-     * 
+     *
      * @throws MissingFileAssociationException if the name of the file to store the persistent
      *         state has not been set yet.
      * @throws IOException if some error happen during the serialization of the persistent state
@@ -74,7 +72,7 @@ public class LibraryManager {
 
     /**
      * Recover the previously serialized persitent state of this application.
-     * 
+     *
      * @param filename the name of the file containing the perssitente state to recover
      *
      * @throws IOException if there is a reading error while processing the file
@@ -92,7 +90,7 @@ public class LibraryManager {
 
     /**
      * Set the state of this application from a textual representation stored into a file.
-     * 
+     *
      * @param datafile the filename of the file with the textual represntation of the state of this application.
      * @throws ImportFileException if it happens some error during the parsing of the textual representation.
      */
@@ -111,7 +109,7 @@ public class LibraryManager {
     }
 
     /**
-     * 
+     *
      * @return sorted list of users.
      */
     public Collection<User> getAllUsers() {
@@ -123,7 +121,7 @@ public class LibraryManager {
     }
 
     /**
-     * 
+     *
      * @param id of the user to find
      * @return a reference to User or a null reference if not found.
      */

@@ -2,6 +2,7 @@ package m19.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import m19.core.userbehaviour.*;
  * @implNote I haven't really tested it ....
  * @implNote //FIXEME Implement getDescriptions
  */
-public class User implements Serializable, Comparable<User> {
+public class User implements Serializable, Comparable<User>, NotificationObserver {
     private static final long serialVersionUID = 20190110170235409L;
 
     private final int _id;
@@ -72,8 +73,18 @@ public class User implements Serializable, Comparable<User> {
         }
     }
 
-     public List<Notification> getNotifications() {
-        return _notifications;
+    public List<Notification> getNotifications() {
+        List<Notification> notifs = _notifications;
+        _notifications = new ArrayList<>();
+
+        
+        return notifs;
+    }
+
+    public void notify(Collection<Notification> notifications) {
+        for (Notification n: notifications) {
+            _notifications.add(n);
+        }
     }
 
     public int getId() {

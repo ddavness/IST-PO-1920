@@ -23,12 +23,14 @@ public class Library implements Serializable {
     private Map<Integer, User> _users;
     private Map<Integer, Work> _works;
     private List<Rule> _rules;
+    private List<NotificationBroadcaster> _broadcasters;
     private int _systemDate;
 
     public Library() {
         _users = new HashMap<>();
         _works = new HashMap<>();
         _rules = new ArrayList<>();
+        _broadcasters = new ArrayList<>();
 
         _rules.add(new CheckRequestTwice(0, this));
         _rules.add(new CheckUserHasNotExceededWorkRequestLimit(1, this));
@@ -194,7 +196,7 @@ public class Library implements Serializable {
 
     /**
      * Adds request to user and work
-     * 
+     *
      * @param user who want to request work
      * @param work to be requested
      * @param nDays length of the requested
@@ -203,7 +205,6 @@ public class Library implements Serializable {
      */
     public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
         int returnDate = user.getBehaviour().getNumDays(work) + getCurrentDate();
-        
 
         Request request = new Request(user, work, returnDate);
         for (Rule rule : _rules) {
@@ -214,6 +215,13 @@ public class Library implements Serializable {
         work.addRequest(request);
 
         return request;
+    }
+
+    public NotificationBroadcaster spawnBroadcaster() {
+        NotificationBroadcaster broadcaster = new NotificationBroadcaster();
+        _broadcasters.add(broadcaster);
+
+        return broadcaster;
     }
 
 }

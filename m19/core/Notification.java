@@ -1,20 +1,20 @@
 package m19.core;
 
 /**
- * Notification - Is just a simple String.
+ * Notification - A string containing an header (depending on it's kind) and message.
  * Implemented according to teachers' UML.
- * @version 0.0
- * //FIXME Maybe implement kind of notification?
+ * @version 1.0
  */
-public class Notification {
+public abstract class Notification {
+    private final String _description;
+    private final String _header;
 
-    private final String _message;
-
-    public Notification(String message) {
-        _message = message;
+    protected Notification(String header, String desc) {
+        _header = header;
+        _description = desc;
     }
 
     public String getMessage() {
-        return _message;
+        return _header + ": " + _description;
     }
 }
