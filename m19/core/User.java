@@ -121,7 +121,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      * 
      * @param request is not validated
      */
-    public void addRequest(Request request) {
+    void addRequest(Request request) {
         _requests.put(request.getWork(), request);
     }
 
