@@ -3,25 +3,25 @@ package m19.core.rules;
 import m19.core.Rule;
 import m19.core.Library;
 import m19.core.Request;
-import m19.core.UserBehaviour;
-import m19.core.userbehaviour.Abiding;
+import m19.core.Category;
 
 import m19.core.exception.RuleNotSatisfiedException;
+
 /**
- * CheckWorkIsLowValue
- * A work must cost less than 25€.
+ * CheckWorkIsNotReference
+ * A work must not of the reference category.
  */
-public class CheckWorkIsLowValue extends Rule {
+public class CheckWorkIsNotReference extends Rule {
 
     static final long serialVersionUID = 20190110170101L;
     
-    public CheckWorkIsLowValue(int id, Library library) {
+    public CheckWorkIsNotReference(int id, Library library) {
         super(id, library);
     }
 
     public void check(Request request) throws RuleNotSatisfiedException {
         int MAX_PRICE = 25; // in euros
-        if (request.getWork().getPrice() > MAX_PRICE && request.getUser().getBehaviour().toString() != new Abiding().toString()) {
+        if (request.getWork().getCategory() == Category.REFERENCE) {
             throw new RuleNotSatisfiedException(request.getUser(), request.getWork(), _ruleId);
         }
     }
