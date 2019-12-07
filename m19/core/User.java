@@ -127,6 +127,8 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     }
 
     public void returnWork(Work work) {
+        work.processReturnFrom(this);
+
         NotificationBroadcaster notif = work.getReturnNotificationBroadcaster();
         notif.insertNotification(new WorkReturnedNotification(work));
         notif.broadcast();

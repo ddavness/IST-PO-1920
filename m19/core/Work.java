@@ -88,8 +88,12 @@ public abstract class Work implements Serializable{
      * 
      * @param request is not validated
      */
-    public void addRequest(Request request) {
+    void addRequest(Request request) {
         _requests.put(request.getUser(), request);
+    }
+
+    void processReturnFrom(User user) {
+        _requests.remove(user);
     }
 
     public NotificationBroadcaster getReturnNotificationBroadcaster() {
