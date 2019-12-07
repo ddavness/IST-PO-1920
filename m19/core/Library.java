@@ -240,9 +240,10 @@ public class Library implements Serializable {
      */
     void payFine(int id) throws UserNotFoundException {
         User user = getUser(id);
-        if (user.getAllRequests().stream().allMatch(r -> r.getReturnDate() < getCurrentDate()))
-            user.setActive(true);  // unsuspend user if there are no late works
- 
+        user.clearFine();
+        if (user.getAllRequests().stream().allMatch(r -> r.getReturnDate() < getCurrentDate())) {
+            user.setActive(true);  // unsuspend user if there are no late requests
+        }
     }
 
     /**

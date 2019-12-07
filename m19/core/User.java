@@ -69,11 +69,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         if (_isActive) {
             return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - ACTIVO";
         } else {
-            int totalFines = 0;
-            for (Request req : _requests.values()) {
-                totalFines += req.getFine();
-            }
-            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - SUSPENSO - EUR " + totalFines;
+            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - SUSPENSO - EUR " + _accruedFine;
         }
     }
 
@@ -131,6 +127,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         Work work = request.getWork();
         work.processReturnFrom(this);
         _requests.remove(work);
+        _accruedFine += request.getFine();
 
         // Recalculate karma and update status
         _behaviour = getBehaviour().updateKarma(this, request.isPastDueDate());
@@ -138,6 +135,10 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         NotificationBroadcaster notif = work.getReturnNotificationBroadcaster();
         notif.insertNotification(new WorkReturnedNotification(work));
         notif.broadcast();
+    }
+
+    void clearFine() {
+        _accruedFine = 0;
     }
 
     public int getKarma() {

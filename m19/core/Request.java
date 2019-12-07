@@ -11,15 +11,13 @@ public class Request implements Serializable {
 
     static final long serialVersionUID = 201901093213216587L;
 
-    // private int _dailyFine = 5;
+    private int _dailyFine = 5;
     private User _user;
-    private int _accruedFine;
     private Work _work;
     private int _returnDate;
 
     public Request(User user, Work work, int returnDate) {
         _user = user;
-        _accruedFine = 0;
         _work = work;
         _returnDate = returnDate;
     }
@@ -29,15 +27,10 @@ public class Request implements Serializable {
     }
 
     public int getFine() {
-        return _accruedFine;
-    }
-
-    /**
-     * Returns the work.
-     * @return
-     */
-    public boolean returnWork() {
-        return _accruedFine == 0;
+        if (isPastDueDate()) {
+            return _dailyFine * (_work.getLibrary().getCurrentDate() - _returnDate);
+        }
+        return 0;
     }
 
     /**
