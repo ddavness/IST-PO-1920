@@ -30,6 +30,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     private HashMap<Work, Request> _requests;
     private HashMap<Work, Notification> _notifications;
     private int _accruedFine; // Total fine to pay, initialized at 0.
+    private int _karma;
 
     public User(int assignedId, String name, String email) throws IllegalArgumentException {
 
@@ -126,12 +127,25 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         _requests.put(request.getWork(), request);
     }
 
-    public void returnWork(Work work) {
+    public void returnWork(Request request) {
+        Work work = request.getWork();
         work.processReturnFrom(this);
+        _requests.remove(work);
+
+        // Recalculate karma and update status
+        _behaviour = getBehaviour().updateKarma(this, request.isPastDueDate());
 
         NotificationBroadcaster notif = work.getReturnNotificationBroadcaster();
         notif.insertNotification(new WorkReturnedNotification(work));
         notif.broadcast();
+    }
+
+    public int getKarma() {
+        return _karma;
+    }
+
+    void setKarma(int karma) {
+        _karma = karma;
     }
 
     /**
@@ -139,8 +153,8 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      * @param work
      * @return true iff the user has requested the work received in argument
      */
-    public boolean hasRequestedWork(Work work) {
-        return _requests.get(work) != null;
+    public Request requestedWork(Work work) {
+        return _requests.get(work);
     }
 
     /**

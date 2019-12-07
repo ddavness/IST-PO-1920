@@ -27,9 +27,9 @@ public class Normal extends UserBehaviour {
     public UserBehaviour updateKarma(User user, boolean lateReturn) {
         int currentKarma = user.getKarma();
         if (lateReturn) {
-            currentKarma = Math.max(0, currentKarma) - 1;
+            currentKarma = Math.min(0, currentKarma) - 1;
         } else {
-            currentKarma = Math.min(0, currentKarma) + 1;
+            currentKarma = Math.max(0, currentKarma) + 1;
         }
 
         setUserKarma(user, currentKarma);
@@ -39,7 +39,7 @@ public class Normal extends UserBehaviour {
         } else if (currentKarma >= 5) {
             return new Abiding();
         }
-        return new Normal();
+        return this;
     }
 
 }

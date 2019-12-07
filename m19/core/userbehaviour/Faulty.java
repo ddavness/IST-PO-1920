@@ -23,19 +23,17 @@ public class Faulty extends UserBehaviour {
     public UserBehaviour updateKarma(User user, boolean lateReturn) {
         int currentKarma = user.getKarma();
         if (lateReturn) {
-            currentKarma = Math.max(0, currentKarma) - 1;
+            currentKarma--;
         } else {
-            currentKarma = Math.min(0, currentKarma) + 1;
+            currentKarma = Math.max(0, currentKarma) + 1;
         }
 
         super.setUserKarma(user, currentKarma);
 
-        if (currentKarma <= -3) {
-            return new Faulty();
-        } else if (currentKarma >= 5) {
-            return new Abiding();
+        if (currentKarma >= 3) {
+            return new Normal();
         }
-        return new Normal();
+        return this;
     }
 
 }
