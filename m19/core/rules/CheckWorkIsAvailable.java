@@ -27,8 +27,7 @@ public class CheckWorkIsAvailable extends Rule {
 
     public void check(Request request) throws AllCopiesRequestedException {
         if (request.getWork().getNumberAvailableCopies() <= 0) {
-            NotificationBroadcaster newBroadcaster = _library.spawnBroadcaster();
-            throw new AllCopiesRequestedException(request.getUser(), request.getWork(), _ruleId, newBroadcaster);
+            throw new AllCopiesRequestedException(request.getUser(), request.getWork(), _ruleId);
         }
     }
 

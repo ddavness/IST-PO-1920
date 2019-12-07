@@ -19,6 +19,7 @@ public abstract class Work implements Serializable{
     private int _numberOfCopies;
     private String _title;
     private Map<User, Request> _requests;
+    private NotificationBroadcaster _returnBroadcaster;
 
     private Category _category; //FIXME May have more than one category
 
@@ -29,6 +30,7 @@ public abstract class Work implements Serializable{
         _numberOfCopies = numberOfCopies;
         _title = title;
         _requests = new HashMap<>();
+        _returnBroadcaster = new NotificationBroadcaster();
     }
 
 
@@ -88,6 +90,10 @@ public abstract class Work implements Serializable{
      */
     public void addRequest(Request request) {
         _requests.put(request.getUser(), request);
+    }
+
+    public NotificationBroadcaster getReturnNotificationBroadcaster() {
+        return _returnBroadcaster;
     }
 
 }

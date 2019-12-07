@@ -22,14 +22,12 @@ public class Library implements Serializable {
     private Map<Integer, User> _users;
     private Map<Integer, Work> _works;
     private List<Rule> _rules;
-    private List<NotificationBroadcaster> _broadcasters;
     private int _systemDate;
 
     public Library() {
         _users = new HashMap<>();
         _works = new HashMap<>();
         _rules = new ArrayList<>();
-        _broadcasters = new ArrayList<>();
 
         _rules.add(new CheckRequestTwice(0, this));
         _rules.add(new CheckUserHasNotExceededWorkRequestLimit(1, this));
@@ -264,13 +262,6 @@ public class Library implements Serializable {
             totalFine += getFine(request);
 
         return totalFine;
-    }
-
-    public NotificationBroadcaster spawnBroadcaster() {
-        NotificationBroadcaster broadcaster = new NotificationBroadcaster();
-        _broadcasters.add(broadcaster);
-
-        return broadcaster;
     }
 
 }

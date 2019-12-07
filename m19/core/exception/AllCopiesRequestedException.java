@@ -5,14 +5,14 @@ import m19.core.*;
 public class AllCopiesRequestedException extends RuleNotSatisfiedException {
     /** Serial number for serialization. */
     private static final long serialVersionUID = 201901201731L;
-    private NotificationBroadcaster _notificationBroadcaster;
+    private Work _work;
 
-    public AllCopiesRequestedException(User user, Work work, int ruleId, NotificationBroadcaster broadcaster) {
+    public AllCopiesRequestedException(User user, Work work, int ruleId) {
         super(user, work, ruleId);
-        _notificationBroadcaster = broadcaster;
+        _work = work;
     }
 
     public NotificationBroadcaster getNotificationBroadcaster() {
-        return _notificationBroadcaster;
+        return _work.getReturnNotificationBroadcaster();
     }
 }
