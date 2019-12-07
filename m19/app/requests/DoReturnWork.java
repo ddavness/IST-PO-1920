@@ -17,7 +17,6 @@ import pt.tecnico.po.ui.*;
 public class DoReturnWork extends Command<LibraryManager> {
     Input<Integer> _userId;
     Input<Integer> _workId;
-    Form _form2;
     Input<Boolean> _wishesToPayFine;
 
     /**
@@ -25,15 +24,15 @@ public class DoReturnWork extends Command<LibraryManager> {
      */
     public DoReturnWork(LibraryManager receiver) {
         super(Label.RETURN_WORK, receiver);
-        _userId = _form.addIntegerInput(Message.requestUserId());
-        _workId = _form.addIntegerInput(Message.requestWorkId());
-        _form2 = new Form();
-        _wishesToPayFine = _form2.addBooleanInput(Message.requestFinePaymentChoice());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
+        _form.clear();
+        _userId = _form.addIntegerInput(Message.requestUserId());
+        _workId = _form.addIntegerInput(Message.requestWorkId());
+
         _form.parse();
 
         try {
@@ -47,8 +46,14 @@ public class DoReturnWork extends Command<LibraryManager> {
 
             user.returnWork(request);
 
-            if (user.getAccruedFine() > 0) {
-                _form2.parse(); // Ask if users wants to pay fine
+            int fine = user.getAccruedFine();
+            if (fine > 0) {
+                _display.addLine(Message.showFine(user.getId(), fine));
+                _display.display();
+                _form.clear();
+                _wishesToPayFine = _form.addBooleanInput(Message.requestFinePaymentChoice());
+                _form.parse();
+
                 if (_wishesToPayFine.value()) {
                     _receiver.payFine(_userId.value());
                 }

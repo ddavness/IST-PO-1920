@@ -36,8 +36,6 @@ public class DoRequestWork extends Command<LibraryManager> {
      */
     public DoRequestWork(LibraryManager receiver) {
         super(Label.REQUEST_WORK, receiver);
-        _userId = _form.addIntegerInput(Message.requestUserId());
-        _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
     }
 
     User user;
@@ -46,6 +44,9 @@ public class DoRequestWork extends Command<LibraryManager> {
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
+        _form.clear();
+        _userId = _form.addIntegerInput(Message.requestUserId());
+        _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
         _form.parse();
 
         try {
@@ -69,11 +70,6 @@ public class DoRequestWork extends Command<LibraryManager> {
             if (_reqRetNotifPref.value()) {
                 acre.getNotificationBroadcaster().subscribe(user);
             }
-
-            // Restore form to original state
-            _form.clear();
-            _userId = _form.addIntegerInput(Message.requestUserId());
-            _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
         }
         catch (RuleNotSatisfiedException rnse) { // Not rule 3
             throw new RuleFailedException(user.getId(), work.getId(), rnse.getViolatedRule());
