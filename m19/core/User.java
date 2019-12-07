@@ -1,11 +1,9 @@
 package m19.core;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.HashMap;
-import java.util.List;
 
 import m19.core.userbehaviour.*;
 
@@ -29,7 +27,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     private UserBehaviour _behaviour;
 
     private HashMap<Work, Request> _requests;
-    private List<Notification> _notifications = new ArrayList<>();
+    private HashMap<Work, Notification> _notifications;
     private int _accruedFine; // Total fine to pay, initialized at 0.
 
     public User(int assignedId, String name, String email) throws IllegalArgumentException {
@@ -54,6 +52,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         _accruedFine = 0;
 
         _requests = new LinkedHashMap<>();
+        _notifications = new LinkedHashMap<>();
     }
 
     public boolean isActive() {
@@ -76,17 +75,14 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         }
     }
 
-    public List<Notification> getNotifications() {
-        List<Notification> notifs = _notifications;
-        _notifications = new ArrayList<>();
-
+    public Collection<Notification> getNotifications() {
         
-        return notifs;
+        return _notifications.values();
     }
 
     public void notify(Collection<Notification> notifications) {
         for (Notification n: notifications) {
-            _notifications.add(n);
+            _notifications.put(n.getWork(), n);
         }
     }
 
@@ -147,5 +143,15 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      */
     public int getAccruedFine() {
         return _accruedFine;
+    }
+
+    /**
+     * 
+     * @param work
+     * @return reference to notification if found, null otherwise.
+     */
+
+    public Notification getNotificationByWork(Work work) {
+        return _notifications.get(work);
     }
 }
