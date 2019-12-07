@@ -226,6 +226,46 @@ public class Library implements Serializable {
         return request;
     }
 
+
+    /**
+     *  Pays fine and unsuspends user if possible
+     * @param id if the user pay fine
+     * @throws UserNotFoundException
+     */
+    void payFine(int id) throws UserNotFoundException {
+        User user = getUser(id);
+        if (user.getAllRequests().stream().allMatch(r -> r.getReturnDate() < getCurrentDate()))
+            user.setActive(true);  // unsuspend user if there are no late works
+ 
+    }
+
+    /**
+     * 
+     * @param request to compute the fine
+     * @return
+     */
+    int getFine(Request request) {
+        int dailyFine = 5; // 5 euros per day per work
+        if (request.getReturnDate() >= getCurrentDate())
+            return 0; // There is no fine to pay
+
+        return dailyFine * (getCurrentDate() - request.getReturnDate());
+
+    }
+
+    /**
+     * 
+     * @param userId
+     * @return total fine for the user is the sum of all fines for all due works
+     */
+    int getFine(int userId) throws UserNotFoundException {
+        int totalFine = 0;
+        for (Request request: getUser(userId).getAllRequests())
+            totalFine += getFine(request);
+
+        return totalFine;
+    }
+
     public NotificationBroadcaster spawnBroadcaster() {
         NotificationBroadcaster broadcaster = new NotificationBroadcaster();
         _broadcasters.add(broadcaster);

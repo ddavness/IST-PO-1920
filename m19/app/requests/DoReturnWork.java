@@ -45,9 +45,9 @@ public class DoReturnWork extends Command<LibraryManager> {
                 
             if (user.getAccruedFine() > 0) {
                 _form2.parse(); // Ask if users wants to pay fine
-                // if (_wishesToPayFine.value())
-                    //FIXME pay fine
-
+                if (_wishesToPayFine.value()) {
+                    _receiver.payFine(_userId.value());
+                }
             }
         } catch (UserNotFoundException nufe) {
             throw new NoSuchUserException(nufe.getRequestedId());

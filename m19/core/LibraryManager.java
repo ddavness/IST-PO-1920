@@ -132,4 +132,16 @@ public class LibraryManager {
     public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
         return _library.requestWork(user, work);
     }
+
+    public void payFine(int userId) throws UserNotFoundException {
+        _library.payFine(userId);
+    }
+
+    public int getFine(Request request) {
+        return getFine(request);
+    }
+
+    public int getFine(int userId) throws UserNotFoundException {
+        return _library.getFine(userId);
+    }
 }
