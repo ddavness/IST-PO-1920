@@ -13,7 +13,7 @@ m19/app/App.class: all
 
 clean:
 	find . -name "*.class" -type f -delete
-	rm -f 1 requisicao user works cumpridor faltoso notificacao
+	rm -f 1 5 requisicao user works cumpridor faltoso notificacao
 	rm -rf tests/*.diff tests/*.outhyp
 
 remake:

@@ -14,6 +14,7 @@ public class Dvd extends Work implements Serializable {
 
     public Dvd(
         int assignedId,
+        Library library,
         String title,
         String director,
         int price,
@@ -21,7 +22,7 @@ public class Dvd extends Work implements Serializable {
         String igac,
         int numberOfCopies) {
 
-            super(assignedId, title, price, category, numberOfCopies);
+            super(assignedId, library, title, price, category, numberOfCopies);
             _director = director;
             _igac = igac;
 

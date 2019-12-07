@@ -2,7 +2,13 @@ package m19.core.rules;
 
 import m19.core.Rule;
 import m19.core.exception.AllCopiesRequestedException;
+
+import java.util.Collection;
+
 import m19.core.Library;
+import m19.core.Notification;
+import m19.core.NotificationBroadcaster;
+import m19.core.NotificationObserver;
 import m19.core.Request;
 /**
  * CheckWorkIsAvailable

@@ -1,11 +1,12 @@
 package m19.core;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import m19.core.userbehaviour.*;
+import m19.core.notification.*;
 
 /**
  * User - User of the Library.
@@ -15,7 +16,7 @@ import m19.core.userbehaviour.*;
  * @implNote I haven't really tested it ....
  * @implNote //FIXEME Implement getDescriptions
  */
-public class User implements Serializable, Comparable<User> {
+public class User implements Serializable, Comparable<User>, NotificationObserver {
     private static final long serialVersionUID = 20190110170235409L;
 
     private final int _id;
@@ -26,8 +27,10 @@ public class User implements Serializable, Comparable<User> {
     private boolean _isActive;
     private UserBehaviour _behaviour;
 
-    private List<Request> _requests = new ArrayList<>();
-    private List<Notification> _notifications = new ArrayList<>();
+    private HashMap<Work, Request> _requests;
+    private HashMap<Work, Notification> _notifications;
+    private int _accruedFine; // Total fine to pay, initialized at 0.
+    private int _karma;
 
     public User(int assignedId, String name, String email) throws IllegalArgumentException {
 
@@ -47,6 +50,11 @@ public class User implements Serializable, Comparable<User> {
         _behaviour = new Normal();
 
         _id = assignedId;
+
+        _accruedFine = 0;
+
+        _requests = new LinkedHashMap<>();
+        _notifications = new LinkedHashMap<>();
     }
 
     public boolean isActive() {
@@ -59,18 +67,21 @@ public class User implements Serializable, Comparable<User> {
 
     public String getDescription() {
         if (_isActive) {
-            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour.getDescription() + " - ACTIVO";
+            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - ACTIVO";
         } else {
-            int totalFines = 0;
-            for (Request req : _requests) {
-                totalFines += req.getFine();
-            }
-            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - SUSPENSO - EUR " + totalFines;
+            return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - SUSPENSO - EUR " + _accruedFine;
         }
     }
 
-     public List<Notification> getNotifications() {
-        return _notifications;
+    public Collection<Notification> getNotifications() {
+        
+        return _notifications.values();
+    }
+
+    public void notify(Collection<Notification> notifications) {
+        for (Notification n: notifications) {
+            _notifications.put(n.getWork(), n);
+        }
     }
 
     public int getId() {
@@ -95,8 +106,9 @@ public class User implements Serializable, Comparable<User> {
         return getId() == user.getId();
     }
 
-    public List<Request> getAllRequests() {
-        return Collections.unmodifiableList(_requests);
+    public Collection<Request> getAllRequests() {
+        // return Collections.unmodifiableList(_requests);
+        return _requests.values();
     }
 
     public UserBehaviour getBehaviour() {
@@ -107,7 +119,60 @@ public class User implements Serializable, Comparable<User> {
      * 
      * @param request is not validated
      */
-    public void addRequest(Request request) {
-        _requests.add(request);
+    void addRequest(Request request) {
+        _requests.put(request.getWork(), request);
+    }
+
+    public void returnWork(Request request) {
+        Work work = request.getWork();
+        work.processReturnFrom(this);
+        _requests.remove(work);
+        _accruedFine += request.getFine();
+
+        // Recalculate karma and update status
+        _behaviour = getBehaviour().updateKarma(this, request.isPastDueDate());
+
+        NotificationBroadcaster notif = work.getReturnNotificationBroadcaster();
+        notif.insertNotification(new WorkReturnedNotification(work));
+        notif.broadcast();
+    }
+
+    void clearFine() {
+        _accruedFine = 0;
+    }
+
+    public int getKarma() {
+        return _karma;
+    }
+
+    void setKarma(int karma) {
+        _karma = karma;
+    }
+
+    /**
+     * 
+     * @param work
+     * @return true iff the user has requested the work received in argument
+     */
+    public Request requestedWork(Work work) {
+        return _requests.get(work);
+    }
+
+    /**
+     * 
+     * @return total fine user has accumulated
+     */
+    public int getAccruedFine() {
+        return _accruedFine;
+    }
+
+    /**
+     * 
+     * @param work
+     * @return reference to notification if found, null otherwise.
+     */
+
+    public Notification getNotificationByWork(Work work) {
+        return _notifications.get(work);
     }
 }

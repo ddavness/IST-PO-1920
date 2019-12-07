@@ -1,20 +1,28 @@
 package m19.core;
+import java.io.Serializable;
+
+import m19.core.Work;
 
 /**
- * Notification - Is just a simple String.
+ * Notification - A string containing an header (depending on it's kind) and message.
  * Implemented according to teachers' UML.
- * @version 0.0
- * //FIXME Maybe implement kind of notification?
+ * @version 1.0
  */
-public class Notification {
+public abstract class Notification implements Serializable {
+    private static final long serialVersionUID = 201912070558L;
+    private final Work _work;
+    private final String _header;
 
-    private final String _message;
-
-    public Notification(String message) {
-        _message = message;
+    public Notification(String header, Work work) {
+        _header = header;
+        _work = work;
     }
 
     public String getMessage() {
-        return _message;
+        return _header + ": " + _work.getDescription();
+    }
+
+    public Work getWork() {
+        return _work;
     }
 }

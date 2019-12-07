@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.io.IOException;
 import java.util.*;
 
-import m19.core.exception.BadEntrySpecificationException;
-import m19.core.exception.RuleNotSatisfiedException;
+import m19.core.exception.*;
 
 import m19.core.rules.*;
 import m19.core.User;
@@ -30,11 +29,12 @@ public class Library implements Serializable {
         _works = new HashMap<>();
         _rules = new ArrayList<>();
 
-        _rules.add(new CheckRequestTwice(0, this));
-        _rules.add(new CheckUserHasNotExceededWorkRequestLimit(1, this));
-        _rules.add(new CheckUserIsNotSuspended(2, this)); // FIXME Change name
-        _rules.add(new CheckWorkIsAvailable(3, this));
-        _rules.add(new CheckWorkIsLowValue(4, this));
+        _rules.add(new CheckRequestTwice(1, this));
+        _rules.add(new CheckUserHasNotExceededWorkRequestLimit(2, this));
+        _rules.add(new CheckUserIsNotSuspended(3, this)); // FIXME Change name
+        _rules.add(new CheckWorkIsAvailable(4, this));
+        _rules.add(new CheckWorkIsNotReference(5, this));
+        _rules.add(new CheckWorkIsLowValue(6, this));
     }
 
     /**
@@ -56,7 +56,14 @@ public class Library implements Serializable {
             _systemDate += daysToAdvance;
         }
 
-        // FIXME Apply updates
+        for (User u: _users.values()) {
+            for (Request r: u.getAllRequests()) {
+                if (r.isPastDueDate()) {
+                    u.setActive(false);
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -116,8 +123,13 @@ public class Library implements Serializable {
      * @param id the id of the user to fint
      * @return the User in the library or a null reference if not found.
      */
-    User getUser(int id) {
-        return _users.get(id);
+    User getUser(int id) throws UserNotFoundException {
+        User u = _users.get(id);
+        if (u == null) {
+            throw new UserNotFoundException(id);
+        }
+
+        return u;
     }
 
     /**
@@ -157,8 +169,13 @@ public class Library implements Serializable {
      * @return reference to work in library or null reference if not found
      */
 
-    public Work getWork(int id) {
-        return _works.get(id);
+    public Work getWork(int id) throws WorkNotFoundException {
+        Work w = _works.get(id);
+        if (w == null) {
+            throw new WorkNotFoundException(id);
+        }
+
+        return w;
     }
 
 
@@ -194,7 +211,7 @@ public class Library implements Serializable {
 
     /**
      * Adds request to user and work
-     * 
+     *
      * @param user who want to request work
      * @param work to be requested
      * @param nDays length of the requested
@@ -203,7 +220,6 @@ public class Library implements Serializable {
      */
     public Request requestWork(User user, Work work) throws RuleNotSatisfiedException {
         int returnDate = user.getBehaviour().getNumDays(work) + getCurrentDate();
-        
 
         Request request = new Request(user, work, returnDate);
         for (Rule rule : _rules) {
@@ -214,6 +230,47 @@ public class Library implements Serializable {
         work.addRequest(request);
 
         return request;
+    }
+
+
+    /**
+     *  Pays fine and unsuspends user if possible
+     * @param id if the user pay fine
+     * @throws UserNotFoundException
+     */
+    void payFine(int id) throws UserNotFoundException {
+        User user = getUser(id);
+        user.clearFine();
+        if (user.getAllRequests().stream().allMatch(r -> r.getReturnDate() < getCurrentDate())) {
+            user.setActive(true);  // unsuspend user if there are no late requests
+        }
+    }
+
+    /**
+     * 
+     * @param request to compute the fine
+     * @return
+     */
+    int getFine(Request request) {
+        int dailyFine = 5; // 5 euros per day per work
+        if (request.getReturnDate() >= getCurrentDate())
+            return 0; // There is no fine to pay
+
+        return dailyFine * (getCurrentDate() - request.getReturnDate());
+
+    }
+
+    /**
+     * 
+     * @param userId
+     * @return total fine for the user is the sum of all fines for all due works
+     */
+    int getFine(int userId) throws UserNotFoundException {
+        int totalFine = 0;
+        for (Request request: getUser(userId).getAllRequests())
+            totalFine += getFine(request);
+
+        return totalFine;
     }
 
 }
