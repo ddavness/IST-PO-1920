@@ -8,8 +8,12 @@ import pt.tecnico.po.ui.Input;
 
 import m19.core.User;
 import m19.core.Work;
+
 import m19.core.exception.AllCopiesRequestedException;
+import m19.core.exception.UserNotFoundException;
+import m19.core.exception.WorkNotFoundException;
 import m19.core.exception.RuleNotSatisfiedException;
+
 import m19.app.exception.NoSuchUserException;
 import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.RuleFailedException;
@@ -36,24 +40,26 @@ public class DoRequestWork extends Command<LibraryManager> {
         _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
     }
 
+    User user;
+    Work work;
+
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
         _form.parse();
-        User user = _receiver.getUser(_userId.value());
-        Work work = _receiver.getWork(_workId.value());
-        if (user == null) {
-            throw new NoSuchUserException(_userId.value());
-        }
-        if (work == null) {
-            throw new NoSuchWorkException(_workId.value());
-        }
 
         try {
+            user = _receiver.getUser(_userId.value());
+            work = _receiver.getWork(_workId.value());
             Request req = _receiver.requestWork(user, work);
             _display.popup(Message.workReturnDay(work.getId(), req.getReturnDate()));
         }
-
+        catch (UserNotFoundException nufe) {
+            throw new NoSuchUserException(nufe.getRequestedId());
+        }
+        catch (WorkNotFoundException nwfe) {
+            throw new NoSuchWorkException(nwfe.getRequestedId());
+        }
         catch (AllCopiesRequestedException acre) { // Tough luck for the User
             _form.clear();
             _reqRetNotifPref = _form.addBooleanInput(Message.requestReturnNotificationPreference());
@@ -69,7 +75,6 @@ public class DoRequestWork extends Command<LibraryManager> {
             _userId = _form.addIntegerInput(Message.requestUserId());
             _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
         }
-
         catch (RuleNotSatisfiedException rnse) { // Not rule 3
             throw new RuleFailedException(user.getId(), work.getId(), rnse.getViolatedRule());
         }

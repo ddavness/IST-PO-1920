@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.io.IOException;
 import java.util.*;
 
-import m19.core.exception.BadEntrySpecificationException;
-import m19.core.exception.RuleNotSatisfiedException;
+import m19.core.exception.*;
 
 import m19.core.rules.*;
 import m19.core.User;
@@ -118,8 +117,13 @@ public class Library implements Serializable {
      * @param id the id of the user to fint
      * @return the User in the library or a null reference if not found.
      */
-    User getUser(int id) {
-        return _users.get(id);
+    User getUser(int id) throws UserNotFoundException {
+        User u = _users.get(id);
+        if (u == null) {
+            throw new UserNotFoundException(id);
+        }
+
+        return u;
     }
 
     /**
@@ -159,8 +163,13 @@ public class Library implements Serializable {
      * @return reference to work in library or null reference if not found
      */
 
-    public Work getWork(int id) {
-        return _works.get(id);
+    public Work getWork(int id) throws WorkNotFoundException {
+        Work w = _works.get(id);
+        if (w == null) {
+            throw new WorkNotFoundException(id);
+        }
+
+        return w;
     }
 
 

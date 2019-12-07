@@ -6,6 +6,7 @@ import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
 import pt.tecnico.po.ui.Input;
 import m19.core.User;
+import m19.core.exception.NotFoundException;
 import m19.core.Notification;
 
 /**
@@ -28,16 +29,18 @@ public class DoShowUserNotifications extends Command<LibraryManager> {
     public final void execute() throws DialogException {
         _form.parse();
 
-        User user = _receiver.getUser(_userId.value());
-        if (user == null) {
-            throw new NoSuchUserException(_userId.value());
+        try {
+            User user = _receiver.getUser(_userId.value());
+
+            for (Notification notification: user.getNotifications()) {
+                _display.addLine(notification.getMessage());
+                
+            }
+            _display.display();
+        } catch (NotFoundException nfe) {
+            throw new NoSuchUserException(nfe.getRequestedId());
         }
 
-        for (Notification notification: user.getNotifications()) {
-            _display.addLine(notification.getMessage());
-            
-        }
-        _display.display();
     }
 
 }

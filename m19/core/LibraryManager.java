@@ -1,9 +1,6 @@
 package m19.core;
 
-import m19.core.exception.MissingFileAssociationException;
-import m19.core.exception.RuleNotSatisfiedException;
-import m19.core.exception.BadEntrySpecificationException;
-import m19.core.exception.ImportFileException;
+import m19.core.exception.*;
 
 import java.io.*;
 import java.util.Collection;
@@ -121,15 +118,14 @@ public class LibraryManager {
     }
 
     /**
-     *
      * @param id of the user to find
-     * @return a reference to User or a null reference if not found.
+     * @return a reference to User. Throws NotFoundException if it doesn't exist.
      */
-    public User getUser(int id) {
+    public User getUser(int id) throws UserNotFoundException {
         return _library.getUser(id);
     }
 
-    public Work getWork(int id) {
+    public Work getWork(int id) throws WorkNotFoundException {
         return _library.getWork(id);
     }
 
