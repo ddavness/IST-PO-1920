@@ -3,7 +3,8 @@ package m19.core;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 
 import m19.core.userbehaviour.*;
@@ -27,7 +28,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     private boolean _isActive;
     private UserBehaviour _behaviour;
 
-    private List<Request> _requests = new ArrayList<>();
+    private HashMap<Work, Request> _requests;
     private List<Notification> _notifications = new ArrayList<>();
     private int _accruedFine; // Total fine to pay, initialized at 0.
 
@@ -51,6 +52,8 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         _id = assignedId;
 
         _accruedFine = 0;
+
+        _requests = new LinkedHashMap<>();
     }
 
     public boolean isActive() {
@@ -66,7 +69,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
             return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour.getDescription() + " - ACTIVO";
         } else {
             int totalFines = 0;
-            for (Request req : _requests) {
+            for (Request req : _requests.values()) {
                 totalFines += req.getFine();
             }
             return "" + _id + " - " + _name + " - " + _email + " - " + _behaviour + " - SUSPENSO - EUR " + totalFines;
@@ -109,8 +112,9 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         return getId() == user.getId();
     }
 
-    public List<Request> getAllRequests() {
-        return Collections.unmodifiableList(_requests);
+    public Collection<Request> getAllRequests() {
+        // return Collections.unmodifiableList(_requests);
+        return _requests.values();
     }
 
     public UserBehaviour getBehaviour() {
@@ -122,7 +126,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      * @param request is not validated
      */
     public void addRequest(Request request) {
-        _requests.add(request);
+        _requests.put(request.getWork(), request);
     }
 
     /**
