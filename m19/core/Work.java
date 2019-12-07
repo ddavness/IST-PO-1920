@@ -18,17 +18,19 @@ public abstract class Work implements Serializable{
     private int _price;
     private int _numberOfCopies;
     private String _title;
+    private Library _library;
     private Map<User, Request> _requests;
     private NotificationBroadcaster _returnBroadcaster;
 
     private Category _category; //FIXME May have more than one category
 
-    public Work(int assignedId, String title, int price, Category category, int numberOfCopies) {
+    public Work(int assignedId, Library library, String title, int price, Category category, int numberOfCopies) {
         _id = assignedId;
         _price = price;
         _category = category;
         _numberOfCopies = numberOfCopies;
         _title = title;
+        _library = library;
         _requests = new HashMap<>();
         _returnBroadcaster = new NotificationBroadcaster();
     }
@@ -53,6 +55,10 @@ public abstract class Work implements Serializable{
         getPrice(),
         getCategory(),
         getExtraInfo());
+    }
+
+    public Library getLibrary() {
+        return _library;
     }
 
     public int getId() {
