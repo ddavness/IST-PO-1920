@@ -14,9 +14,9 @@ public class Abiding extends UserBehaviour {
 
     @Override
     public int getNumDays(Work work) {
-        if (work.getNumberAvailableCopies() == 1)
+        if (work.getNumberOfCopies() == 1)
             return 8;
-        else if (work.getNumberAvailableCopies() <= 5)
+        else if (work.getNumberOfCopies() <= 5)
             return 15;
         
         return 30;
