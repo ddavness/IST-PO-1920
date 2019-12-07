@@ -131,10 +131,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      * @return true iff the user has requested the work received in argument
      */
     public boolean hasRequestedWork(Work work) {
-        for (Request req: getAllRequests())
-            if (req.getWork().equals(work))
-                return true;
-        return false;
+        return _requests.get(work) != null;
     }
 
     /**
