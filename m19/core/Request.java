@@ -13,48 +13,30 @@ public class Request implements Serializable {
 
     // private int _dailyFine = 5;
     private User _user;
-    // private int _deadline;
     private int _accruedFine;
-    private boolean _returned;
     private Work _work;
     private int _returnDate;
 
     public Request(User user, Work work, int returnDate) {
         _user = user;
-        // FIXME Implement dynamic deadline
         _accruedFine = 0;
-        _returned = false;
         _work = work;
         _returnDate = returnDate;
     }
 
-    /*public int getDeadine() {
-        return _deadline;
-    }*/
-
-    // FIXME Implement setDeadline()
+    public boolean isPastDueDate() {
+        return _work.getLibrary().getCurrentDate() > _returnDate;
+    }
 
     public int getFine() {
         return _accruedFine;
     }
-
-    /*public void updateStatus() {
-        // FIXME: Placeholder. Update.
-        int date = 0;
-
-        if (date > _deadline && !_returned) {
-            _accruedFine = (date - _deadline) * _dailyFine;
-            _user.setActive(false);
-        }
-    }*/
 
     /**
      * Returns the work.
      * @return
      */
     public boolean returnWork() {
-        _returned = true;
-
         return _accruedFine == 0;
     }
 
