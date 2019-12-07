@@ -24,7 +24,8 @@ public abstract class UserBehaviour implements Serializable {
 
     }
 
-    public String getDescription() {
+    @Override
+    public String toString() {
         return _name;
     }
 

@@ -3,7 +3,7 @@ package m19.core;
 /**
  * Category Enum
  */
-enum Category {
+public enum Category {
     REFERENCE("Referência"),
     FICTION("Ficção"),
     SCITECH("Técnica e Científica");

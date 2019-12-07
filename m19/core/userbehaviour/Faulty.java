@@ -10,7 +10,7 @@ import m19.core.UserBehaviour;
 public class Faulty extends UserBehaviour {
     static final long serialVersionUID = 201973109733702L;
 
-    Faulty() {
+    public Faulty() {
         super("FALTOSO", 1);
     }
 

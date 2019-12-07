@@ -29,11 +29,12 @@ public class Library implements Serializable {
         _works = new HashMap<>();
         _rules = new ArrayList<>();
 
-        _rules.add(new CheckRequestTwice(0, this));
-        _rules.add(new CheckUserHasNotExceededWorkRequestLimit(1, this));
-        _rules.add(new CheckUserIsNotSuspended(2, this)); // FIXME Change name
-        _rules.add(new CheckWorkIsAvailable(3, this));
-        _rules.add(new CheckWorkIsLowValue(4, this));
+        _rules.add(new CheckRequestTwice(1, this));
+        _rules.add(new CheckUserHasNotExceededWorkRequestLimit(2, this));
+        _rules.add(new CheckUserIsNotSuspended(3, this)); // FIXME Change name
+        _rules.add(new CheckWorkIsAvailable(4, this));
+        _rules.add(new CheckWorkIsNotReference(5, this));
+        _rules.add(new CheckWorkIsLowValue(6, this));
     }
 
     /**
@@ -55,7 +56,14 @@ public class Library implements Serializable {
             _systemDate += daysToAdvance;
         }
 
-        // FIXME Apply updates
+        for (User u: _users.values()) {
+            for (Request r: u.getAllRequests()) {
+                if (r.isPastDueDate()) {
+                    u.setActive(false);
+                    break;
+                }
+            }
+        }
     }
 
     /**
