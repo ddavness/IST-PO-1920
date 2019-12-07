@@ -18,7 +18,7 @@ public abstract class Work implements Serializable{
     private int _price;
     private int _numberOfCopies;
     private String _title;
-    private List<Request> _requests;
+    private Map<User, Request> _requests;
 
     private Category _category; //FIXME May have more than one category
 
@@ -28,7 +28,7 @@ public abstract class Work implements Serializable{
         _category = category;
         _numberOfCopies = numberOfCopies;
         _title = title;
-        _requests = new ArrayList<>();
+        _requests = new HashMap<>();
     }
 
 
@@ -87,7 +87,7 @@ public abstract class Work implements Serializable{
      * @param request is not validated
      */
     public void addRequest(Request request) {
-        _requests.add(request);
+        _requests.put(request.getUser(), request);
     }
 
 }
