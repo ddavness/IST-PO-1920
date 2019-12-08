@@ -3,7 +3,7 @@ package m19.core;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.HashMap;
+import java.util.Map;
 
 import m19.core.userbehaviour.*;
 import m19.core.notification.*;
@@ -13,8 +13,6 @@ import m19.core.notification.*;
  * By default users have UserBehaviour NORMAL.
  * 
  * @version 0.1
- * @implNote I haven't really tested it ....
- * @implNote //FIXEME Implement getDescriptions
  */
 public class User implements Serializable, Comparable<User>, NotificationObserver {
     private static final long serialVersionUID = 20190110170235409L;
@@ -27,8 +25,8 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     private boolean _isActive;
     private UserBehaviour _behaviour;
 
-    private HashMap<Work, Request> _requests;
-    private HashMap<Work, Notification> _notifications;
+    private Map<Work, Request> _requests;
+    private Map<Work, Notification> _notifications;
     private int _accruedFine; // Total fine to pay, initialized at 0.
     private int _karma;
 

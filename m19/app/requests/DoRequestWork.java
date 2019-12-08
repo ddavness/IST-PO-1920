@@ -23,10 +23,12 @@ import m19.app.requests.Message;
  * 4.4.1. Request work.
  */
 public class DoRequestWork extends Command<LibraryManager> {
-
+    
     Input<Integer> _userId;
     Input<Integer> _workId;
-
+    User _user;
+    Work _work;
+    
     // Is displayd or not based on user input at run time
     // asking for notification preference
     Input<Boolean> _reqRetNotifPref;
@@ -38,8 +40,6 @@ public class DoRequestWork extends Command<LibraryManager> {
         super(Label.REQUEST_WORK, receiver);
     }
 
-    User user;
-    Work work;
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
@@ -50,10 +50,10 @@ public class DoRequestWork extends Command<LibraryManager> {
         _form.parse();
 
         try {
-            user = _receiver.getUser(_userId.value());
-            work = _receiver.getWork(_workId.value());
-            Request req = _receiver.requestWork(user, work);
-            _display.popup(Message.workReturnDay(work.getId(), req.getReturnDate()));
+            _user = _receiver.getUser(_userId.value());
+            _work = _receiver.getWork(_workId.value());
+            Request req = _receiver.requestWork(_user, _work);
+            _display.popup(Message.workReturnDay(_work.getId(), req.getReturnDate()));
         }
         catch (UserNotFoundException nufe) {
             throw new NoSuchUserException(nufe.getRequestedId());
@@ -68,11 +68,11 @@ public class DoRequestWork extends Command<LibraryManager> {
             // Do something with user's notification preference.
 
             if (_reqRetNotifPref.value()) {
-                acre.getNotificationBroadcaster().subscribe(user);
+                acre.getNotificationBroadcaster().subscribe(_user);
             }
         }
         catch (RuleNotSatisfiedException rnse) { // Not rule 3
-            throw new RuleFailedException(user.getId(), work.getId(), rnse.getViolatedRule());
+            throw new RuleFailedException(_user.getId(), _work.getId(), rnse.getViolatedRule());
         }
 
     }

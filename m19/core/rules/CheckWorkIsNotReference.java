@@ -20,7 +20,6 @@ public class CheckWorkIsNotReference extends Rule {
     }
 
     public void check(Request request) throws RuleNotSatisfiedException {
-        int MAX_PRICE = 25; // in euros
         if (request.getWork().getCategory() == Category.REFERENCE) {
             throw new RuleNotSatisfiedException(request.getUser(), request.getWork(), _ruleId);
         }

@@ -4,12 +4,12 @@ import m19.core.LibraryManager;
 import m19.core.exception.UserNotFoundException;
 import m19.core.exception.WorkNotFoundException;
 import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Input;
 import pt.tecnico.po.ui.DialogException;
 import m19.app.exception.NoSuchUserException;
 import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.WorkNotBorrowedByUserException;
 import m19.core.*;
-import pt.tecnico.po.ui.*;
 
 /**
  * 4.4.2. Return a work.
