@@ -7,6 +7,7 @@ import java.util.Map;
 
 import m19.core.userbehaviour.*;
 import m19.core.notification.*;
+import m19.core.exception.RequestNotFoundException;
 
 /**
  * User - User of the Library.
@@ -152,8 +153,13 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
      * @param work
      * @return true iff the user has requested the work received in argument
      */
-    public Request requestedWork(Work work) {
-        return _requests.get(work);
+    public Request requestedWork(Work work) throws RequestNotFoundException {
+        Request found = _requests.get(work);
+        if (found == null) {
+            throw new RequestNotFoundException(work.getId(), getId());
+        }
+
+        return found;
     }
 
     /**

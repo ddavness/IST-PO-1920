@@ -3,7 +3,6 @@ package m19.core.rules;
 import m19.core.Rule;
 import m19.core.Library;
 import m19.core.Request;
-import m19.core.UserBehaviour;
 import m19.core.userbehaviour.Abiding;
 
 import m19.core.exception.RuleNotSatisfiedException;

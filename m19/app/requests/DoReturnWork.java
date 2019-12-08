@@ -1,15 +1,17 @@
 package m19.app.requests;
 
-import m19.core.LibraryManager;
+import m19.core.*;
 import m19.core.exception.UserNotFoundException;
 import m19.core.exception.WorkNotFoundException;
-import pt.tecnico.po.ui.Command;
-import pt.tecnico.po.ui.Input;
-import pt.tecnico.po.ui.DialogException;
+import m19.core.exception.RequestNotFoundException;
+
 import m19.app.exception.NoSuchUserException;
 import m19.app.exception.NoSuchWorkException;
 import m19.app.exception.WorkNotBorrowedByUserException;
-import m19.core.*;
+
+import pt.tecnico.po.ui.Command;
+import pt.tecnico.po.ui.Input;
+import pt.tecnico.po.ui.DialogException;
 
 /**
  * 4.4.2. Return a work.
@@ -40,10 +42,6 @@ public class DoReturnWork extends Command<LibraryManager> {
             Work work = _receiver.getWork(_workId.value());
             Request request = user.requestedWork(work);
 
-            // FIXME
-            if (request == null)
-                throw new WorkNotBorrowedByUserException(_workId.value(), _userId.value());
-
             user.returnWork(request);
 
             int fine = user.getAccruedFine();
@@ -58,13 +56,13 @@ public class DoReturnWork extends Command<LibraryManager> {
                     _receiver.payFine(_userId.value());
                 }
             }
-        } catch (UserNotFoundException nufe) {
-            throw new NoSuchUserException(nufe.getRequestedId());
-        } catch (WorkNotFoundException nwfe) {
-            throw new NoSuchWorkException(nwfe.getRequestedId());
+        } catch (UserNotFoundException unfe) {
+            throw new NoSuchUserException(unfe.getRequestedId());
+        } catch (WorkNotFoundException wnfe) {
+            throw new NoSuchWorkException(wnfe.getRequestedId());
+        } catch (RequestNotFoundException rnfe) {
+            throw new WorkNotBorrowedByUserException(rnfe.getWorkId(), rnfe.getUserId());
         }
-
-        // FIXME implement command
     }
 
 }

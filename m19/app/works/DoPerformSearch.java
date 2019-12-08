@@ -1,11 +1,12 @@
 package m19.app.works;
 
+import java.util.List;
 import java.util.ArrayList;
 
-import m19.core.LibraryManager;
-// FIXME import other core concepts
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Input;
+
+import m19.core.LibraryManager;
 import m19.core.Work;
 
 /**
@@ -26,7 +27,7 @@ public class DoPerformSearch extends Command<LibraryManager> {
     @Override
     public final void execute() {
         _form.parse();
-        ArrayList<Work> works = new ArrayList<>();
+        List<Work> works = new ArrayList<>();
         for (Work work: _receiver.getAllWorks()) {
             if (work.getTitle().contains(_searchTerm.value())) {
                 works.add(work);

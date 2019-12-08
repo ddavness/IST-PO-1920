@@ -1,7 +1,5 @@
 package m19.core.notification;
 
-import java.io.Serializable;
-
 import m19.core.Notification;
 import m19.core.Work;
 

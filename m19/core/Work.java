@@ -22,7 +22,7 @@ public abstract class Work implements Serializable{
     private Map<User, Request> _requests;
     private NotificationBroadcaster _returnBroadcaster;
 
-    private Category _category; //FIXME May have more than one category
+    private Category _category;
 
     public Work(int assignedId, Library library, String title, int price, Category category, int numberOfCopies) {
         _id = assignedId;
