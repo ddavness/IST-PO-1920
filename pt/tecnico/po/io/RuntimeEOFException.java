@@ -7,7 +7,7 @@ package pt.tecnico.po.io;
 public class RuntimeEOFException extends RuntimeException {
 
   /** Serial number for serialization. */
-  static final long serialVersionUId = 200610291655L;
+  static final long serialVersionUID = 200610291655L;
 
   /** Default constructor. */
   public RuntimeEOFException() {
