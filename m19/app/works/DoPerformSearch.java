@@ -12,9 +12,7 @@ import m19.core.Work;
  * 4.3.3. Perform search according to miscellaneous criteria.
  */
 public class DoPerformSearch extends Command<LibraryManager> {
-
-    // FIXME define input fields
-    Input<String> _searchTerm;
+    private Input<String> _searchTerm;
 
     /**
      * @param m

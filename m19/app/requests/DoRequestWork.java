@@ -24,10 +24,10 @@ import m19.app.requests.Message;
  */
 public class DoRequestWork extends Command<LibraryManager> {
     
-    Input<Integer> _userId;
-    Input<Integer> _workId;
-    User _user;
-    Work _work;
+    private Input<Integer> _userId;
+    private Input<Integer> _workId;
+    private User _user;
+    private Work _work;
     
     // Is displayd or not based on user input at run time
     // asking for notification preference

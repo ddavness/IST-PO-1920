@@ -14,7 +14,7 @@ import pt.tecnico.po.ui.Input;
  */
 public class DoPayFine extends Command<LibraryManager> {
 
-    Input<Integer> _userId;
+    private Input<Integer> _userId;
 
     /**
      * @param receiver

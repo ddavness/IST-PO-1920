@@ -14,7 +14,7 @@ import m19.core.Notification;
  */
 public class DoShowUserNotifications extends Command<LibraryManager> {
 
-    Input<Integer> _userId;
+    private Input<Integer> _userId;
 
     /**
      * @param receiver

@@ -14,7 +14,7 @@ import m19.app.exception.NoSuchUserException;
  */
 public class DoShowUser extends Command<LibraryManager> {
 
-    Input<Integer> _userId;
+    private Input<Integer> _userId;
 
     /**
      * @param receiver

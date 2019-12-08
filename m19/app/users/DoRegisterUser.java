@@ -11,8 +11,8 @@ import m19.app.users.Message;
  * 4.2.1. Register new user.
  */
 public class DoRegisterUser extends Command<LibraryManager> {
-    Input<String> _userName;
-    Input<String> _userEmail;
+    private Input<String> _userName;
+    private Input<String> _userEmail;
 
     /**
      * @param receiver

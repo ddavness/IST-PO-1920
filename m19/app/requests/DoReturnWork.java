@@ -15,9 +15,9 @@ import m19.core.*;
  * 4.4.2. Return a work.
  */
 public class DoReturnWork extends Command<LibraryManager> {
-    Input<Integer> _userId;
-    Input<Integer> _workId;
-    Input<Boolean> _wishesToPayFine;
+    private Input<Integer> _userId;
+    private Input<Integer> _workId;
+    private Input<Boolean> _wishesToPayFine;
 
     /**
      * @param receiver
