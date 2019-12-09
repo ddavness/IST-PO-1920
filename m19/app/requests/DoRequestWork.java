@@ -4,6 +4,7 @@ import m19.core.LibraryManager;
 import m19.core.Request;
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.DialogException;
+import pt.tecnico.po.ui.Form;
 import pt.tecnico.po.ui.Input;
 
 import m19.core.User;
@@ -31,22 +32,26 @@ public class DoRequestWork extends Command<LibraryManager> {
     
     // Is displayd or not based on user input at run time
     // asking for notification preference
-    Input<Boolean> _reqRetNotifPref;
+    private Form _exceptionForm;
+    private Input<Boolean> _reqRetNotifPref;
 
     /**
      * @param receiver
      */
     public DoRequestWork(LibraryManager receiver) {
         super(Label.REQUEST_WORK, receiver);
+        _userId = _form.addIntegerInput(Message.requestUserId());
+        _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
+
+        // Auxiliary form
+        _exceptionForm = new Form();
+        _reqRetNotifPref = _exceptionForm.addBooleanInput(Message.requestReturnNotificationPreference());
     }
 
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-        _form.clear();
-        _userId = _form.addIntegerInput(Message.requestUserId());
-        _workId = _form.addIntegerInput(m19.app.requests.Message.requestWorkId());
         _form.parse();
 
         try {
@@ -62,9 +67,7 @@ public class DoRequestWork extends Command<LibraryManager> {
             throw new NoSuchWorkException(nwfe.getRequestedId());
         }
         catch (AllCopiesRequestedException acre) { // Tough luck for the User
-            _form.clear();
-            _reqRetNotifPref = _form.addBooleanInput(Message.requestReturnNotificationPreference());
-            _form.parse();
+            _exceptionForm.parse();
             // Do something with user's notification preference.
 
             if (_reqRetNotifPref.value()) {

@@ -11,6 +11,7 @@ import m19.app.exception.WorkNotBorrowedByUserException;
 
 import pt.tecnico.po.ui.Command;
 import pt.tecnico.po.ui.Input;
+import pt.tecnico.po.ui.Form;
 import pt.tecnico.po.ui.DialogException;
 
 /**
@@ -19,6 +20,10 @@ import pt.tecnico.po.ui.DialogException;
 public class DoReturnWork extends Command<LibraryManager> {
     private Input<Integer> _userId;
     private Input<Integer> _workId;
+
+    // Displayed or not based on user input at run time
+    // asking for notification preference
+    private Form _paymentConfirmationForm;
     private Input<Boolean> _wishesToPayFine;
 
     /**
@@ -26,15 +31,17 @@ public class DoReturnWork extends Command<LibraryManager> {
      */
     public DoReturnWork(LibraryManager receiver) {
         super(Label.RETURN_WORK, receiver);
+        _userId = _form.addIntegerInput(Message.requestUserId());
+        _workId = _form.addIntegerInput(Message.requestWorkId());
+
+        // Auxiliary form
+        _paymentConfirmationForm = new Form();
+        _wishesToPayFine = _paymentConfirmationForm.addBooleanInput(Message.requestFinePaymentChoice());
     }
 
     /** @see pt.tecnico.po.ui.Command#execute() */
     @Override
     public final void execute() throws DialogException {
-        _form.clear();
-        _userId = _form.addIntegerInput(Message.requestUserId());
-        _workId = _form.addIntegerInput(Message.requestWorkId());
-
         _form.parse();
 
         try {
@@ -48,9 +55,7 @@ public class DoReturnWork extends Command<LibraryManager> {
             if (fine > 0) {
                 _display.addLine(Message.showFine(user.getId(), fine));
                 _display.display();
-                _form.clear();
-                _wishesToPayFine = _form.addBooleanInput(Message.requestFinePaymentChoice());
-                _form.parse();
+                _paymentConfirmationForm.parse();
 
                 if (_wishesToPayFine.value()) {
                     _receiver.payFine(_userId.value());
