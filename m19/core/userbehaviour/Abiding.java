@@ -1,7 +1,5 @@
 package m19.core.userbehaviour;
 
-import java.lang.Double;
-
 import m19.core.Work;
 import m19.core.User;
 import m19.core.UserBehaviour;
