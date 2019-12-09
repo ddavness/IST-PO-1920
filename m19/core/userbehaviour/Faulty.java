@@ -11,7 +11,7 @@ public class Faulty extends UserBehaviour {
     static final long serialVersionUID = 201973109733702L;
 
     public Faulty() {
-        super("FALTOSO", 1);
+        super("FALTOSO", 1, 25);
     }
 
     @Override

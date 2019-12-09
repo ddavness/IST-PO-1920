@@ -1,5 +1,7 @@
 package m19.core.userbehaviour;
 
+import java.lang.Double;
+
 import m19.core.Work;
 import m19.core.User;
 import m19.core.UserBehaviour;
@@ -11,7 +13,7 @@ public class Abiding extends UserBehaviour {
     static final long serialVersionUID = 201973109733703L;
 
     public Abiding() {
-        super("CUMPRIDOR", 5);
+        super("CUMPRIDOR", 5, (int)Double.POSITIVE_INFINITY);
     }
 
     @Override

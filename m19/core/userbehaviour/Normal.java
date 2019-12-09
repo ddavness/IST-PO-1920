@@ -10,7 +10,7 @@ public class Normal extends UserBehaviour {
     static final long serialVersionUID = 201973109733701L;
 
     public Normal() {
-        super("NORMAL", 3);
+        super("NORMAL", 3, 25);
     }
 
     @Override
