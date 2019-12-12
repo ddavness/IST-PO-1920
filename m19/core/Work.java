@@ -106,4 +106,11 @@ public abstract class Work implements Serializable{
         return _returnBroadcaster;
     }
 
+    /**
+     * 
+     * @param term to search work (case insensitive)
+     * @return true iff the work mathches the pattern
+     */
+    public abstract boolean search(String term);
+
 }

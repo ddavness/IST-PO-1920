@@ -45,5 +45,10 @@ public class Book extends Work implements Serializable {
         return getAuthor() + " - " + getISBN();
     }
 
+    public boolean search(String term) {
+        return getAuthor().toLowerCase().contains(term.toLowerCase()) ||
+        getTitle().toLowerCase().contains(term.toLowerCase());
+    }
+
     
 }

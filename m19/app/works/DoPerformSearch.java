@@ -29,7 +29,7 @@ public class DoPerformSearch extends Command<LibraryManager> {
         _form.parse();
         List<Work> works = new ArrayList<>();
         for (Work work: _receiver.getAllWorks()) {
-            if (work.getTitle().contains(_searchTerm.value())) {
+            if (work.search(_searchTerm.value())) {
                 works.add(work);
             }
         }

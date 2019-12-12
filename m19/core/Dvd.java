@@ -44,5 +44,10 @@ public class Dvd extends Work implements Serializable {
         return getDirector() + " - " + getIGAC();
     }
 
+    public boolean search(String term) {
+        return getDirector().toLowerCase().contains(term.toLowerCase()) ||
+        getTitle().toLowerCase().contains(term.toLowerCase());
+    }
+
 
 }
