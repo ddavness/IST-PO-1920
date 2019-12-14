@@ -1,9 +1,7 @@
 package m19.core;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 import m19.core.userbehaviour.*;
 import m19.core.notification.*;
@@ -27,7 +25,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     private UserBehaviour _behaviour;
 
     private Map<Work, Request> _requests;
-    private Map<Work, Notification> _notifications;
+    private List<Notification> _notifications;
     private int _accruedFine; // Total fine to pay, initialized at 0.
     private int _karma;
 
@@ -53,7 +51,7 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         _accruedFine = 0;
 
         _requests = new LinkedHashMap<>();
-        _notifications = new LinkedHashMap<>();
+        _notifications = new ArrayList<>();
     }
 
     public boolean isActive() {
@@ -74,14 +72,14 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
 
     public Collection<Notification> getNotifications() {
         // Clear notifications
-        Collection<Notification> notifs = _notifications.values();
-        _notifications = new LinkedHashMap<>();
+        Collection<Notification> notifs = _notifications;
+        _notifications = new ArrayList<>();
         return notifs;
     }
 
     public void notify(Collection<Notification> notifications) {
         for (Notification n: notifications) {
-            _notifications.put(n.getWork(), n);
+            _notifications.add(n);
         }
     }
 
@@ -172,13 +170,14 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         return _accruedFine;
     }
 
+    /*
     /**
      * 
      * @param work
      * @return reference to notification if found, null otherwise.
      */
 
-    public Notification getNotificationByWork(Work work) {
+    /*public Notification getNotificationByWork(Work work) {
         return _notifications.get(work);
-    }
+    }*/
 }
