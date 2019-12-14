@@ -73,8 +73,10 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     }
 
     public Collection<Notification> getNotifications() {
-        
-        return _notifications.values();
+        // Clear notifications
+        Collection<Notification> notifs = _notifications.values();
+        _notifications = new LinkedHashMap<>();
+        return notifs;
     }
 
     public void notify(Collection<Notification> notifications) {
