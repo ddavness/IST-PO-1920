@@ -169,15 +169,4 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     public int getAccruedFine() {
         return _accruedFine;
     }
-
-    /*
-    /**
-     * 
-     * @param work
-     * @return reference to notification if found, null otherwise.
-     */
-
-    /*public Notification getNotificationByWork(Work work) {
-        return _notifications.get(work);
-    }*/
 }
