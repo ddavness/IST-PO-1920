@@ -19,7 +19,7 @@ public class Normal extends UserBehaviour {
             return 3;
         else if (work.getNumberOfCopies() <= 5)
             return 8;
-        
+
         return 15;
     }
 
@@ -39,6 +39,7 @@ public class Normal extends UserBehaviour {
         } else if (currentKarma >= 5) {
             return new Abiding();
         }
+
         return this;
     }
 

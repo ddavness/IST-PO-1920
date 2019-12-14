@@ -23,7 +23,7 @@ public class Faulty extends UserBehaviour {
     public UserBehaviour updateKarma(User user, boolean lateReturn) {
         int currentKarma = user.getKarma();
         if (lateReturn) {
-            currentKarma--;
+            currentKarma = Math.min(0, currentKarma) - 1;
         } else {
             currentKarma = Math.max(0, currentKarma) + 1;
         }
