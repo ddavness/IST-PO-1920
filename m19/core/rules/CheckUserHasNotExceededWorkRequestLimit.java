@@ -5,7 +5,6 @@ import m19.core.User;
 import m19.core.Library;
 import m19.core.Request;
 import m19.core.exception.*;
-import m19.core.Work;
 /**
  * CheckUserHasNotExceededWorkRequestLimit
  */
@@ -23,8 +22,7 @@ public class CheckUserHasNotExceededWorkRequestLimit extends Rule {
 
     public void check(Request request) throws RuleNotSatisfiedException {
         User user = request.getUser();
-        Work work = request.getWork();
-        int maxReqWorks = user.getBehaviour().getNumDays(work);
+        int maxReqWorks = user.getBehaviour().maxNumberOfRequestedWorks();
 
         if (user.getAllRequests().size() + 1 > maxReqWorks) {
             throw new RuleNotSatisfiedException(user, request.getWork(), _ruleId);
