@@ -40,6 +40,7 @@ public class NotificationBroadcaster implements Serializable{
 
         // "Flush" all notifications
         _notifications = new ArrayList<>();
+        _observers = new ArrayList<>();
     }
 
     void insertNotification(Notification notification) {
