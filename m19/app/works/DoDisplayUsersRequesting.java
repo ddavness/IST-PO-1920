@@ -44,7 +44,7 @@ public class DoDisplayUsersRequesting extends Command<LibraryManager> {
             }
 
             for (User u: users) {
-                _display.add(u.getDescription() + "\n");
+                _display.addLine(u.getDescription());
             }
             _display.display();
         } catch (NotFoundException nfe) {
