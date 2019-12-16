@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @version 0.0
  * @implNote As per the teachers' UML.
  */
-public class Request implements Serializable {
+public class Request implements Serializable, Comparable<Request> {
 
     static final long serialVersionUID = 201901093213216587L;
 
@@ -56,5 +56,9 @@ public class Request implements Serializable {
      */
     public int getReturnDate() {
         return _returnDate;
+    }
+
+    public int compareTo(Request other) {
+        return getUser().getEmail().compareTo(other.getUser().getEmail());
     }
 }

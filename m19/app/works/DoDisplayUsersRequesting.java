@@ -36,15 +36,15 @@ public class DoDisplayUsersRequesting extends Command<LibraryManager> {
 
         try {
             Work work = _receiver.getWork(index);
-            Collection<Request> requests = work.getRequests();
+            List<Request> requests = work.getRequests();
+            Collections.sort(requests);
             List<User> users = new ArrayList<>();
             for (Request r: requests) {
                 users.add(r.getUser());
             }
-            Collections.sort(users);
 
             for (User u: users) {
-                _display.add(u.getDescription());
+                _display.add(u.getDescription() + "\n");
             }
             _display.display();
         } catch (NotFoundException nfe) {

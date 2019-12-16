@@ -91,6 +91,10 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
         return _name;
     }
 
+    public String getEmail() {
+        return _email;
+    }
+
     /**
      * 
      * @param user
