@@ -33,4 +33,11 @@ public interface Message {
         return "Novo utente criado com o número " + idUser + ".";
     }
 
+    /**
+     * @return message
+     */
+    static String requestSearchTerm() {
+        return "Introduza o termo de pesquisa: ";
+    }
+
 }

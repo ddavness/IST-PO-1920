@@ -16,6 +16,7 @@ public class Menu extends pt.tecnico.po.ui.Menu {
             new DoShowUsers(receiver), //
             new DoShowUserNotifications(receiver), //
             new DoPayFine(receiver), //
+            new DoPerformSearch(receiver), //
         });
     }
 

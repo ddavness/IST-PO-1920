@@ -173,4 +173,9 @@ public class User implements Serializable, Comparable<User>, NotificationObserve
     public int getAccruedFine() {
         return _accruedFine;
     }
+
+    public boolean search(String term) {
+        return getName().toLowerCase().contains(term.toLowerCase()) ||
+        getEmail().toLowerCase().contains(term.toLowerCase());
+    }
 }
