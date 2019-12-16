@@ -102,6 +102,10 @@ public abstract class Work implements Serializable{
         _requests.remove(user);
     }
 
+    public Collection<Request> getRequests() {
+        return _requests.values();
+    }
+
     public NotificationBroadcaster getReturnNotificationBroadcaster() {
         return _returnBroadcaster;
     }

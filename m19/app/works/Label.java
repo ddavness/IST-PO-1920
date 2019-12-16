@@ -16,4 +16,6 @@ public interface Label {
     /** §4.3.3. Perform term search. */
     String PERFORM_SEARCH = "Efectuar pesquisa de termos";
 
+    String SHOW_REQUESTS = "Mostrar requisições";
+
 }
