@@ -10,9 +10,11 @@ import m19.core.exception.BadEntrySpecificationException;
 public class Parser {
 
     private Library _library;
+    private int _worksLoaded;
 
     Parser(Library lib) {
         _library = lib;
+        _worksLoaded = 0;
     }
 
     void parseFile(String filename) throws IOException, FileNotFoundException, BadEntrySpecificationException {
@@ -48,6 +50,11 @@ public class Parser {
     }
 
     private void parseDvd(String[] components, String line) throws BadEntrySpecificationException {
+        if (_worksLoaded >= 10) {
+            return;
+        }
+        _worksLoaded++;
+
         if (components.length != 7) {
             throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
         }
@@ -60,6 +67,11 @@ public class Parser {
     }
 
     private void parseBook(String[] components, String line) throws BadEntrySpecificationException {
+        if (_worksLoaded >= 10) {
+            return;
+        }
+        _worksLoaded++;
+
         if (components.length != 7){
             throw new BadEntrySpecificationException("Wrong number of fields (6) in " + line);
         }
