@@ -1,3 +1,6 @@
-<h1><p align="center">Segmentation Fault (core dumped)</p></h1>
+<h1><p align="center">Library Manager</p></h1>
+<h2><p align="center">Object Oriented Programming 19/20</p></h2>
 
-Core Dumped (segmentation fault)
+**Goal:** Create an extensible, modular library manager (essentially CLI-based).
+
+**Note:** Depends on `po-uuilib`, which is included here.
